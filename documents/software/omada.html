@@ -31,7 +31,7 @@
         <a href="https://nicepage.com" class="u-image u-logo u-image-1">
           <img src="../../images/default-logo.png" class="u-logo-image u-logo-image-1">
         </a>
-        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1.375rem; letter-spacing: 0px; text-transform: uppercase; font-weight: 400;">
             <a class="u-button-style u-custom-active-color u-custom-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-text-shadow u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
@@ -41,7 +41,11 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../home.html" style="padding: 10px 20px;">home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../docs.html" style="padding: 10px 20px;">docs</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../docs.html" style="padding: 10px 20px;">docs</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-hover-palette-1-light-2 u-nav-link u-white" href="../ha/Home-Assistant.html">Home Assistant</a>
+</li><li class="u-nav-item"><a class="u-button-style u-hover-palette-1-light-2 u-nav-link u-white" href="software.html">Software</a>
+</li><li class="u-nav-item"><a class="u-button-style u-hover-palette-1-light-2 u-nav-link u-white" href="../../hardware.html">Hardware</a>
+</li></ul>
+</div>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../blog.html" style="padding: 10px 20px;">blog</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../about.html" style="padding: 10px 20px;">about</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-1-light-1 u-text-white" href="../../contact.html" style="padding: 10px 20px;">contact</a>
@@ -51,8 +55,12 @@
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../home.html">home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../docs.html">docs</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../home.html">home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../docs.html">docs</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../ha/Home-Assistant.html">Home Assistant</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="software.html">Software</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../hardware.html">Hardware</a>
+</li></ul>
+</div>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../blog.html">blog</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../about.html">about</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../contact.html">contact</a>
@@ -69,18 +77,34 @@
         <img class="u-image u-image-contain u-image-default u-preserve-proportions u-image-1" src="../../images/logo-omada.png" alt="" data-image-width="512" data-image-height="512">
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-0a6a">
+    <section class="u-align-left u-clearfix u-section-2" id="sec-e395">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-1">Omada Controller LXC</h1>
-        <p class="Andale Consolas Monaco Monoquot Ubuntu background bashspanspan c classlanguage-bash classtoken code font-family githubcomtteckProxmoxrawmainctomadashspanspan https hyphens left line-height monospace none normal overflow-wrap pre qLO quot rgb108 rgb145 rgb198 rgb227 span spancode spanspan stylecolor tab-size text-align u-align-left u-text wgetspanspan white-space word-break word-spacing u-text-2"> Omada Controller is a software application used to manage TP-Link's Omada EAP (Enterprise Access Point) devices. It allows administrators to centrally manage a large number of EAPs, monitor network performance, and control user access to the network. The software provides an intuitive interface for network configuration, firmware upgrades, and network monitoring. By using the Omada Controller, administrators can streamline the management process, reduce manual intervention, and improve the overall security and reliability of the network.To create a new Proxmox VE Omada Controller LXC, run the command below in theProxmox VE Shell.<br>
-          <br>bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/omada.sh)"<br>
-		  <code class="language-bash" style="color: rgb(227, 234, 242); background: none; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none;"><span class="token" style="color: rgb(198, 153, 227);">bash</span><span> -c </span><span class="token" style="color: rgb(145, 208, 118);">"</span><span class="token" style="color: rgb(108, 184, 230);">$(</span><span class="token" style="color: rgb(198, 153, 227);">wget</span><span class="token" style="color: rgb(108, 184, 230);"> -qLO - https://github.com/tteck/Proxmox/raw/main/ct/omada.sh</span><span class="token" style="color: rgb(108, 184, 230);">)</span><span class="token" style="color: rgb(145, 208, 118);">"</span></code>
-          <br>⚡ Default Settings: 2GB RAM - 8GB Storage - 2vCPU⚡<br>
-          <br>Omada Interface: (https)IP:8043
-        </p>
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Omada Controller LXC</h1>
+          <p style="text-align: left;">There are multiple ways to install Omada Controller, I have used Home Assistant Add-on with limited success, no idea why, worked one moment then stopped, uninstalled it, reinstalled it, used a differeent integration and it all goes to shit.</p>
+          <p style="text-align: left;">One day I will investigate further as I like the idea of it being in one place and HA has sensors for it.</p>
+          <p style="text-align: left;">Docker images, haven't bothered with that yet, watch this space...</p>
+          <p style="text-align: left;">Talking of space, I have some on one of my Proxmox Servers ( I use that term losely, see my Server Hardware List ).</p>
+          <p style="text-align: left;">I found the below Omada Controller LXC amongst tteck's <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://tteck.github.io/Proxmox/" rel="noopener noreferrer" target="_blank">Proxmox VE Helper Scripts</a> which made it soo much easier, can't believe it took me soo long to find them.
+          </p>
+          <p style="text-align: left;">Go to <span style="font-weight: 700;">Server - Networking &gt; Omada Controller LXC</span> and there you will find a little on the software.
+          </p>
+          <p style="text-align: left;">What I did was go to Proxmox, click on the PVE instance and open up the Shell then run the below command. &nbsp;I used the Default settings, you can change them if you want.&nbsp;</p>
+          <blockquote>
+            <p style="text-align: left;">bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/omada.sh)"</p>
+          </blockquote>
+          <p style="text-align: left;">Once installed, yup it was that easy, I gave the VM a static IP.&nbsp; Pic below, not going to bother to wroite about thnat boring bit.</p>
+          <p style="text-align: left;">
+            <img src="../../images/image.png" width="570" align="center" style="width: 1071px;" class="fr-dib fr-fic">
+            <br>
+          </p>
+          <p style="text-align: left;">
+            <br>
+          </p>
+        </div>
       </div>
     </section>
-    <section class="u-clearfix u-section-3" id="sec-f309">
+    <section class="u-align-left u-clearfix u-section-3" id="sec-9df6">
       <div class="u-clearfix u-sheet u-sheet-1"></div>
     </section>
     
