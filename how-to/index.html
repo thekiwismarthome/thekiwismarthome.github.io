@@ -44,13 +44,13 @@ img.emoji {
 .wp-block-post-title a:where(:not(.wp-element-button)):active{color: var(--wp--preset--color--secondary);text-decoration: none;}</style>
 <style id="wp-block-group-inline-css">.wp-block-group{box-sizing:border-box}</style>
 <style id="wp-block-search-inline-css">.wp-block-search__button{margin-left:.625em;word-break:normal}.wp-block-search__button.has-icon{line-height:0}.wp-block-search__button svg{fill:currentColor;min-height:1.5em;min-width:1.5em;vertical-align:text-bottom}:where(.wp-block-search__button){border:1px solid #ccc;padding:.375em .625em}.wp-block-search__inside-wrapper{display:flex;flex:auto;flex-wrap:nowrap;max-width:100%}.wp-block-search__label{width:100%}.wp-block-search__input{border:1px solid #949494;flex-grow:1;margin-left:0;margin-right:0;min-width:3em;padding:8px;text-decoration:unset!important}.wp-block-search.wp-block-search__button-only .wp-block-search__button{margin-left:0}:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper){border:1px solid #949494;padding:4px}:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) .wp-block-search__input{border:none;border-radius:0;padding:0 0 0 .25em}:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) .wp-block-search__input:focus{outline:none}:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) :where(.wp-block-search__button){padding:.125em .5em}.wp-block-search.aligncenter .wp-block-search__inside-wrapper{margin:auto}</style>
+<style id="wp-block-list-inline-css">ol,ul{box-sizing:border-box}ol.has-background,ul.has-background{padding:1.25em 2.375em}</style>
 <style id="wp-block-site-title-inline-css">.wp-block-site-title a{color:inherit}
 .wp-block-site-title{font-size: var(--wp--preset--font-size--medium);font-weight: normal;line-height: 1.4;}
 .wp-block-site-title a:where(:not(.wp-element-button)){text-decoration: none;}
 .wp-block-site-title a:where(:not(.wp-element-button)):hover{text-decoration: underline;}
 .wp-block-site-title a:where(:not(.wp-element-button)):focus{text-decoration: underline dashed;}
 .wp-block-site-title a:where(:not(.wp-element-button)):active{color: var(--wp--preset--color--secondary);text-decoration: none;}</style>
-<style id="wp-block-categories-inline-css">.wp-block-categories{box-sizing:border-box}.wp-block-categories.alignleft{margin-right:2em}.wp-block-categories.alignright{margin-left:2em}</style>
 <style id="wp-block-post-content-inline-css">.wp-block-post-content a:where(:not(.wp-element-button)){color: var(--wp--preset--color--secondary);}</style>
 <style id="wp-block-comments-inline-css">.wp-block-post-comments{box-sizing:border-box}.wp-block-post-comments .alignleft{float:left}.wp-block-post-comments .alignright{float:right}.wp-block-post-comments .navigation:after{clear:both;content:"";display:table}.wp-block-post-comments .commentlist{clear:both;list-style:none;margin:0;padding:0}.wp-block-post-comments .commentlist .comment{min-height:2.25em;padding-left:3.25em}.wp-block-post-comments .commentlist .comment p{font-size:1em;line-height:1.8;margin:1em 0}.wp-block-post-comments .commentlist .children{list-style:none;margin:0;padding:0}.wp-block-post-comments .comment-author{line-height:1.5}.wp-block-post-comments .comment-author .avatar{border-radius:1.5em;display:block;float:left;height:2.5em;margin-right:.75em;margin-top:.5em;width:2.5em}.wp-block-post-comments .comment-author cite{font-style:normal}.wp-block-post-comments .comment-meta{font-size:.875em;line-height:1.5}.wp-block-post-comments .comment-meta b{font-weight:400}.wp-block-post-comments .comment-meta .comment-awaiting-moderation{display:block;margin-bottom:1em;margin-top:1em}.wp-block-post-comments .comment-body .commentmetadata{font-size:.875em}.wp-block-post-comments .comment-form-author label,.wp-block-post-comments .comment-form-comment label,.wp-block-post-comments .comment-form-email label,.wp-block-post-comments .comment-form-url label{display:block;margin-bottom:.25em}.wp-block-post-comments .comment-form input:not([type=submit]):not([type=checkbox]),.wp-block-post-comments .comment-form textarea{box-sizing:border-box;display:block;width:100%}.wp-block-post-comments .comment-form-cookies-consent{display:flex;gap:.25em}.wp-block-post-comments .comment-form-cookies-consent #wp-comment-cookies-consent{margin-top:.35em}.wp-block-post-comments .comment-reply-title{margin-bottom:0}.wp-block-post-comments .comment-reply-title :where(small){font-size:var(--wp--preset--font-size--medium,smaller);margin-left:.5em}.wp-block-post-comments .reply{font-size:.875em;margin-bottom:1.4em}.wp-block-post-comments input:not([type=submit]),.wp-block-post-comments textarea{border:1px solid #949494;font-family:inherit;font-size:1em}.wp-block-post-comments input:not([type=submit]):not([type=checkbox]),.wp-block-post-comments textarea{padding:calc(.667em + 2px)}:where(.wp-block-post-comments input[type=submit]){border:none}</style>
 <link rel="stylesheet" id="wp-dark-mode-frontend-css" href="https://thekiwismarthome.github.io/wp-content/plugins/wp-dark-mode/assets/css/frontend.min.css?ver=4.1.8" media="all">
@@ -172,21 +172,18 @@ img.emoji {
 
 
 <form role="search" method="get" action="http://192.168.0.12/" class="wp-block-search__button-inside wp-block-search__icon-button wp-block-search">
-<label for="wp-block-search__input-13" class="wp-block-search__label screen-reader-text">Search</label><div class="wp-block-search__inside-wrapper " style="width: 75%;border-width: 0px;border-style: none;border-radius: calc(5px + 4px)">
+<label for="wp-block-search__input-13" class="wp-block-search__label screen-reader-text">Search</label><div class="wp-block-search__inside-wrapper " style="width: 489px;border-width: 0px;border-style: none;border-radius: calc(5px + 4px)">
 <input type="search" id="wp-block-search__input-13" class="wp-block-search__input has-small-font-size" name="s" value="" placeholder="" style="border-radius: 5px;line-height: 1" required><button type="submit" class="wp-block-search__button has-small-font-size has-icon wp-element-button" style="border-radius: 5px;line-height: 1" aria-label="Search"><svg class="search-icon" viewbox="0 0 24 24" width="24" height="24">
 					<path d="M13.5 6C10.5 6 8 8.5 8 11.5c0 1.1.3 2.1.9 3l-3.4 3 1 1.1 3.4-2.9c1 .9 2.2 1.4 3.6 1.4 3 0 5.5-2.5 5.5-5.5C19 8.5 16.5 6 13.5 6zm0 9.5c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"></path>
 				</svg></button>
 </div>
 </form>
 
-<h1 class="wp-block-site-title"><a href="https://thekiwismarthome.github.io/" target="_self" rel="home">The Kiwi SmartHome</a></h1>
 
-<p class="wp-block-site-tagline">Why do it tomorrow, when you can automate it today</p>
-
-<ul class="wp-block-categories-list wp-block-categories">	<li class="cat-item cat-item-1">
-<a href="https://thekiwismarthome.github.io/category/uncategorised/">Uncategorised</a>
-</li>
+<ul>
+<li>
 </ul>
+
 
 
 <div class="wp-block-group is-nowrap is-layout-flex wp-container-15">
@@ -199,10 +196,6 @@ img.emoji {
 <p class="wp-block-site-tagline">Why do it tomorrow, when you can automate it today</p>
 </div>
 </div>
-
-
-
-<p></p>
 </div>
 	<section class="wp-block-template-part">
 <div class="wp-block-group has-global-padding is-layout-constrained" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
@@ -306,7 +299,47 @@ img.emoji {
 		// Inject the skip link.
 		sibling.parentElement.insertBefore( skipLink, sibling );
 	}() );</script>
-	<div class="wp-dark-mode-switcher wp-dark-mode-ignore style-3  floating right_bottom">
+	<div class="codecopy_tooltip" style="display: inline-block; background: #333; color: white; padding: 0 8px; font-size: 14px; border-radius: 2px; border: 1px solid #111; position:absolute; display: none;">Click to Copy</div>
+<script type="text/javascript">function codecopy_get_element_position(el) {
+		var rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		return { top: rect.top + scrollTop - 30, left: rect.left + scrollLeft }
+	}
+
+	function codecopy_apply(element) {
+		element.addEventListener("click", function() {
+			event.stopPropagation();
+			const el = document.createElement('textarea');
+			el.value = element.textContent;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
+			codecopy_tooltip.innerHTML = 'Copied!'
+		});
+		element.addEventListener("mouseover", function() {
+			event.stopPropagation();
+			var position = codecopy_get_element_position(element);
+			codecopy_tooltip.innerHTML = 'Click to Copy';
+			codecopy_tooltip.style.display = 'inline-block';
+			codecopy_tooltip.style.top = position.top + 'px';
+			codecopy_tooltip.style.left = position.left + 'px';
+		});
+		element.addEventListener("mouseout", function() {
+			event.stopPropagation();
+			var position = codecopy_get_element_position(element);
+			codecopy_tooltip.style.display = 'none';
+			codecopy_tooltip.style.top ='9999px';
+		});
+	}
+
+	var codecopy_tooltip = document.querySelector('.codecopy_tooltip');
+
+	document.querySelectorAll("code").forEach(function(element) {
+		codecopy_apply(element);
+	});</script>
+<div class="wp-dark-mode-switcher wp-dark-mode-ignore style-3  floating right_bottom">
 
 	
 	<label for="wp-dark-mode-switch" class="wp-dark-mode-ignore wp-dark-mode-none">
