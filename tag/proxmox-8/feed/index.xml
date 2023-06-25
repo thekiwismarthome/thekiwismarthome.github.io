@@ -8,8 +8,8 @@
 	>
 
 <channel>
-	<title>The Kiwi Smart Home</title>
-	<atom:link href="https://thekiwismarthome.github.io/feed/" rel="self" type="application/rss+xml" />
+	<title>Proxmox 8 &#8211; The Kiwi Smart Home</title>
+	<atom:link href="https://thekiwismarthome.github.io/tag/proxmox-8/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
 	<description>Why do it tomorrow, when you can Automate it today!</description>
 	<lastBuildDate>Sun, 25 Jun 2023 09:23:10 +0000</lastBuildDate>
@@ -22,7 +22,7 @@
 
 <image>
 	<url>https://thekiwismarthome.github.io/wp-content/uploads/2023/06/Home-Automation-Logo1-150x150.png</url>
-	<title>The Kiwi Smart Home</title>
+	<title>Proxmox 8 &#8211; The Kiwi Smart Home</title>
 	<link>https://thekiwismarthome.github.io/</link>
 	<width>32</width>
 	<height>32</height>
@@ -841,26 +841,6 @@ EOF</code></pre>
 					
 					<wfw:commentRss>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Hello world!</title>
-		<link>https://thekiwismarthome.github.io/2023/06/21/hello-world/</link>
-					<comments>https://thekiwismarthome.github.io/2023/06/21/hello-world/#comments</comments>
-		
-		<dc:creator><![CDATA[haadmin]]></dc:creator>
-		<pubDate>Wed, 21 Jun 2023 10:22:47 +0000</pubDate>
-				<category><![CDATA[Uncategorised]]></category>
-		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=1</guid>
-
-					<description><![CDATA[Welcome to WordPress. This is your first post. Edit or delete it, then start writing!]]></description>
-										<content:encoded><![CDATA[
-<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://thekiwismarthome.github.io/2023/06/21/hello-world/feed/</wfw:commentRss>
-			<slash:comments>1</slash:comments>
 		
 		
 			</item>
