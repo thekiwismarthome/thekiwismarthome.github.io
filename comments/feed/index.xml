@@ -10,30 +10,12 @@
 	Comments for The Kiwi Smart Home	</title>
 	<atom:link href="https://thekiwismarthome.github.io/comments/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
-	<description>Why do it tomorrow, when you can Automate it today!</description>
-	<lastBuildDate>Wed, 21 Jun 2023 10:22:47 +0000</lastBuildDate>
+	<description> Why do it tomorrow, when you can Automate it today! </description>
+	<lastBuildDate>Mon, 26 Jun 2023 10:05:48 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.2.2</generator>
-	<item>
-		<title>
-		Comment on Hello world! by A WordPress Commenter		</title>
-		<link>https://thekiwismarthome.github.io/2023/06/21/hello-world/#comment-1</link>
-
-		<dc:creator><![CDATA[A WordPress Commenter]]></dc:creator>
-		<pubDate>Wed, 21 Jun 2023 10:22:47 +0000</pubDate>
-		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=1#comment-1</guid>
-
-					<description><![CDATA[Hi, this is a comment.
-To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.
-Commenter avatars come from &lt;a href=&quot;https://en.gravatar.com/&quot;&gt;Gravatar&lt;/a&gt;.]]></description>
-			<content:encoded><![CDATA[<p>Hi, this is a comment.<br />
-To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.<br />
-Commenter avatars come from <a href="https://en.gravatar.com/">Gravatar</a>.</p>
-]]></content:encoded>
-		
-			</item>
-	</channel>
+</channel>
 </rss>

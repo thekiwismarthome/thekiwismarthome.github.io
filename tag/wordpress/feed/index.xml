@@ -11,8 +11,8 @@
 	<title>WordPress &#8211; The Kiwi Smart Home</title>
 	<atom:link href="https://thekiwismarthome.github.io/tag/wordpress/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
-	<description>Why do it tomorrow, when you can Automate it today!</description>
-	<lastBuildDate>Sun, 25 Jun 2023 09:38:45 +0000</lastBuildDate>
+	<description> Why do it tomorrow, when you can Automate it today! </description>
+	<lastBuildDate>Mon, 26 Jun 2023 09:23:36 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -32,9 +32,21 @@
 		<category><![CDATA[WordPress]]></category>
 		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=131</guid>
 
-					<description><![CDATA[Proxmox Making a Container go to PVE shell and run the below command, I ruin it in advanced to do my own setup as below. bash -c &#8220;$(wget -qLO &#8211; https://github.com/tteck/Proxmox/raw/main/ct/docker.sh)&#8221; &#160;&#160;&#160; ____&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; __&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &#160;&#160; / __ \____&#160; _____/ /_&#160; __&#160; _____ &#160; / / / / __ \/ ___/ //_/ _ \/ ___/ &#160;/ [&#8230;]]]></description>
+					<description><![CDATA[Tags: Proxmox Making a Container go to PVE shell and run the below command, I ruin it in advanced to do my own setup as below. bash -c &#8220;$(wget -qLO &#8211; https://github.com/tteck/Proxmox/raw/main/ct/docker.sh)&#8221; &#160;&#160;&#160; ____&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; __&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &#160;&#160; / __ \____&#160; _____/ /_&#160; __&#160; _____ &#160; / / / / __ \/ ___/ //_/ _ \/ ___/ [&#8230;]]]></description>
 										<content:encoded><![CDATA[
-<div class="wp-block-columns alignwide is-layout-flex wp-container-3">
+<div class="wp-block-columns alignwide are-vertically-aligned-center is-layout-flex wp-container-3">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow" style="flex-basis:10%">
+<p class="has-text-align-right"><strong>Tags:</strong></p>
+</div>
+
+
+
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow" style="flex-basis:66.66%"><div class="taxonomy-post_tag has-text-align-left wp-block-post-terms"><a href="https://thekiwismarthome.github.io/tag/guides/" rel="tag">Guides</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox/" rel="tag">Proxmox</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/wordpress/" rel="tag">WordPress</a></div></div>
+</div>
+
+
+
+<div class="wp-block-columns alignwide is-layout-flex wp-container-6">
 <div class="wp-block-column is-layout-flow" style="flex-basis:33.33%"><h2 class="simpletoc-title">Table of Contents</h2>
 <ul class="simpletoc-list">
 <li><a href="#proxmox-making-a-container">Proxmox Making a Container</a></li>

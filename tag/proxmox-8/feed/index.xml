@@ -11,8 +11,8 @@
 	<title>Proxmox 8 &#8211; The Kiwi Smart Home</title>
 	<atom:link href="https://thekiwismarthome.github.io/tag/proxmox-8/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
-	<description>Why do it tomorrow, when you can Automate it today!</description>
-	<lastBuildDate>Sun, 25 Jun 2023 09:54:39 +0000</lastBuildDate>
+	<description> Why do it tomorrow, when you can Automate it today! </description>
+	<lastBuildDate>Mon, 26 Jun 2023 09:21:34 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -33,33 +33,21 @@
 		<category><![CDATA[Proxmox 8]]></category>
 		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=121</guid>
 
-					<description><![CDATA[Tags: Tags: Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&#160;Home Assistant: Proxmox VE 7.4 Quick Start Guide, but all new [&#8230;]]]></description>
+					<description><![CDATA[Tags: Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&#160;Home Assistant: Proxmox VE 7.4 Quick Start Guide, but all new for [&#8230;]]]></description>
 										<content:encoded><![CDATA[
-<div class="wp-block-columns alignwide is-layout-flex wp-container-3">
-<div class="wp-block-column has-global-padding is-content-justification-left is-layout-constrained wp-container-1">
-<p><strong>Tags:</strong></p>
+<div class="wp-block-columns alignwide are-vertically-aligned-center is-layout-flex wp-container-3">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow" style="flex-basis:5%">
+<p class="has-text-align-right"><strong>Tags:</strong></p>
 </div>
 
 
 
-<div class="wp-block-column is-vertically-aligned-center has-global-padding is-content-justification-left is-layout-constrained wp-container-2"><div class="taxonomy-post_tag wp-block-post-terms"><a href="https://thekiwismarthome.github.io/tag/guides/" rel="tag">Guides</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/home-assistant/" rel="tag">Home Assistant</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox/" rel="tag">Proxmox</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox-8/" rel="tag">Proxmox 8</a></div></div>
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow" style="flex-basis:90%"><div class="taxonomy-post_tag wp-block-post-terms"><a href="https://thekiwismarthome.github.io/tag/guides/" rel="tag">Guides</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/home-assistant/" rel="tag">Home Assistant</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox/" rel="tag">Proxmox</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox-8/" rel="tag">Proxmox 8</a></div></div>
 </div>
 
 
 
 <div class="wp-block-columns alignwide is-layout-flex wp-container-6">
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow" style="flex-basis:10%">
-<p><strong>Tags:</strong></p>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow" style="flex-basis:90%"><div class="taxonomy-post_tag wp-block-post-terms"><a href="https://thekiwismarthome.github.io/tag/guides/" rel="tag">Guides</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/home-assistant/" rel="tag">Home Assistant</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox/" rel="tag">Proxmox</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox-8/" rel="tag">Proxmox 8</a></div></div>
-</div>
-
-
-
-<div class="wp-block-columns alignwide is-layout-flex wp-container-9">
 <div class="wp-block-column is-layout-flow" style="flex-basis:33.33%"><h3 class="simpletoc-title">Table of Contents</h3>
 <ul class="simpletoc-list">
 <li><a href="#whats-covered-in-this-guide">What&#8217;s covered in this guide?</a></li>
