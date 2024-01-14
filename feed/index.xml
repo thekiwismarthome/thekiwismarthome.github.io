@@ -12,12 +12,2210 @@
 	<atom:link href="https://thekiwismarthome.github.io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
 	<description> Why do it tomorrow, when you can Automate it today! </description>
-	<lastBuildDate>Tue, 27 Jun 2023 08:32:19 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 05 Oct 2023 21:44:32 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.2.2</generator>
-</channel>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
+	<item>
+		<title>Home Assistant Hard Drive Growing Every Day</title>
+		<link>https://thekiwismarthome.github.io/2023/08/02/home-assistant-hard-drive-growing-every-day/</link>
+					<comments>https://thekiwismarthome.github.io/2023/08/02/home-assistant-hard-drive-growing-every-day/#respond</comments>
+		
+		<dc:creator><![CDATA[haadmin]]></dc:creator>
+		<pubDate>Wed, 02 Aug 2023 04:28:35 +0000</pubDate>
+				<category><![CDATA[Uncategorised]]></category>
+		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=197</guid>
+
+					<description><![CDATA[go to Proxmox noVNC and start a remote sessionuse the commanddu -d 1you should end up with a list of files and their sizes like this you can ignore /mnt as this is the mount to my external NAS.]]></description>
+										<content:encoded><![CDATA[
+<p></p>
+
+
+
+<p>go to Proxmox noVNC and start a remote session<br>use the command<br><code>du -d 1</code><br>you should end up with a list of files and their sizes like this<br></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" fetchpriority="high" width="376" height="403" src="https://thekiwismarthome.github.io/wp-content/uploads/2023/07/image.png" alt="" class="wp-image-198" srcset="https://thekiwismarthome.github.io/wp-content/uploads/2023/07/image.png 376w, https://thekiwismarthome.github.io/wp-content/uploads/2023/07/image-280x300.png 280w, https://thekiwismarthome.github.io/wp-content/uploads/2023/07/image-140x150.png 140w" sizes="(max-width: 376px) 100vw, 376px" /></figure>
+
+
+
+<p>you can ignore <code>/mnt</code> as this is the mount to my external NAS.<br></p>
+
+
+
+<p></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://thekiwismarthome.github.io/2023/08/02/home-assistant-hard-drive-growing-every-day/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Server &#8211; Intel NUC</title>
+		<link>https://thekiwismarthome.github.io/2023/06/29/server-intel-nuc/</link>
+					<comments>https://thekiwismarthome.github.io/2023/06/29/server-intel-nuc/#respond</comments>
+		
+		<dc:creator><![CDATA[haadmin]]></dc:creator>
+		<pubDate>Thu, 29 Jun 2023 04:03:29 +0000</pubDate>
+				<category><![CDATA[Smart Home]]></category>
+		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=183</guid>
+
+					<description><![CDATA[Tags: Hardware Intel NUC System: Host: hassio Kernel: 4.15.0-91-generic x86_64 bits: 64 compiler: gcc v: 7.4.0Desktop: Cinnamon 4.2.4 wm: muffin dm: LightDM Distro: Linux Mint 19.2 Tinabase: Ubuntu 18.04 bionicMachine: Type: Desktop System: Intel Client Systems product: NUC8i5BEH v: J72747-304serial: Chassis: Intel Corporation type: 3 v: 2.0 serial:Mobo: Intel model: NUC8BEB v: J72692-306 serial: UEFI: [&#8230;]]]></description>
+										<content:encoded><![CDATA[
+<div class="wp-block-columns alignwide is-layout-flex wp-container-3 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<p class="has-text-align-right"><strong>Tags:</strong></p>
+</div>
+
+
+
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%"></div>
+</div>
+
+
+
+<div class="wp-block-columns alignwide is-layout-flex wp-container-6 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%"><h3 class="simpletoc-title">Table of Contents</h3>
+<ul class="simpletoc-list">
+<li><a href="#hardware">Hardware</a>
+<ul><li>
+<a href="#intel-nuc">Intel NUC</a></li>
+</ul>
+</li>
+<li><a href="#linux-mint">Linux Mint</a>
+<ul><li>
+<a href="#install">Install</a></li>
+<li><a href="#software-to-install">Software to Install</a>
+<ul><li>
+<a href="#enable-ssh">Enable SSH</a></li>
+<li><a href="#realvnc-server">RealVNC Server</a></li>
+<li><a href="#chromelucky-backupfilezilladocker-cedocker-portainerdocker-home-assistant-hassiohassio-mqtt-mosquittohassio-mariadbhassio-zigbee2mqttdocker-zoneminder">ChromeLucky BackupFilezillaDocker CEDocker &#8211; PortainerDocker &#8211; Home Assistant – HassioHassio &#8211; MQTT – MosquittoHassio &#8211; MariaDBHassio &#8211; Zigbee2MQTTDocker &#8211; ZoneMinder</a></li>
+</ul>
+</li>
+<li><a href="#docker-ce">Docker CE</a>
+<ul><li>
+<a href="#prerequisites">Pre-Requisites</a></li>
+<li><a href="#set-up-the-repository">Set up the Repository</a></li>
+<li><a href="#iinstall-docker-ce">Iinstall Docker CE</a></li>
+<li><a href="#installing-docker-and-portainer-on-debian">Installing Docker and Portainer on Debian</a></li>
+</ul>
+</li>
+<li><a href="#portainer">Portainer</a></li>
+<li><a href="#mysql-on-docker">MySQL on Docker</a>
+<ul><li>
+<a href="#install">Install</a></li>
+</ul>
+</li>
+<li><a href="#plex-on-docker">PLEX on Docker</a>
+<ul><li>
+<a href="#docker-pull-command">DOCKER PULL COMMAND</a></li>
+<li><a href="#set-plex-configuration-parameters-in-docker">SET PLEX CONFIGURATION PARAMETERS IN DOCKER</a></li>
+<li><a href="#create-mounts">CREATE MOUNTS</a></li>
+<li><a href="#mount-drive-at-startup">MOUNT DRIVE AT STARTUP</a></li>
+<li><a href="#start-and-stop-plex-container-in-docker">START AND STOP PLEX CONTAINER IN DOCKER</a></li>
+<li><a href="#updating-plex">UPDATING PLEX</a></li>
+<li><a href="#plex-applications">PLEX APPLICATIONS</a>
+<ul><li>
+<a href="#setup">Setup</a></li>
+</ul>
+</li>
+<li><a href="#issues">ISSUES</a>
+<ul><li>
+<a href="#jbl-link-bar-plex-android-tv-app-not-playing-videos">JBL Link Bar &#8211; Plex Android TV app not playing videos</a></li>
+<li><a href="#auto-sign-in-to-plex">Auto sign in to Plex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#home-assistant-hassio">HOME ASSISTANT – HASS.IO</a>
+<ul><li>
+<a href="#install-7">INSTALL 7</a></li>
+</ul>
+</li>
+<li><a href="#setup-hassio">SETUP HASS.IO</a>
+<ul><li>
+<a href="#addons">ADD-ONS</a></li>
+</ul>
+</li>
+<li><a href="#integrations">INTEGRATIONS</a></li>
+<li><a href="#hacs">HACS</a></li>
+<li><a href="#home-assistant-ssl-certs">HOME ASSISTANT SSL CERTS</a></li>
+</ul>
+</li></ul></div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%"><h1 class="wp-block-heading" id="hardware">Hardware</h1>
+
+<h2 class="wp-block-heading" id="intel-nuc">Intel NUC</h2>
+
+
+<p>System: Host: hassio Kernel: 4.15.0-91-generic x86_64 bits: 64 compiler: gcc v: 7.4.0<br>Desktop: Cinnamon 4.2.4 wm: muffin dm: LightDM Distro: Linux Mint 19.2 Tina<br>base: Ubuntu 18.04 bionic<br>Machine: Type: Desktop System: Intel Client Systems product: NUC8i5BEH v: J72747-304<br>serial: Chassis: Intel Corporation type: 3 v: 2.0 serial:<br>Mobo: Intel model: NUC8BEB v: J72692-306 serial: UEFI: Intel<br>v: BECFL357.86A.0064.2019.0213.1122 date: 02/13/2019<br>CPU: Topology: Quad Core model: Intel Core i5-8259U bits: 64 type: MT MCP arch: Kaby Lake<br>rev: A L2 cache: 6144 KiB<br>flags: lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx bogomips: 36864<br>Speed: 3797 MHz min/max: 400/3800 MHz Core speeds (MHz): 1: 3796 2: 3756 3: 3755<br>4: 3799 5: 3646 6: 3651 7: 3704 8: 3740<br>Graphics: Device-1: Intel driver: i915 v: kernel bus ID: 00:02.0 chip ID: 8086:3ea5<br>Display: x11 server: X.Org 1.19.6 driver: modesetting unloaded: fbdev,vesa<br>resolution: 1920&#215;1080~60Hz<br>OpenGL: renderer: Mesa DRI Intel HD Graphics (Coffeelake 3&#215;8 GT3) v: 4.5 Mesa 19.2.8<br>compat-v: 3.0 direct render: Yes<br>Audio: Device-1: Intel driver: snd_hda_intel v: kernel bus ID: 00:1f.3 chip ID: 8086:9dc8<br>Sound Server: ALSA v: k4.15.0-91-generic<br>Network: Device-1: Intel driver: iwlwifi v: kernel port: 4000 bus ID: 00:14.3 chip ID: 8086:9df0<br>IF: wlp0s20f3 state: down mac:<br>Device-2: Intel Ethernet I219-V driver: e1000e v: 3.2.6-k port: efa0 bus ID: 00:1f.6<br>chip ID: 8086:15be<br>IF: eno1 state: up speed: 1000 Mbps duplex: full mac:<br>IF-ID-1: docker0 state: up speed: N/A duplex: N/A mac:<br>IF-ID-2: veth0652a86 state: up speed: 10000 Mbps duplex: full mac:<br>IF-ID-3: veth5ee8d70 state: up speed: 10000 Mbps duplex: full mac:<br>Drives: Local Storage: total: 1.36 TiB used: 105.40 GiB (7.5%)<br>ID-1: /dev/sda type: USB vendor: Western Digital model: WD10JPLX-00MBPT0<br>size: 931.51 GiB speed: serial:<br>ID-2: /dev/sdb vendor: Seagate model: BarraCuda SSD ZA500CM10002 size: 465.76 GiB<br>speed: 6.0 Gb/s serial:<br>Partition: ID-1: / size: 456.01 GiB used: 12.84 GiB (2.8%) fs: ext4 dev: /dev/dm-0<br>ID-2: swap-1 size: 980.0 MiB used: 871.5 MiB (88.9%) fs: swap dev: /dev/dm-1<br>USB: Hub: 1-0:1 info: Full speed (or root) Hub ports: 12 rev: 2.0 chip ID: 1d6b:0002<br>Device-1: 1-2:2 info: China Resource Semico type: Keyboard,Mouse<br>driver: hid-generic,usbhid rev: 1.1 chip ID: 1a2c:4782<br>Device-2: 1-10:3 info: Intel type: Bluetooth driver: btusb rev: 2.0 chip ID: 8087:0aaa<br>Hub: 2-0:1 info: Full speed (or root) Hub ports: 6 rev: 3.1 chip ID: 1d6b:0003<br>Device-3: 2-4:2 info: ASMedia ASM1051E SATA 6Gb/s bridge ASM1053E SATA 6Gb/s bridge<br>ASM1153 SATA 3Gb/s bridge<br>type: Mass Storage driver: uas rev: 3.0 chip ID: 174c:55aa<br>Sensors: System Temperatures: cpu: 43.0 C mobo: 27.8 C<br>Fan Speeds (RPM): N/A<br>Repos: No active apt repos in: /etc/apt/sources.list<br>Active apt repos in: /etc/apt/sources.list.d/additional-repositories.list<br>1: deb [arch=amd64] https: //download.docker.com/linux/ubuntu bionic stable<br>Active apt repos in: /etc/apt/sources.list.d/google-chrome.list<br>1: deb [arch=amd64] http: //dl.google.com/linux/chrome/deb/ stable main<br>Active apt repos in: /etc/apt/sources.list.d/official-package-repositories.list<br>1: deb http: //packages.linuxmint.com tina main upstream import backport<br>2: deb http: //mirror.fsmg.org.nz/ubuntu bionic main restricted universe multiverse<br>3: deb http: //mirror.fsmg.org.nz/ubuntu bionic-updates main restricted universe multiverse<br>4: deb http: //mirror.fsmg.org.nz/ubuntu bionic-backports main restricted universe multiverse<br>5: deb http: //security.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse<br>6: deb http: //archive.canonical.com/ubuntu/ bionic partner<br>Info: Processes: 315 Uptime: 13h 04m Memory: 7.66 GiB used: 1.56 GiB (20.4%) Init: systemd<br>v: 237 runlevel: 5 Compilers: gcc: 7.5.0 alt: 7 Client: Unknown python3.6 client<br>inxi: 3.0.32</p>
+
+
+<h1 class="wp-block-heading" id="linux-mint">Linux Mint</h1>
+
+<h2 class="wp-block-heading" id="install">Install</h2>
+
+
+<p>Resources:<br>https://community.linuxmint.com/</p>
+
+
+
+<p>Update Mirrors to local (the fastest)</p>
+
+
+
+<p>sudo apt-get update<br>sudo apt-get upgrade</p>
+
+
+<h2 class="wp-block-heading" id="software-to-install">Software to Install</h2>
+
+<h3 class="wp-block-heading" id="enable-ssh">Enable SSH</h3>
+
+
+<p>Open Terminal<br>We’ll be doing this through command line, so begin by first opening up a terminal. You can find the terminal icon in the task bar in a default GUI installation, as shown below.</p>
+
+
+
+<p>Install OpenSSH Server<br>Within the terminal, run the following command as root to install the OpenSSH server package.<br>sudo apt-get install openssh-server -y</p>
+
+
+
+<p>Note: You must do this with root privileges, otherwise you will receive the following error message:<br>E: Could not open lock file /var/lib/dpkg/lock &#8211; open (13: Permission denied)<br>E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?<br>You can become root by running ‘sudo su’, followed by your password. By default the first account that you create when you install Linux Mint should be able to become root.</p>
+
+
+
+<p>Check OpenSSH Status<br>Once installed SSH should be automatically configured to start on system boot, and be already running. We’ll of course check this though rather than just assuming!<br>We can use ‘systemctl is-enabled’ as shown below to check that ssh is enabled to start automatically on system boot. If it comes back with ‘enabled’ then SSH should automatically start up on boot. If it’s disabled, you can run ‘systemctl enable ssh’ to enable to to start up on system boot.<br>systemctl is-enabled ssh<br>We can then use ‘systemctl is-active’ as shown below to check that ssh is currently active and running. If it comes back with ‘active’ then SSH is currently running. If it’s not running, you can run ‘systemctl start ssh’ to start it up.<br>systemctl is-active ssh<br>We can also use ‘systemctl status’ to get a quick overview of all information, in the example below we can see that it’s actively running as well as various useful information about the service.</p>
+
+
+<h3 class="wp-block-heading" id="realvnc-server">RealVNC Server</h3>
+
+
+<p>VNC Connect<br>Download and install, log into VNC Connect (5 free connections)</p>
+
+
+<h3 class="wp-block-heading" id="chromelucky-backupfilezilladocker-cedocker-portainerdocker-home-assistant-hassiohassio-mqtt-mosquittohassio-mariadbhassio-zigbee2mqttdocker-zoneminder">Chrome<br>Lucky Backup<br>Filezilla<br>Docker CE<br>Docker &#8211; Portainer<br>Docker &#8211; Home Assistant – Hassio<br>Hassio &#8211; MQTT – Mosquitto<br>Hassio &#8211; MariaDB<br>Hassio &#8211; Zigbee2MQTT<br>Docker &#8211; ZoneMinder</h3>
+
+<h2 class="wp-block-heading" id="docker-ce">Docker CE</h2>
+
+
+<p>Resources:<br>https://docs.docker.com/install/linux/docker-ce/ubuntu/</p>
+
+
+<h3 class="wp-block-heading" id="prerequisites">Pre-Requisites</h3>
+
+<h3 class="wp-block-heading" id="set-up-the-repository">Set up the Repository</h3>
+
+
+<p><br>First, prepare to add Docker repository using the following command:<br>sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common<br>Then, add the Docker repository’s GPG key for verification of repository:<br>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –<br>Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.<br>sudo apt-key fingerprint 0EBFCD88<br>pub rsa4096 2017-02-22 [SCEA]<br>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88<br>uid [ unknown] Docker Release (CE deb) <a href="mailto:docker@docker.com">docker@docker.com</a><br>sub rsa4096 2017-02-22 [S]<br>sudo nano /etc/apt/sources.list.d/additional-repositories.list<br>add the following line in the file<br>deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable<br>then,</p>
+
+
+
+<p>sudo apt update</p>
+
+
+<h3 class="wp-block-heading" id="iinstall-docker-ce">Iinstall Docker CE</h3>
+
+
+<p>Update the apt package index.<br>sudo apt-get update<br>Install the latest version of Docker Engine &#8211; Community and containerd, or go to the next step to install a specific version:<br>sudo apt-get install docker-ce docker-ce-cli containerd.io</p>
+
+
+
+<p>You can check the installed version using the command.<br>docker -v<br>Docker version 19.03.3, build a872fc2f86</p>
+
+
+
+<p>Finally, test your docker setup using the following command.<br>sudo docker run hello-world<br>The output will look like the below if successful.<br>Hello from Docker!<br>This message shows that your installation appears to be working correctly.</p>
+
+
+
+<p>To generate this message, Docker took the following steps:</p>
+
+
+
+<ol>
+<li>The Docker client contacted the Docker daemon.</li>
+
+
+
+<li>The Docker daemon pulled the &#8220;hello-world&#8221; image from the Docker Hub.<br>(amd64)</li>
+
+
+
+<li>The Docker daemon created a new container from that image which runs the<br>executable that produces the output you are currently reading.</li>
+
+
+
+<li>The Docker daemon streamed that output to the Docker client, which sent it<br>to your terminal.</li>
+</ol>
+
+
+
+<p>To try something more ambitious, you can run an Ubuntu container with:<br>$ docker run -it ubuntu bash</p>
+
+
+
+<p>Share images, automate workflows, and more with a free Docker ID:<br>https://hub.docker.com/</p>
+
+
+
+<p>For more examples and ideas, visit:<br>https://docs.docker.com/get-started/</p>
+
+
+<h3 class="wp-block-heading" id="installing-docker-and-portainer-on-debian">Installing Docker and Portainer on Debian</h3>
+
+
+<p>Open PuTTy and Login as root<br>sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common<br>sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add &#8211;<br>sudo apt-key fingerprint 0EBFCD88<br>sudo add-apt-repository &#8220;deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable&#8221;<br>sudo apt-get update<br>sudo apt-get install docker-ce docker-ce-cli containerd.io<br>You can check the installed version using the command.<br>docker -v<br>Docker version 20.10.5, build 55c4c88</p>
+
+
+<h2 class="wp-block-heading" id="portainer">Portainer</h2>
+
+
+<p>Portainer is available as a Docker container. To deploy the Portainer Server on Linux or on Windows 10 Docker Host running in Linux containers mode, use (it needs Docker to be installed on the machine on which you want to deploy Portainer):<br>sudo docker volume create portainer_data</p>
+
+
+
+<p>sudo docker run -d \<br>-p 9000:9000 \<br>&#8211;name portainer \<br>&#8211;restart always \<br>-e TZ=Pacific/Auckland \<br>-v /var/run/docker.sock:/var/run/docker.sock \<br>-v portainer_data:/data \<br>portainer/portainer</p>
+
+
+
+<p>You can then access the Portainer web UI by visiting http://IP:9000/ , where IP is the IP of the machine Portainer runs on. If you&#8217;re want to access the UI on the local machine, visit http://localhost:9000/<br>The first time you launch the Portainer web UI, you&#8217;ll need to create a new user, and connect Portainer to the Docker environment you want to manage: local</p>
+
+
+<h2 class="wp-block-heading" id="mysql-on-docker">MySQL on Docker</h2>
+
+
+<p>Resources:<br>https://hub.docker.com/_/mysql</p>
+
+
+<h3 class="wp-block-heading" id="install">Install</h3>
+
+
+<p><br>sudo docker pull mysql:8<br>Starting a MySQL instance is simple:<br>sudo docker run &#8211;name mysql -e MYSQL_ROOT_PASSWORD=Kupuhiparoot -d mysql:8</p>
+
+
+
+<p>Add default authentication plugin to ENV in Portainer</p>
+
+
+
+<p>The docker exec command allows you to run commands inside a Docker container. The following command line will give you a bash shell inside your mysql container:<br>sudo docker exec -it mysql mysql -uroot -p<br>Enter password:<br>Welcome to the MySQL monitor. Commands end with ; or \g.<br>Your MySQL connection id is 21<br>Server version: 8.0.17</p>
+
+
+
+<p>Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.</p>
+
+
+
+<p>Oracle is a registered trademark of Oracle Corporation and/or its<br>affiliates. Other names may be trademarks of their respective<br>owners.</p>
+
+
+
+<p>Type &#8216;help;&#8217; or &#8216;\h&#8217; for help. Type &#8216;\c&#8217; to clear the current input statement.</p>
+
+
+
+<p>Commands:<br>Logs: The log is available through Docker&#8217;s container log:<br>sudo docker logs mysql</p>
+
+
+<h2 class="wp-block-heading" id="plex-on-docker">PLEX on Docker</h2>
+
+
+<p>Resources:<br>https://www.smarthomebeginner.com/install-plex-using-docker/<br></p>
+
+
+<h3 class="wp-block-heading" id="docker-pull-command">DOCKER PULL COMMAND</h3>
+
+
+<p><br>To install Plex using Docker, you will first need to grab the latest version of Plex container from the linuxserver Docker Hub. LinuxServer is a Docker repository with several HTPC and home server app containers.</p>
+
+
+
+<p>sudo docker pull linuxserver/plex<br>Pull the ready-made Plex docker container using the above command.</p>
+
+
+<h3 class="wp-block-heading" id="set-plex-configuration-parameters-in-docker">SET PLEX CONFIGURATION PARAMETERS IN DOCKER</h3>
+
+
+<p><br>After pulling the container with the latest version of Plex, we need to configure the usage parameters such as download folders, port number, etc. for the service. Copy all lines in the code block below (it is one single command) and paste it into docker prompt.</p>
+
+
+
+<p>sudo docker create \<br>&#8211;name=plex \<br>&#8211;net=host \<br>&#8211;restart=always \<br>-e VERSION=latest \<br>-e PUID=1000 -e PGID=1000 \<br>-e TZ=Pacific/Auckland \<br>-v /shares/plex/config:/config \<br>-v /shares/plex/mytv:/data/tvshows \<br>-v /shares/plex/mymovies:/data/movies \<br>-v /shares/plex/mymusic:/data/music \<br>-v /home/user/docker/plex/transcode:/transcode \<br>linuxserver/plex</p>
+
+
+
+<p>While you can just copy and paste the settings mentioned above, I recommend that you understand each parameter using the description below and customize it to your liking. Therefore, before issuing the above docker command, change certain parameters (eg. port number, folders, etc.) to fit your situation.</p>
+
+
+
+<p>sudo docker create &#8211;name=plex \ – Creates a new docker container with the name “plex”<br>&#8211;net=host \ – Shares host networking with the plex container<br>&#8211;restart=always \ – Starts the Plex container automatically during boot. If you don’t want the container to be started automatically, you can skip this command.<br>-e VERSION=latest \ – Installs the latest version for Plex<br>-e PGID=1000 -e PUID=1000 \ – Specifies the user id in order to minimize permission issues that can arise between the host OS (Ubuntu) and the container.<br>User haadmin has UID and GID of 1000, but if it is a fresh install make sure you check it by typing id in the console<br>-e TZ=Pacific/Auckland \ – Specifies the timezone information. You can check your timezone by following this link.<br>-v /home/user/docker/plex/config:/config \ – Specifies the location of the Plex library. In this case, the config folder is located in /home/docker/plex/ directory. Please note that this can grow very large (more than 50GB) if you have a large collection.<br>-v /home/user/docker/plex/tvshows:/data/tvshows \ – Specifies the location of the tvshows folder. In this case, the tvshows folder is located in /home/docker/plex/ directory.<br>-v /home/user/docker/plex/movies:/data/movies \ – Specifies the location of the movies folder. In this case, the movies folder is located in /home/docker/plex/ directory.<br>-v /home/user/docker/plex/transcode:/transcode \ – Specifies the location for the transcoding folder. In this case, the movies folder is located in /home/docker/plex/ directory.</p>
+
+
+<h3 class="wp-block-heading" id="create-mounts">CREATE MOUNTS</h3>
+
+
+<p>Install sudo apt-get install cifs-utils first</p>
+
+
+
+<p>sudo apt-get install nfs-utils<br>sudo apt install nfs-common</p>
+
+
+
+<p>Create directories<br>If these have not been created already<br>sudo mkdir /shares<br>sudo mkdir /shares/plex<br>sudo mkdir /shares/plex/mytv<br>sudo mkdir /shares/plex/mymovies<br>sudo mkdir /shares/plex/mymusic<br>sudo mkdir /shares/plex/config<br>As we have only created one share on the NAS called “plex” we only need to mount one drive as the rest of the files &amp; folders will reside within that folder.<br>sudo mount -t nfs 192.168.0.11:/data/plex/mytv /shares/plex/mytv -w<br>sudo mount -t nfs 192.168.0.11:/data/plex/mymovies /shares/plex/mymovies -w<br>sudo mount -t nfs 192.168.0.11:/data/plex/mymusic /shares/plex/mymusic -w<br>sudo mount -t nfs 192.168.0.11:/data/plex/config /shares/plex/config -w<br>sudo mount -t nfs 192.168.0.11:/data/plex /shares/plex -w</p>
+
+
+
+<p>only need the plex folder as that is the parent shared folder on the NAS box</p>
+
+
+<h3 class="wp-block-heading" id="mount-drive-at-startup">MOUNT DRIVE AT STARTUP</h3>
+
+
+<p><br>Make a backup of fstab<br>sudo mkdir /systembackups<br>cd /etc/<br>sudo cp fstab /systembackups<br>cd /systembackups &amp;&amp; sudo mv fstab fstab.bak</p>
+
+
+
+<p>Restore fstab if neceasary<br>cd /systembackups<br>sudo cp fstab.bak /etc<br>cd /etc/<br>sudo mv fstab.bak fstab</p>
+
+
+
+<p>Edit fsatb<br>sudo nano /etc/fstab<br>Add this to the bottom and save</p>
+
+
+
+<p><code>/etc/fstab: static file system information.</code></p>
+
+
+
+<p>#</p>
+
+
+
+<p>Use &#8216;blkid&#8217; to print the universally unique identifier for a</p>
+
+
+
+<p>device; this may be used with UUID= as a more robust way to name devices</p>
+
+
+
+<p>that works even if disks are added and removed. See fstab(5).</p>
+
+
+
+<p>#</p>
+
+
+
+<p>/dev/mapper/mint&#8211;vg-root / ext4 errors=remount-ro 0 1</p>
+
+
+
+<p>/boot/efi was on /dev/sda1 during installation</p>
+
+
+
+<p>UUID=93EF-1AF7 /boot/efi vfat umask=0077 0 1<br>/dev/mapper/mint&#8211;vg-swap_1 none swap sw 0 0</p>
+
+
+
+<p>192.168.0.11:/data/plex /shares/plex nfs defaults 0 0</p>
+
+
+<h3 class="wp-block-heading" id="start-and-stop-plex-container-in-docker">START AND STOP PLEX CONTAINER IN DOCKER</h3>
+
+
+<p><br>If you used the correct parameters, you can go ahead and start the Plex container you have just created, using the following command.</p>
+
+
+
+<p>sudo docker start plex<br>After starting the Plex Docker container, you will be able to open the web interface on port 32400/web. In my case the ip is http://192.168.0.16:32400/web</p>
+
+
+
+<p>Or you can use Portainer for this as well</p>
+
+
+<h3 class="wp-block-heading" id="updating-plex"><br>UPDATING PLEX</h3>
+
+
+<p>Go to Portainer or whatever utility you are using and restart the Container</p>
+
+
+
+<p>This will then restart and update to which ever version you have installed.<br>You can check/change this by using the Edit tab</p>
+
+
+
+<p>And changing the image, I keep it at “:latest”</p>
+
+
+<h3 class="wp-block-heading" id="plex-applications">PLEX APPLICATIONS</h3>
+
+<h4 class="wp-block-heading" id="setup">Setup</h4>
+
+<h3 class="wp-block-heading" id="issues">ISSUES</h3>
+
+<h4 class="wp-block-heading" id="jbl-link-bar-plex-android-tv-app-not-playing-videos">JBL Link Bar &#8211; Plex Android TV app not playing videos</h4>
+
+
+<p>Issue<br>Error<br>An error occurred while attempting to play this video. Please try restarting both the Plex Media Server and this app.</p>
+
+
+
+<p>Resolution</p>
+
+
+
+<ol>
+<li>Turn the Enable new video player setting to OFF<br>Open the Plex app on your Android TV device</li>
+
+
+
+<li>Navigate to and click on your login name on the left side of the screen</li>
+
+
+
+<li>Select settings</li>
+
+
+
+<li>Scroll down to Advanced</li>
+
+
+
+<li>Scroll to the right until you see the Enable new video player setting</li>
+
+
+
+<li>Click it and turn it off</li>
+</ol>
+
+
+
+<p>If you update the app you may need to repeat these steps</p>
+
+
+<h4 class="wp-block-heading" id="auto-sign-in-to-plex">Auto sign in to Plex</h4>
+
+
+<p>Setting &#8211;&gt; General -&gt; Automatically Sign In</p>
+
+
+<h2 class="wp-block-heading" id="home-assistant-hassio">HOME ASSISTANT – HASS.IO</h2>
+
+
+<p>Resources:<br>https://github.com/home-assistant/hassio-installer<br>https://www.smarthomebeginner.com/install-hass-io-on-docker-linux/</p>
+
+
+
+<p>Pre-requisites:<br>Install Docker CE<br>docker-ce<br>bash<br>jq<br>curl<br>avahi-daemon<br>dbus<br>socat<br>Important: Don&#8217;t only install NetworkManager, you need also use it on your system.</p>
+
+
+
+<p>Optional:<br>apparmor-utils<br>network-manager</p>
+
+
+
+<p>sudo apt-get install bash jq curl avahi-daemon dbus software-properties-common apparmor-utils network-manager socat</p>
+
+
+<h3 class="wp-block-heading" id="install-7">INSTALL 7</h3>
+
+
+<p>sudo su<br>curl -sL &#8220;https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh&#8221; | bash -s &#8212; -m intel-nuc<br>Upon successful execution of the HASS.io Docker installation script, the output should look something similar to the one below.<br>[Info] Install supervisor Docker container<br>[Info] Install supervisor startup scripts<br>Created symlink /etc/systemd/system/multi-user.target.wants/hassio-supervisor.service → /etc/systemd/system/hassio-supervisor.serv ice.<br>[Info] Install AppArmor scripts<br>Created symlink /etc/systemd/system/multi-user.target.wants/hassio-apparmor.service → /etc/systemd/system/hassio-apparmor.service.<br>[Info] Run Hass.io</p>
+
+
+
+<p>After giving a few minutes for Home Assistant to start (first time can be slow), visit the following URL:</p>
+
+
+
+<p>http://192.168.0.20:8123/</p>
+
+
+
+<p>REBOOT</p>
+
+
+<h2 class="wp-block-heading" id="setup-hassio"><br>SETUP HASS.IO</h2>
+
+
+<p><br>Create Home Assistant Account</p>
+
+
+<h3 class="wp-block-heading" id="addons"><br>ADD-ONS</h3>
+
+
+<p>Almond<br>Hey ADA<br>File editor<br>Mosquitto broker</p>
+
+
+
+<p>ADB &#8211; Android Debug Bridge<br>AppDaemon 4<br>Glances<br>IDE<br>Log Viewer<br>Zigbee2MQTT</p>
+
+
+
+<p>Hass.io Google Drive Backup<br>MariaDB<br>Home Panel<br>Snips.AI<br>Configurator</p>
+
+
+<h2 class="wp-block-heading" id="integrations">INTEGRATIONS</h2>
+
+
+<p><br>Android TV<br>Remote Access<br>Themes<br>Xiaomi Mi Robot Vacuum</p>
+
+
+<h2 class="wp-block-heading" id="hacs">HACS</h2>
+
+<h2 class="wp-block-heading" id="home-assistant-ssl-certs">HOME ASSISTANT SSL CERTS</h2>
+
+
+<p><a href="https://community.home-assistant.io/t/certificate-authority-and-self-signed-certificate-for-ssl-tls/196970">https://community.home-assistant.io/t/certificate-authority-and-self-signed-certificate-for-ssl-tls/196970</a></p>
+
+
+
+<p>open IDE, go to ZSH Workspace at the bottom<br>➜ /workspace ls<br>addons backup config share ssl<br>➜ /workspace cd ssl<br>➜ ssl ls<br>ssl<br>➜ ssl<br>➜ ssl<br>➜ ssl openssl req -sha256 -addext &#8220;subjectAltName = IP:192.168.0.20&#8221; -newkey rsa:4096 -nodes -keyout privkey.pem -x509 -days 730 -out fullchain.pem<br>Generating a RSA private key<br>………………………………..++++<br>…………………………………………………………………………………………………………………………………………..++++</p>
+
+
+
+<p>writing new private key to &#8216;privkey.pem&#8217;</p>
+
+
+
+<p>You are about to be asked to enter information that will be incorporated<br>into your certificate request.<br>What you are about to enter is what is called a Distinguished Name or a DN.<br>There are quite a few fields but you can leave some blank<br>For some fields there will be a default value,</p>
+
+
+
+<p>If you enter &#8216;.&#8217;, the field will be left blank.</p>
+
+
+
+<p>Country Name (2 letter code) [AU]:NZ<br>State or Province Name (full name) [Some-State]:Auckland<br>Locality Name (eg, city) []:Auckland<br>Organization Name (eg, company) [Internet Widgits Pty Ltd]:mccabe<br>Organizational Unit Name (eg, section) []:home<br>Common Name (e.g. server FQDN or YOUR name) []:hassio<br>Email Address []:brent@mccabe.kiwi</p>
+
+
+
+<p>At the end you will have two files called privkey.pem and fullchain.pem. The key and the certificate.</p>
+
+
+
+<p>Update the http: entry in your configuration.yaml file and let it point to your created files.</p>
+
+
+
+<p>Home Assistant &amp; Home Assistant Supervised:</p>
+
+
+
+<p>http:<br>ssl_certificate: /ssl/fullchain.pem<br>ssl_key: /ssl/privkey.pem</p>
+
+
+
+<p>Home Assistant Core:</p>
+
+
+
+<p>http:<br>ssl_certificate: /home/your_user/.homeassistant/fullchain.pem<br>ssl_key: /home/your_user/.homeassistant/privkey.pem</p>
+
+
+
+<p>Home Assistant Core on Docker:</p>
+
+
+
+<p>http:<br>ssl_certificate: /config/ssl/fullchain.pem<br>ssl_key: /config/ssl/privkey.pem</p>
+
+
+
+<p>Download cert from browser.<br>Right click<br>Click on Certificate (Invalid)<br>Chose the Details Tab and click on Copy to File…<br>Next<br>DER encoded binary…<br>Next<br>Name it and Save<br>Finish</p>
+
+
+
+<p>Go to MMC snap console and add Certificates (Local Computer)<br>Open up Trusted Root Certification Authorities &gt; Certificates<br>Right click Certificates &gt; All Tasks &gt; Import…<br>And import the cert you just saved</p>
+
+
+
+<p>9 HA ADD-ONS</p>
+
+
+
+<p>9.1 HOME ASSISTANT ADD-ON: SAMBA BACKUP</p>
+
+
+
+<p><a href="https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup">https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup</a></p>
+
+
+
+<p><a href="https://github.com/thomasmauerer/hassio-addons">https://github.com/thomasmauerer/hassio-addons</a></p>
+
+
+
+<p>9.2 MOSQUITTO BROKER</p>
+
+
+
+<p>Resources:<br>http://192.168.0.20:8123/hassio/addon/core_mosquitto<br>https://github.com/home-assistant/hassio-addons/tree/master/mosquitto</p>
+
+
+
+<p>Config:<br>logins: []<br>anonymous: true<br>customize:<br>active: false<br>folder: mosquitto<br>certfile: fullchain.pem<br>keyfile: privkey.pem<br>require_certificate: false</p>
+
+
+
+<p><br>9.9 LOG VIEWER<br>9.10 GLANCES<br>9.11 ADB – ANDROID DEBUG BRIDGE &#8211; DEPRECATED<br>Prereq for Android TV Integration</p>
+
+
+
+<p><a href="https://192.168.0.20:8123/hassio/addon/a0d7b954_adbConfig:devices:">https://192.168.0.20:8123/hassio/addon/a0d7b954_adbConfig:devices:</a></p>
+
+
+
+<ul>
+<li>192.168.0.36</li>
+
+
+
+<li>192.168.0.37</li>
+
+
+
+<li>192.168.0.40<br>reconnect_timeout: 30<br>log_level: info</li>
+</ul>
+
+
+
+<p>9.11.1 List ADB Activities for Device</p>
+
+
+
+<p>you will need to change the config in the ADB &#8211; Android Debug Bridge add-on to one device at a time<br>stop service<br>change config<br>devices:</p>
+
+
+
+<ul>
+<li>192.168.0.36<br>reconnect_timeout: 30<br>log_level: info</li>
+</ul>
+
+
+
+<p>save and start the add-on</p>
+
+
+
+<p>Use Portainer and go to the Console<br>Containers &gt; addon_a0d7b954_adb &gt; Console</p>
+
+
+
+<p>./adb shell pm list packages | sed -e &#8220;s/package://&#8221; | while read x; do cmd package resolve-activity &#8211;brief $x | tail -n 1 | grep -v &#8220;No activity found&#8221;; done</p>
+
+
+
+<p>adb shell pm list packages | sed -e &#8220;s/package://&#8221; | while read x; do cmd package resolve-activity &#8211;brief $x ; done</p>
+
+
+
+<p>192.168.0.37 &#8211; Freeview</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p>nz.co.sparksport.androidtv/tv.accedo.xdk.app.MainActivity</p>
+
+
+
+<p>com.omni.sci/.MainActivity<br>com.android.factorytest/.factorytestActivity<br>com.plexapp.android/com.plexapp.plex.activities.SplashActivity<br>tv.switchmedia.player/.SampleChooserActivity<br>com.hisilicon.hdcp14key.loadtool/.MainActivity<br>tunein.player/tunein.ui.activities.TuneInHomeActivity<br>com.explorer/.activity.TabBarExample<br>com.android.vending/com.google.android.finsky.tvmainactivity.TvMainActivity<br>com.google.android.youtube.tvkids/com.google.android.apps.youtube.tvkids.activity.MainActivity<br>com.android.camera2/com.android.camera.CameraActivity<br>com.nst.iptvsmarterstvbox/.view.activity.SplashActivity<br>com.google.android.tv/com.android.tv.TvActivity<br>ssofts.com.ota_omini/.MainActivity<br>com.estrongs.android.pop/.app.openscreenad.NewSplashActivity<br>ru.iptvremote.android.iptv/.ChannelsActivity<br>com.netflix.mediaclient/.ui.launch.UIWebViewActivity<br>com.google.android.youtube.tv/com.google.android.apps.youtube.tv.activity.ShellActivity<br>com.accuweather.android/com.accuweather.accutv.core.MainActivity<br>com.hisilicon.hardwaretest/com.hisilicon.hardware.MainActivity<br>com.google.android.tv.remote.service/.settings.SettingsActivity<br>com.google.android.partnercustomizer/.WidgetActivity</p>
+
+
+
+<p>192.168.0.36 &#8211; JBL Link Bar</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p>com.plexapp.android/com.plexapp.plex.activities.SplashActivity<br>tunein.player/tunein.ui.activities.TuneInHomeActivity<br>com.android.vending/com.google.android.finsky.tvmainactivity.TvMainActivity<br>com.google.android.youtube.tvkids/com.google.android.apps.youtube.tvkids.activity.MainActivity<br>com.google.android.tv/com.android.tv.TvActivity<br>ru.iptvremote.android.iptv/.ChannelsActivity<br>com.appgeneration.itunerfree/com.appgeneration.ituner.application.activities.SplashActivity<br>com.tubitv/.activities.MainActivity<br>com.google.android.youtube.tv/com.google.android.apps.youtube.tv.activity.ShellActivity<br>com.google.android.tv.remote.service/.settings.SettingsActivity<br>com.netflix.ninja/.MainActivity<br>com.disney.disneyplus/com.bamtechmedia.dominguez.main.MainActivity<br>com.nousguide.android.rbtv/com.redbull.launch.SplashActivity</p>
+
+
+
+<p>192.168.0.40 &#8211; MiBox</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p>com.awe.dev.pro.tv/.Launcher<br>com.microsoft.office.lync15/com.microsoft.office.sfb.common.ui.splash.EntryPoint<br>com.plexapp.android/com.plexapp.plex.activities.SplashActivity<br>tunein.player/tunein.ui.activities.TuneInHomeActivity<br>com.android.vending/com.google.android.finsky.tvmainactivity.TvMainActivity<br>com.google.android.youtube.tvkids/com.google.android.apps.youtube.tvkids.activity.MainActivity<br>com.sand.airdroid/.ui.splash.SplashActivity_<br>com.mediaworks.android/nz.co.mediaworks.vod.ui.splash.SplashActivity<br>com.onemainstream.skynews.android/.common.splash.SplashActivity<br>com.vevo/.MainActivity<br>com.google.android.tv/com.android.tv.TvActivity<br>com.barrydrillercom.android/com.filmon.app.activity.MainActivity<br>com.estrongs.android.pop/.app.openscreenad.NewSplashActivity<br>com.android.chrome/com.google.android.apps.chrome.Main<br>com.android.gallery3d/.app.GalleryActivity<br>com.amazon.avod.thirdpartyclient/.LauncherActivity<br>com.weberdo.apps.serviceinfo/.MainActivity<br>com.google.android.youtube.tv/com.google.android.apps.youtube.tv.activity.ShellActivity<br>com.pushbullet.android/.ui.LaunchActivity<br>com.google.android.tv.remote.service/.settings.SettingsActivity<br>com.teamviewer.host.market/com.teamviewer.host.ui.HostActivity<br>nz.co.tvnz.ondemand.phone.android/nz.co.tvnz.ondemand.ui.splash.StartActivity<br>com.netflix.ninja/.MainActivity<br>com.disney.disneyplus/com.bamtechmedia.dominguez.main.MainActivity<br>com.nousguide.android.rbtv/com.redbull.launch.SplashActivity</p>
+
+
+
+<p>YouTube<br>skynews = https://www.youtube.com/watch?v=9Auq9mYxFEE<br>command: am start -a android.intent.action.VIEW -d &#8220;https://www.youtube.com/watch?v=9Auq9mYxFEE&#8221;</p>
+
+
+
+<p>Music My Mix = https://www.youtube.com/watch?v=QtXby3twMmI&amp;list=RDMMQtXby3twMmI&amp;start_radio=1<br>command: am start -a android.intent.action.VIEW -d &#8220;https://www.youtube.com/watch?v=QtXby3twMmI&amp;list=RDMMQtXby3twMmI&amp;start_radio=1&#8221;<br>pm dump com.ssofts.dvb | grep -A 1 &#8220;MAIN&#8221; | grep com.ssofts.dvb | awk &#8216;{print $2}&#8217; | grep com.ssofts.dvb</p>
+
+
+
+<p>Install awk<br>root@a0d7b954-adb:/# apt-get update<br>root@a0d7b954-adb:/# apt-get install gawk<br>9.12 IDE</p>
+
+
+
+<p>https://www.juanmtech.com/how-to-use-the-ide-add-on-for-home-assistant/<br>Home Assistant has a few ways to access and edit the configuration files, but there is one particular way that makes it a lot easier and even convenient. Today, we are going to be looking at the IDE add-on for Home Assistant. This add-on is a packaged version of the Cloud9 IDE which is an online integrated development environment that has been tuned for use with Home Assistant. You’d be able to manage your Home Assistant configuration files directly from a web browser. It also includes a terminal so you can check your configuration and restart Home Assistant.</p>
+
+
+
+<p>How to set it up<br>Open Home Assistant, and go to Hass.io, Add-on Store, select IDE and click on Install. Once installed, scroll down to Config and set up a new username and a password. If you set up a DuckDNS URL for your Home Assistant, change the SSL from false to true so like that the connection to the IDE is encrypted.</p>
+
+
+
+<p>{<br>&#8220;log_level&#8221;: &#8220;info&#8221;,<br>&#8220;username&#8221;: &#8220;Your_Username&#8221;,<br>&#8220;password&#8221;: &#8220;Your_Password&#8221;,<br>&#8220;ssl&#8221;: true,<br>&#8220;certfile&#8221;: &#8220;fullchain.pem&#8221;,<br>&#8220;keyfile&#8221;: &#8220;privkey.pem&#8221;,<br>&#8220;packages&#8221;: [],<br>&#8220;init_commands&#8221;: []<br>}<br>When finished, click on Save, and before you start the add-on, you need to create a port forwarding rule on your router so when you try to access the IDE, it direct traffic through the add-on port which is 8321.<br>All routers are different so I wouldn’t be able to tell you how to set it up on your router. For you to have an idea, I’m going to show you how to do it on an Asus router. There is a website called portforward.com that has step by step instructions on how to set up port forwarding rules on different types of routers. You can check that website for more assistance with the particular router that you have.</p>
+
+
+
+<p>Set up a port forwarding rule<br>When you access the port forwarding settings on your router, name the new rule, Hass.io Cloud9 IDE then set the Port range to 8321, the Local IP set it to your Raspberry Pi’s IP address, for the Local Port, set it to 8321 as well and set the Protocol to TCP.</p>
+
+
+
+<p>Click on Add then Apply and reboot your router to apply the changes. After the router is back online, go back to Home Assistant and start the add-on. Give it like a minute for the IDE to start and then click on Open Web UI. When the IDE opens, you can see the Home Assistant file tree on the left side. In the middle, the code editor, and on the bottom, the terminal.<br>EMBED THE IDE IN HOME ASSISTANT<br>Embedding the IDE in Home Assistant would add an option on the sidebar to open it directly in the Home Assistant frontend. To set it up, open the configuration.yaml file and enter the following:<br>panel_iframe:<br>ide:<br>title: IDE<br>icon: mdi:code-braces<br>url: https://your_domain.duckdns.org:8321/<br>Then, click on File and then Save. After that, use the terminal to restart Home Assistant using the command, hassio ha restart. After home Assistant restarts, you would now have the IDE option on the sidebar. When you click on it, it would open the IDE directly from the Home Assistant frontend.</p>
+
+
+
+<p>9.13 ZIGBEE2MQTT<br>add https://github.com/danielwelch/hassio-zigbee2mqtt to the Repositories http://192.168.0.20:8123/hassio/store</p>
+
+
+
+<p><a href="https://www.zigbee2mqtt.io/integration/home_assistant.html/usr/share/hassio/share/zigbee2mqtt">https://www.zigbee2mqtt.io/integration/home_assistant.html/usr/share/hassio/share/zigbee2mqtt</a></p>
+
+
+
+<p>9.14 ZIGBEE2MQTT ASSISTANT</p>
+
+
+
+<p><a href="https://github.com/yllibed/Zigbee2MqttAssistant">https://github.com/yllibed/Zigbee2MqttAssistant</a></p>
+
+
+
+<p>add https://github.com/yllibed/hassio to the Repositories http://192.168.0.20:8123/hassio/store</p>
+
+
+
+<p>9.15 HASS.IO GOOGLE DRIVE BACKUP</p>
+
+
+
+<p>Prereqs:<br>MariaDB</p>
+
+
+
+<p>9.16 MARIADB</p>
+
+
+
+<p>9.17 ALMOND &amp; ADA: PRIVACY-FOCUSED VOICE ASSISTANT</p>
+
+
+
+<p><a href="https://www.home-assistant.io/blog/2019/11/20/privacy-focused-voice-assistant/">https://www.home-assistant.io/blog/2019/11/20/privacy-focused-voice-assistant/</a></p>
+
+
+
+<p>9.18 MATRIX<br>https://github.com/hassio-addons/addon-matrix<br>http://192.168.0.20:8123/hassio/addon/a0d7b954_matrix</p>
+
+
+
+<p>{<br>&#8220;ssl&#8221;: true,<br>&#8220;certfile&#8221;: &#8220;fullchain.pem&#8221;,<br>&#8220;keyfile&#8221;: &#8220;privkey.pem&#8221;,<br>&#8220;server_name&#8221;: &#8220;192.168.0.20&#8221;,<br>&#8220;leave_front_door_open&#8221;: false<br>}</p>
+
+
+
+<p>10 HASS.IO INTEGRATIONS</p>
+
+
+
+<p>10.1 VACUUM: XIAOMI MI ROBOT VACUUM</p>
+
+
+
+<p>https://www.home-assistant.io/integrations/vacuum.xiaomi_miio/<br>https://community.home-assistant.io/t/xiaomi-vacuum-cleaner-card/64456/45<br>https://selfhostedhome.com/zoned-cleaning-with-the-xiaomi-roborock-s5-robotic-vacuum/<br>10.1.1 configuration.yaml<br>vacuum:</p>
+
+
+
+<ul>
+<li>platform: xiaomi_miio<br>host: !secret xiaomi_vacuum_ip<br>token: !secret vacuum_xiaomi_miio.token</li>
+</ul>
+
+
+
+<p>input_boolean:<br>daily_vacuum_first_run:<br>name: Daily Vacuum First Run<br>initial: &#8216;off&#8217;<br>disable_daily_vacuum:<br>name: Disable Daily Vacuum Automation<br>initial: &#8216;off&#8217;<br>disable_dustbin_notification:<br>name: Disable Dustbin Notification<br>initial: &#8216;off&#8217;</p>
+
+
+
+<p>binary_sensor:</p>
+
+
+
+<ul>
+<li>platform: ping<br>name: Xiaomi Vacuum &#8211; ping<br>host: 192.168.0.59<br>scan_interval: 10</li>
+</ul>
+
+
+
+<p>10.1.2 sensor.yaml</p>
+
+
+
+<p>Xiaomi Vacuum Sensor Status</p>
+
+
+
+<ul>
+<li>platform: template<br>sensors:<br>vacuum_status:<br>friendly_name: Status<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Status: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}&#8221;<br>icon_template: &gt;<br>{% set val = states.vacuum.xiaomi_vacuum_cleaner.attributes.status %}<br>{% if val == &#8216;Charging&#8217; %}<br>mdi:battery-charging<br>{% elif val == &#8216;Cleaning&#8217; %}<br>mdi:move-resize<br>{% elif val == &#8216;Returning home&#8217; %}<br>mdi:keyboard-return<br>{% elif val == &#8216;Idle&#8217; %}<br>mdi:dots-horizontal<br>{% elif val == &#8216;Paused&#8217; %}<br>mdi:pause-circle<br>{% else %}<br>mdi:help-circle<br>{% endif %}<br>vacuum_fan_speed:<br>friendly_name: Fan Speed<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Mode: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.fan_speed }}&#8221;<br>icon_template: &#8220;mdi:fan&#8221;<br>vacuum_battery:<br>friendly_name: Vacuum Battery<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Battery: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}&#8221;<br>unit_of_measurement: &#8220;%&#8221;<br>icon_template: &#8220;{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_icon }}&#8221;<br>vacuum_cleaning_time:<br>friendly_name: Time of Last Cycle<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }}&#8221;<br>icon_template: &#8220;mdi:timer&#8221;<br>vacuum_cleaned_area:<br>friendly_name: Area of Last Cycle<br>unit_of_measurement: &#8220;m ²&#8221;<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }}&#8221;<br>icon_template: &#8220;mdi:ruler&#8221;<br>vacuum_cleanmainbrush:<br>friendly_name: Replace main brush<br>unit_of_measurement: &#8220;h&#8221;<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Main Brush: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.main_brush_left }}&#8221;<br>icon_template: &#8220;mdi:screwdriver&#8221;<br>vacuum_cleansidebrush:<br>friendly_name: Replace side brush<br>unit_of_measurement: &#8220;h&#8221;<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Side brush: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.side_brush_left }}&#8221;<br>icon_template: &#8220;mdi:screwdriver&#8221;<br>vacuum_cleanfilter:<br>friendly_name: Replace filter<br>unit_of_measurement: &#8220;h&#8221;<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Filter: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}&#8221;<br>icon_template: &#8220;mdi:screwdriver&#8221;<br>vacuum_sensordirtyleft:<br>friendly_name: Replace filter<br>unit_of_measurement: &#8220;h&#8221;<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;Sensor: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.sensor_dirty_left }}&#8221;<br>icon_template: &#8220;mdi:screwdriver&#8221;<br>vacuum_do_not_disturb:<br>friendly_name: Do Not Disturb<br># entity_id:<br># &#8211; vacuum.xiaomi_vacuum_cleaner<br>value_template: &#8220;{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.do_not_disturb }}&#8221;<br>icon_template: &gt;<br>{% set val = states.vacuum.xiaomi_vacuum_cleaner.attributes.do_not_disturb %}<br>{% if val == &#8216;on&#8217; %}<br>mdi:do-not-disturb<br>{% else %}<br>mdi:do-not-disturb-off<br>{% endif %}<br>vacuum_operation:<br>value_template: &#8220;Operation&#8221;<br>vacuum_accessories:<br>value_template: &#8220;Maintenance&#8221;</li>
+</ul>
+
+
+
+<p>input_select.yaml<br>vacuum_room:<br>name: Choose a room to clean<br>options:<br>&#8211; Select Input<br>&#8211; All<br>&#8211; Play Room<br>&#8211; Dining Room<br>&#8211; Kitchen<br>&#8211; Living Room<br>&#8211; Main Area</p>
+
+
+
+<p>10.1.3 Retrieving the Access Token<br>ANDROID (NOT ROOTED)<br>If using an Android device to retrieve the Access Token only v5.4.49 of Mi Home is confirmed working (December 2019).</p>
+
+
+
+<p>To begin, set up your Robovac with the latest version of Mi Home on your primary Android device as you normally would.<br>Using v5.4.49 of Mi Home locate a text file under the Smarthome/logs folder where the 32 character token is stored.<br>There will likely be several text files in this directory, search all of them for the word ‘token’ and you should find it there. Be advised that the latest version of Mi Home does not store the token in clear text.</p>
+
+
+
+<p>10.1.4 Zoned Cleaning</p>
+
+
+
+<p>10.1.5 Lovelace Card – Manual Card</p>
+
+
+
+<p>elements:</p>
+
+
+
+<ul>
+<li>icon: &#8216;mdi:bell-ring&#8217;<br>style:<br>&#8216;&#8211;paper-item-icon-color&#8217;: &#8216;rgb(115, 122, 130)&#8217;<br>left: 80%<br>top: 80%<br>tap_action:<br>action: call-service<br>service: vacuum.locate<br>service_data:<br>entity_id: vacuum.xiaomi_vacuum_cleaner<br>type: icon</li>
+
+
+
+<li>icon: &#8216;mdi:home&#8217;<br>style:<br>&#8216;&#8211;paper-item-icon-color&#8217;: &#8216;rgb(115, 122, 130)&#8217;<br>left: 65%<br>top: 80%<br>tap_action:<br>action: call-service<br>service: vacuum.return_to_base<br>service_data:<br>entity_id: vacuum.xiaomi_vacuum_cleaner<br>type: icon</li>
+
+
+
+<li>icon: &#8216;mdi:play&#8217;<br>style:<br>&#8216;&#8211;paper-item-icon-color&#8217;: &#8216;rgb(115, 122, 130)&#8217;<br>left: 50%<br>top: 80%<br>tap_action:<br>action: call-service<br>service: vacuum.start<br>service_data:<br>entity_id: vacuum.xiaomi_vacuum_cleaner<br>type: icon</li>
+
+
+
+<li>icon: &#8216;mdi:pause&#8217;<br>style:<br>&#8216;&#8211;paper-item-icon-color&#8217;: &#8216;rgb(115, 122, 130)&#8217;<br>left: 35%<br>top: 80%<br>tap_action:<br>action: call-service<br>service: vacuum.pause<br>service_data:<br>entity_id: vacuum.xiaomi_vacuum_cleaner<br>type: icon</li>
+
+
+
+<li>icon: &#8216;mdi:stop&#8217;<br>style:<br>&#8216;&#8211;paper-item-icon-color&#8217;: &#8216;rgb(155, 122, 130)&#8217;<br>left: 20%<br>top: 80%<br>tap_action:<br>action: call-service<br>service: vacuum.stop<br>service_data:<br>entity_id: vacuum.xiaomi_vacuum_cleaner<br>type: icon</li>
+
+
+
+<li>entity: sensor.vacuum_status<br>style:<br>background-color: &#8216;rgb(54, 65, 78)&#8217;<br>border-color: &#8216;rgb(34, 154, 210)&#8217;<br>border-left-style: solid<br>color: &#8216;rgb(255, 255, 255)&#8217;<br>font-family: Trebuchet MS<br>font-size: 90%<br>font-weight: bold<br>left: 5%<br>opacity: 0.8<br>pointer-events: none<br>text-shadow: 1px 1px black<br>top: 10%<br>transform: &#8216;translate(0%,-50%)&#8217;<br>type: state-label</li>
+
+
+
+<li>entity: sensor.vacuum_battery<br>style:<br>background-color: &#8216;rgb(54, 65, 78)&#8217;<br>border-color: &#8216;rgb(34, 154, 210)&#8217;<br>border-right-style: solid<br>color: &#8216;rgb(255, 255, 255)&#8217;<br>font-family: Trebuchet MS<br>font-size: 90%<br>font-weight: bold<br>opacity: 0.8<br>pointer-events: none<br>right: 5%<br>text-shadow: 1px 1px black<br>top: 10%<br>transform: &#8216;translate(0%,-50%)&#8217;<br>type: state-label<br>image: /local/pictures/vacuum.jpg<br>type: picture-elements</li>
+</ul>
+
+
+
+<p>Copy JPG to the www folder, create a new folder called pictures in there and upload whichever pic you want.</p>
+
+
+
+<p>10.2 BLUETOOTH LE TRACKER</p>
+
+
+
+<p>Resources:<br>https://www.home-assistant.io/integrations/bluetooth_le_tracker/</p>
+
+
+
+<p>10.3 BLUETOOTH TRACKER</p>
+
+
+
+<p>Resources:<br>https://www.home-assistant.io/integrations/bluetooth_tracker/</p>
+
+
+
+<p>10.4 XIAOMI MIJIA BLE TEMPERATURE AND HUMIDITY SENSOR</p>
+
+
+
+<p>Resources:<br>https://www.home-assistant.io/integrations/mitemp_bt/</p>
+
+
+
+<p>Bluepy &#8211; Needed for Xiaomi BLE Temperature and Humidity sensor Integration<br>sudo apt-get install python3-pip libglib2.0-dev<br>sudo pip3 install bluepy</p>
+
+
+
+<p>10.5 BROADLINK</p>
+
+
+
+<p>https://www.home-assistant.io/integrations/broadlink<br>https://gist.github.com/Snipercaine/7bf0f3d8bbd839eaef8f5320f2fedad4</p>
+
+
+
+<p>10.5.1 Code Resources<br>https://github.com/smartHomeHub/SmartIR/blob/master/docs/CLIMATE.md</p>
+
+
+
+<p>10.5.1.1 Samsung TV<br>https://github.com/yahat/broadlink_mini_homeassistant_ir_codes_samsung_tv</p>
+
+
+
+<p>10.5.1.2 Mitsubishi Electric AC &#8211; MSZ-GE50VA<br>https://gist.github.com/cjsmns/c59a09c68be77113ebe070ad41f4063b#file-mitsubishi_electric-ini</p>
+
+
+
+<p>10.6 SPEEDTESTDOTNET</p>
+
+
+
+<p><a href="https://www.home-assistant.io/integrations/speedtestdotnet/">https://www.home-assistant.io/integrations/speedtestdotnet/</a></p>
+
+
+
+<p>10.7 PUSHSAFER</p>
+
+
+
+<p><a href="https://www.home-assistant.io/integrations/pushsafer/">https://www.home-assistant.io/integrations/pushsafer/</a></p>
+
+
+
+<p>10.8 ANDROIDTV</p>
+
+
+
+<p>Prerequisites:<br>ADB Server Addon</p>
+
+
+
+<p>10.8.1 Issues:<br>Mi Box 3 Issues<br>port 5555 on the mi box is closed by default which is needed for wifi ADB.</p>
+
+
+
+<p>To open port 5555, you need to use adb over usb first with an A to A usb cable.<br>Connect with adb usb and type adb tcpip 5555</p>
+
+
+
+<p>Also rebooting closes the port. You would need root to make the change persist across reboots.<br>Plug device into computer<br>Run adb devices to ensure it&#8217;s connected<br>Run adb tcpip 5555 (any port number not in use)<br>Run adb connect [ip]:5555</p>
+
+
+
+<p>10.9 PLEX</p>
+
+
+
+<p>Resources:<br>https://www.home-assistant.io/integrations/plex/</p>
+
+
+
+<p>add the following into configuration.yaml<br>plex:<br>host: 192.168.0.20<br>port: 32400<br>token: !secret plex.token</p>
+
+
+
+<p>Finding the Plex Token<br>Finding a temporary token is pretty simple:</p>
+
+
+
+<p>Sign in to your Plex account in Plex Web App<br>Browse to a library item and view the XML for it<br>Look in the URL and find the token as the X-Plex-Token value</p>
+
+
+
+<p>10.10 ZONEMINDER</p>
+
+
+
+<p><a href="https://www.home-assistant.io/integrations/zoneminder/">https://www.home-assistant.io/integrations/zoneminder/</a></p>
+
+
+
+<p>configuration.yaml<br>zoneminder:</p>
+
+
+
+<ul>
+<li>host: 192.168.0.20:8082</li>
+</ul>
+
+
+
+<p>sensor:</p>
+
+
+
+<ul>
+<li>platform: zoneminder<br>include_archived: false</li>
+</ul>
+
+
+
+<p>switch:</p>
+
+
+
+<ul>
+<li>platform: zoneminder<br>command_on: Modect<br>command_off: Monitor</li>
+</ul>
+
+
+
+<p>cameras.yaml</p>
+
+
+
+<p>camera:</p>
+
+
+
+<ul>
+<li>platform: zoneminder</li>
+</ul>
+
+
+
+<p>cameras.yaml</p>
+
+
+
+<p>camera:</p>
+
+
+
+<p>10.11 STREAM</p>
+
+
+
+<p><a href="https://www.home-assistant.io/integrations/stream">https://www.home-assistant.io/integrations/stream</a></p>
+
+
+
+<p>10.12 RESTFUL COMMAND</p>
+
+
+
+<p><a href="https://www.home-assistant.io/integrations/rest_command/">https://www.home-assistant.io/integrations/rest_command/</a></p>
+
+
+
+<p>10.12.1 PiPup</p>
+
+
+
+<p>Popup custom notifications on Android TV</p>
+
+
+
+<p><a href="https://github.com/rogro82/PiPup">https://github.com/rogro82/PiPup</a></p>
+
+
+
+<p>11 HASS.IO HACS</p>
+
+
+
+<p>Resources:<br>https://hacs.xyz/docs/installation/manual</p>
+
+
+
+<p>/usr/share/hassio/homeassistant/custom_components</p>
+
+
+
+<p>HACS Token: 40ab0223a3d04f284b7a18294d87cab9e9c742b6<br>558204b330ab40df5bc5e155fd002e626b653f74<br>11.1 INTEGRATIONS</p>
+
+
+
+<p>11.1.1 Xiaomi passive BLE monitor sensor platform</p>
+
+
+
+<p>Not pickling up the device<br>11.1.2 Samsungtv Custom</p>
+
+
+
+<p><a href="https://github.com/roberodin/ha-samsungtv-custom">https://github.com/roberodin/ha-samsungtv-custom</a></p>
+
+
+
+<p>11.1.3 SamsungTV Encrypted</p>
+
+
+
+<p>NOTE:<br>The only way you can turn on your TV is connecting your Home Assistant Device to your TV using a HDMI cable, and using the hdmi version of the component: https://github.com/sermayoral/ha-samsungtv-encrypted/releases/tag/v2.3-hdmi 2</p>
+
+
+
+<p>These encrypted models don’t support turning on using LAN</p>
+
+
+
+<p>How to get the Samsung Token<br>bash-5.0# python3 get_token.py &#8211;ip 192.168.0.35 &#8211;port 8080</p>
+
+
+
+<p>4746</p>
+
+
+
+<p>Please enter pin from tv: 4746<br>Got pin: &#8216;4746&#8217;</p>
+
+
+
+<p>AES key: d98826f75b0a3529d13d6bbde4c9b4c4<br>AES encrypted: b9bb7cc241c9b77b7f049825f143cb323d3eda94ee8b0b3d728c089e3e784a0b0c095f139eaac083671493d7578754d0fbb48fb1640c70d20feb513dc2a1c88852374cbc41d3c25ad9ff5613bc0dd956096c50b2ef97bf4a35028a5cf328364e985c8cf1222302313715d6ee05f558697453eee74342e4dbd6699be902a21535<br>AES swapped: 0a27aaedb6e25d2fc4ae2ec62558b7a5b4928d8841c86df81bf9fed02f17b0de4ed0fc818c7b0b607b4774c94f642733751e774b3be8b8119e2db5b97a70f369ee498cab22c5c5c2ab85d33a38a47e8f742220007af0b8d50475db2a64a0c86231d6efe966ea2e5ae18622767dea75519a730a2d180ed0d8f0336b99ee947654<br>data buffer: 000000063635343332310A27AAEDB6E25D2FC4AE2EC62558B7A5B4928D8841C86DF81BF9FED02F17B0DE4ED0FC818C7B0B607B4774C94F642733751E774B3BE8B8119E2DB5B97A70F369EE498CAB22C5C5C2AB85D33A38A47E8F742220007AF0B8D50475DB2A64A0C86231D6EFE966EA2E5AE18622767DEA75519A730A2D180ED0D8F0336B99EE947654<br>hash: 9660a579137c236e0f04444f11062a20d4a7adf6<br>secondStepResponse: {&#8220;auth_data&#8221;:&#8221;{\&#8221;auth_type\&#8221;:\&#8221;SPC\&#8221;,\&#8221;request_id\&#8221;:\&#8221;0\&#8221;,\&#8221;GeneratorClientHello\&#8221;:\&#8221;010100000000000000009E0000000636353433323178088611851638779A0E323EE9DC6509364B34AC1C82E3AFD19E40B04D7890F2A86071408BFB9FB59A5B7883CE63D9750C4D6AF1C0B5D49BB2E3750127DF0FCE188D8FF62E1BCCE04F9C729862FD21B47098F204F7E83969868D6C19176CE765EED1CB3B4062EF62A90B903045BB3743A28335A0797F093981A9F9AABD22372A69574B8DDFDD7556603F97C620CA0A799B63CE290000000000\&#8221;}&#8221;}</p>
+
+
+
+<p>thirdLen: 138<br>hello: 010100000000000000009e0000000636353433323178088611851638779a0e323ee9dc6509364b34ac1c82e3afd19e40b04d7890f2a86071408bfb9fb59a5b7883ce63d9750c4d6af1c0b5d49bb2e3750127df0fce188d8ff62e1bcce04f9c729862fd21b47098f204f7e83969868d6c19176ce765eed1cb3b4062ef62a90b903045bb3743a28335a0797f093981a9f9aabd22372a69574b8ddfdd7556603f97c620ca0a799b63ce290000000000<br>dest: 0000000636353433323178088611851638779a0e323ee9dc6509364b34ac1c82e3afd19e40b04d7890f2a86071408bfb9fb59a5b7883ce63d9750c4d6af1c0b5d49bb2e3750127df0fce188d8ff62e1bcce04f9c729862fd21b47098f204f7e83969868d6c19176ce765eed1cb3b4062ef62a90b903045bb3743a28335a0797f093981a9f9aabd22372a9660a579137c236e0f04444f11062a20d4a7adf6<br>userId: 654321<br>pEncWBGx: 78088611851638779a0e323ee9dc6509364b34ac1c82e3afd19e40b04d7890f2a86071408bfb9fb59a5b7883ce63d9750c4d6af1c0b5d49bb2e3750127df0fce188d8ff62e1bcce04f9c729862fd21b47098f204f7e83969868d6c19176ce765eed1cb3b4062ef62a90b903045bb3743a28335a0797f093981a9f9aabd22372a<br>pEncGx: 76fcecdf389b2d276c1a9d9d067c422ec921f1f2cdee039eb4568f62bd2fea65e9ea550d491badda2f98b3e71add8a715898995ddc36b3317fcbdf4050b5375cb61cdc02b051fb1863637444322a6b8b4020929f7108e082abfa48e3a37ccb6e7b2a03906dd83353bd327a3df1b5e6efbe18f22836ef61fd7b8b674728029069<br>pGx: 591593bcd66f9bf5ca413c043a9cee7d42bba648c0110f908d73621b624dfc9037a83e7d19a787437f77f3c9400797e39e9a9bb359e939844b5fa7abfe2ccb6bebcdadafea69bf770777843959d61b0d8f13f80d95609458a223eda70e77ee707db88ab3a98f14ffef285031e9d948b096114188b30d851becd74d13f76defdd<br>secret: 1033ba926e13583a4cdd520846e986f074777d31c4faec7863723ecdf09e396fcf49d6ddaae8393ed0854a6c1c54d98bcc90e71666ff1dea44c41bfd3eef6e23f723978d7fda9209ca007fae850c095816713681d91eafc87e90795242bc2729def1ab283d98088390cbfdb0eedc770c720c2a041c332ecb93bfe494175ec901<br>hash2: 69574b8ddfdd7556603f97c620ca0a799b63ce29<br>secret2: 3635343332311033ba926e13583a4cdd520846e986f074777d31c4faec7863723ecdf09e396fcf49d6ddaae8393ed0854a6c1c54d98bcc90e71666ff1dea44c41bfd3eef6e23f723978d7fda9209ca007fae850c095816713681d91eafc87e90795242bc2729def1ab283d98088390cbfdb0eedc770c720c2a041c332ecb93bfe494175ec901<br>hash3: 69574b8ddfdd7556603f97c620ca0a799b63ce29<br>Pin OK <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+
+
+<p>dest_hash: 1f955142da0b66f1f895ff5a65a295fc416272c8<br>SKPrime: 68440ba043127568efad199f35818c78eb447d1d<br>SKPrimeHash: 1c4e2731b139dba477d07c77ff7e57829ad090b2<br>ctx: b7270655fe152f2735f4eceb16939bca<br>Pin accepted <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+
+
+<p>sessionId: 1<br>SessionID: 1<br>Authorization successfull <img src="https://s.w.org/images/core/emoji/14.0.0/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /><br>11.1.4 Custom Icon Loader</p>
+
+
+
+<p>11.1.5 LG SmartThinQ Appliances</p>
+
+
+
+<p>11.1.6 Fontawesome</p>
+
+
+
+<p>11.1.7 zigbee2mqtt Networkmap</p>
+
+
+
+<p>11.1.8 Browser mod</p>
+
+
+
+<p>11.1.9 SmartThinQ LGE Sensors</p>
+
+
+
+<p>To be setup</p>
+
+
+
+<p>11.2 PLUGINS</p>
+
+
+
+<p>11.2.1 button-card</p>
+
+
+
+<p><a href="https://github.com/custom-cards/button-card">https://github.com/custom-cards/button-card</a></p>
+
+
+
+<p>11.2.2 card-tools<br>https://github.com/thomasloven/lovelace-card-tools</p>
+
+
+
+<p>11.2.3 layout-card<br>https://github.com/thomasloven/lovelace-layout-card</p>
+
+
+
+<p>11.2.4 state-switch</p>
+
+
+
+<p><a href="https://github.com/thomasloven/lovelace-state-switch">https://github.com/thomasloven/lovelace-state-switch</a></p>
+
+
+
+<p>11.2.5 decluttering card</p>
+
+
+
+<p><a href="https://github.com/custom-cards/decluttering-card">https://github.com/custom-cards/decluttering-card</a></p>
+
+
+
+<p>11.2.6 fold-entity-row<br>cc<br>11.2.7 (Xiaomi) Vacuum Card</p>
+
+
+
+<p>11.2.8 Calendar Card</p>
+
+
+
+<p>11.2.9 TV Remote Card</p>
+
+
+
+<p>11.2.10 Content Card Remote Control</p>
+
+
+
+<p><a href="https://github.com/dimagoltsman/ha-custom-lovelace-cards/tree/master/remote-control">https://github.com/dimagoltsman/ha-custom-lovelace-cards/tree/master/remote-control</a></p>
+
+
+
+<p>11.2.11 Lovelace Swipe Navigation</p>
+
+
+
+<p>11.2.12 Lovelace Card Templater</p>
+
+
+
+<p>11.2.13 Mini Media Player</p>
+
+
+
+<p>11.2.14 Paper Buttons Row</p>
+
+
+
+<p>11.2.15 Zigbee2mqtt Networkmap Card</p>
+
+
+
+<p>11.2.16 Garbage Collection Card</p>
+
+
+
+<p>! Need to setup to remind me about the garbage collections</p>
+
+
+
+<p>11.2.17 Flexible Horseshoe Card</p>
+
+
+
+<p>! Need to setup for temp and server monitoring</p>
+
+
+
+<p>11.2.18 Custom Header</p>
+
+
+
+<p>https://community.home-assistant.io/t/custom-header-template-showcase-and-discussion/158166<br>https://maykar.github.io/custom-header/#templates/examples</p>
+
+
+
+<p>12 CUSTOM COMPONENTS</p>
+
+
+
+<p>12.1 SMARTIR<br>https://github.com/smartHomeHub/SmartIR<br>https://community.home-assistant.io/t/smartir-control-your-climate-tv-and-fan-devices-via-ir-rf-controllers/100798</p>
+
+
+
+<p>12.1.1 SmartIR Climate</p>
+
+
+
+<p>12.1.2 SmartIR Mediaplayer</p>
+
+
+
+<p>12.1.3 SmartIR Fan</p>
+
+
+
+<p>13 ZIGBEE2MQTT</p>
+
+
+
+<p>Resources:<br>https://github.com/Koenkk/zigbee2mqtt.io<br>http://www.zigbee2mqtt.io/<br>13.1 ZIGBEE CC2531 USB SNIFFER</p>
+
+
+
+<p>Hardware:<br>CC Debugger AliExpress: $<br>CC2531 USB Sniffer<br>CC2531 Downloader Cable<br>PC or Raspberry Pi to run bridge<br>Optional: Male to female USB extesion cable (why?)</p>
+
+
+
+<p>Supported Zigbee device(s)</p>
+
+
+
+<p>https://www.zigbee2mqtt.io/getting_started/flashing_the_cc2531.html<br>SmartRF Flash programmer</p>
+
+
+
+<p>CC debugger driver</p>
+
+
+
+<p>Firmware CC2531ZNP-Prod.hex</p>
+
+
+
+<p>13.1.1 Installation<br>I have installed this on my Intel NUC Server.</p>
+
+
+
+<p>Determine location of CC2531 USB sniffer and checking user permissions<br>We first need to determine the location of the CC2531 USB sniffer. Connect the CC2531 USB to your Raspberry Pi. Most of the times the location of the CC2531 is /dev/ttyACM0. This can be verified by:</p>
+
+
+
+<p>ls -l /dev/ttyACM0</p>
+
+
+
+<p>Add https://github.com/danielwelch/hassio-zigbee2mqtt to Hass.io to the Add-on Store Repositories and install</p>
+
+
+
+<p>13.2 ZIGBEE2MQTT HASS.IO ADD-ON</p>
+
+
+
+<p>Resources:<br>http://192.168.0.20:8123/hassio/addon/7ad98f9c_zigbee2mqtt</p>
+
+
+
+<p>Config:<br>data_path: /share/zigbee2mqtt<br>devices: devices.yaml<br>groups: groups.yaml<br>homeassistant: true<br>permit_join: true<br>mqtt:<br>base_topic: zigbee2mqtt<br>server: &#8216;!secret mqtt_server&#8217;<br>user: &#8216;!secret mqtt_user&#8217;<br>password: &#8216;!secret mqtt_password&#8217;<br>serial:<br>port: /dev/ttyACM0<br>advanced:<br>pan_id: 6754<br>channel: 11<br>network_key:<br>&#8211; 95<br>&#8211; 230<br>&#8211; 236<br>&#8211; 223<br>&#8211; 190<br>&#8211; 56<br>&#8211; 66<br>&#8211; 233<br>&#8211; 43<br>&#8211; 157<br>&#8211; 71<br>&#8211; 171<br>&#8211; 228<br>&#8211; 550<br>&#8211; 11<br>&#8211; 33<br>availability_blacklist: []<br>ban: []<br>whitelist: []<br>queue: {}<br>socat:<br>enabled: false<br>master: &#8216;pty,raw,echo=0,link=/dev/ttyZ2M,mode=777&#8217;<br>slave: &#8216;tcp-listen:8485,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5&#8217;<br>restartdelay: 1<br>initialdelay: 1<br>options: &#8216;-d -d&#8217;<br>log: true</p>
+
+
+
+<p>13.3 CONTROLLING ZIGBEE2MQTT VIA HOME ASSISTANT<br>https://www.zigbee2mqtt.io/integration/home_assistant.html</p>
+
+
+
+<p>The following Home Assistant configuration allows you to control Zigbee2mqtt from Home Assistant.</p>
+
+
+
+<p>You can add it to the appropriate section of your configuration.yaml, or you can add it as a Home Assistant Package by adding the following to zigbee2mqtt.yaml in your packages folder.</p>
+
+
+
+<p>Zigbee2mqtt.yaml:</p>
+
+
+
+<p>Input select for Zigbee2mqtt debug level</p>
+
+
+
+<p>input_select:<br>zigbee2mqtt_log_level:<br>name: Zigbee2mqtt Log Level<br>options:<br>&#8211; debug<br>&#8211; info<br>&#8211; warn<br>&#8211; error<br>initial: info<br>icon: mdi:format-list-bulleted</p>
+
+
+
+<p>Input text to input Zigbee2mqtt friendly_name for scripts</p>
+
+
+
+<p>input_text:<br>zigbee2mqtt_old_name:<br>name: Zigbee2mqtt Old Name<br>zigbee2mqtt_new_name:<br>name: Zigbee2mqtt New Name<br>zigbee2mqtt_remove:<br>name: Zigbee2mqtt Remove</p>
+
+
+
+<p>Scripts for renaming &amp; removing devices</p>
+
+
+
+<p>script:<br>zigbee2mqtt_rename:<br>alias: Zigbee2mqtt Rename<br>sequence:<br>service: mqtt.publish<br>data_template:<br>topic: zigbee2mqtt/bridge/config/rename<br>payload_template: &gt;-<br>{<br>&#8220;old&#8221;: &#8220;{{ states.input_text.zigbee2mqtt_old_name.state | string }}&#8221;,<br>&#8220;new&#8221;: &#8220;{{ states.input_text.zigbee2mqtt_new_name.state | string }}&#8221;<br>}<br>zigbee2mqtt_remove:<br>alias: Zigbee2mqtt Remove<br>sequence:<br>service: mqtt.publish<br>data_template:<br>topic: zigbee2mqtt/bridge/config/remove<br>payload_template: &#8220;{{ states.input_text.zigbee2mqtt_remove.state | string }}&#8221;</p>
+
+
+
+<p>Timer for joining time remaining (120 sec = 2 min)</p>
+
+
+
+<p>timer:<br>zigbee_permit_join:<br>name: Time remaining<br>duration: 120</p>
+
+
+
+<p>sensor:<br># Sensor for monitoring the bridge state</p>
+
+
+
+<ul>
+<li>platform: mqtt<br>name: Zigbee2mqtt Bridge state<br>state_topic: &#8220;zigbee2mqtt/bridge/state&#8221;<br>icon: mdi:router-wireless<br># Sensor for Showing the Zigbee2mqtt Version</li>
+
+
+
+<li>platform: mqtt<br>name: Zigbee2mqtt Version<br>state_topic: &#8220;zigbee2mqtt/bridge/config&#8221;<br>value_template: &#8220;{{ value_json.version }}&#8221;<br>icon: mdi:zigbee<br># Sensor for Showing the Coordinator Version</li>
+
+
+
+<li>platform: mqtt<br>name: Coordinator Version<br>state_topic: &#8220;zigbee2mqtt/bridge/config&#8221;<br>value_template: &#8220;{{ value_json.coordinator }}&#8221;<br>icon: mdi:chip</li>
+</ul>
+
+
+
+<p>Switch for enabling joining</p>
+
+
+
+<p>switch:</p>
+
+
+
+<ul>
+<li>platform: mqtt<br>name: &#8220;Zigbee2mqtt Main join&#8221;<br>state_topic: &#8220;zigbee2mqtt/bridge/config/permit_join&#8221;<br>command_topic: &#8220;zigbee2mqtt/bridge/config/permit_join&#8221;<br>payload_on: &#8220;true&#8221;<br>payload_off: &#8220;false&#8221;</li>
+</ul>
+
+
+
+<p>automation:<br># Automation for sending MQTT message on input select change</p>
+
+
+
+<ul>
+<li>alias: Zigbee2mqtt Log Level initial_state: &#8220;on&#8221; trigger: platform: state entity_id: input_select.zigbee2mqtt_log_level action:
+<ul>
+<li>service: mqtt.publish<br>data:<br>payload_template: &#8220;{{ states(&#8216;input_select.zigbee2mqtt_log_level&#8217;) }}&#8221;<br>topic: zigbee2mqtt/bridge/config/log_level<br># Automation to start timer when enable join is turned on</li>
+</ul>
+</li>
+
+
+
+<li>id: zigbee_join_enabled<br>alias: Zigbee Join Enabled<br>hide_entity: true<br>trigger:<br>platform: state<br>entity_id: switch.zigbee2mqtt_main_join<br>to: &#8220;on&#8221;<br>action:<br>service: timer.start<br>entity_id: timer.zigbee_permit_join<br># Automation to stop timer when switch turned off and turn off switch when timer finished</li>
+
+
+
+<li>id: zigbee_join_disabled alias: Zigbee Join Disabled hide_entity: true trigger:
+<ul>
+<li>platform: event<br>event_type: timer.finished<br>event_data:<br>entity_id: timer.zigbee_permit_join</li>
+
+
+
+<li>platform: state<br>entity_id: switch.zigbee2mqtt_main_join<br>to: &#8220;off&#8221;<br>action:</li>
+
+
+
+<li>service: timer.cancel<br>data:<br>entity_id: timer.zigbee_permit_join</li>
+
+
+
+<li>service: switch.turn_off<br>entity_id: switch.zigbee2mqtt_main_join</li>
+</ul>
+</li>
+</ul>
+
+
+
+<p>The following is an example Lovelace card configuration.</p>
+
+
+
+<p>title: Zigbee2mqtt<br>type: entities<br>show_header_toggle: false<br>entities:</p>
+
+
+
+<ul>
+<li>entity: sensor.zigbee2mqtt_bridge_state</li>
+
+
+
+<li>entity: sensor.zigbee2mqtt_version</li>
+
+
+
+<li>entity: sensor.coordinator_version</li>
+
+
+
+<li>entity: input_select.zigbee2mqtt_log_level</li>
+
+
+
+<li>type: divider</li>
+
+
+
+<li>entity: switch.zigbee2mqtt_main_join</li>
+
+
+
+<li>entity: timer.zigbee_permit_join</li>
+
+
+
+<li>type: divider</li>
+
+
+
+<li>entity: input_text.zigbee2mqtt_old_name</li>
+
+
+
+<li>entity: input_text.zigbee2mqtt_new_name</li>
+
+
+
+<li>entity: script.zigbee2mqtt_rename</li>
+
+
+
+<li>type: divider</li>
+
+
+
+<li>entity: input_text.zigbee2mqtt_remove</li>
+
+
+
+<li>entity: script.zigbee2mqtt_remove</li>
+</ul>
+
+
+
+<p>13.4 HOW TO SECURE YOUR ZIGBEE NETWORK</p>
+
+
+
+<p>By default your Zigbee network isn’t as secured as possible. The following settings are recommended to apply to your configuration.<br>Disable joining<br>To disable joining it’s important that permit_join: false is set in your configuration.yaml. Otherwise rogue devices are able to join allowing them to send and receive Zigbee traffic.<br>Change Zigbee network encryption key<br>NOTE: Changing the network key requires repairing of all devices!</p>
+
+
+
+<p>Zigbee2mqtt uses a known default encryption key (Zigbee Transport Key). Therefore, it is recommended to use a different one. To use a different encryption key add the following to your configuration.yaml:<br>sudo nano /opt/zigbee2mqtt/data/configuration.yaml<br>Do not use this exact key.<br>network_key: [7, 3, 5, 7, 9, 11, 13, 15, 0, 2, 4, 6, 8, 11, 12, 13]<br>95,<br>The network encryption key size is 128-bit which is essentially 16 decimal values between 0 and 255 or 16 hexadecimal values between 0x00 and 0xFF.<br>If you need to transform your decimals to hexadecimals (or vice versa) please use a converter. Example: 92 (decimal) would become 5C (hexadecimal).<br>You can generate a valid key with the following command in most linux systems:<br>dd if=/dev/urandom bs=1 count=16 2&gt;/dev/null | od -A n -t x1 | awk &#8216;{printf &#8220;[&#8220;} {for(i = 1; i&lt; NF; i++) {printf &#8220;0x%s, &#8220;, $i}} {printf &#8220;0x%s]\n&#8221;, $NF}&#8217;<br>Once you have updated the configuration.yaml then you will need to restart the Zigbee2MQTT service<br>sudo systemctl restart zigbee2mqtt</p>
+
+
+
+<p>13.5 YAML FILES</p>
+
+
+
+<p>Configurartion.yaml</p>
+
+
+
+<p>mqtt:<br>broker: 192.168.0.20 # Remove if you want to use builtin-in MQTT broker<br>port: 1883<br>discovery: true<br>client_id: homeassistant<br>username: !secret mqtt_user<br>password: !secret mqtt_password<br>birth_message:<br>topic: &#8216;homeassistant/bridge/status&#8217;<br>payload: &#8216;online&#8217;<br>will_message:<br>topic: &#8216;homeassistant/bridge/status&#8217;<br>payload: &#8216;offline&#8217;</p>
+
+
+
+<p>Change friendly name in devices.yaml</p>
+
+
+
+<p>cd /usr/share/hassio/share/zigbee2mqtt<br>sudo nano devices.yaml<br>or use IDE Cloud 9</p>
+
+
+
+<p>&#8216;0x00158d0004050fc5&#8217;:<br>friendly_name: Aqara_Button_Kitchen<br>&#8216;0x00158d0003498703&#8217;:<br>friendly_name: Aqara_THP_Kitchen<br>&#8216;0x00158d0004b43636&#8217;:<br>friendly_name: Heiman_Fire_Alarm_Kitchen<br>&#8216;0x00158d0003230559&#8217;:<br>friendly_name: Aqara_THP_Backyard<br>&#8216;0x00158d0003498d88&#8217;:<br>friendly_name: Aqara_THP_Server_Room<br>&#8216;0x00158d00028f5853&#8217;:<br>friendly_name: Aqara_Button_Master_Bedroom<br>13.6 ZIGBEE2MQTT ADMIN PANEL<br>https://github.com/ben423423n32j14e/zigbee2mqttadminpanel</p>
+
+
+
+<p>14 ZONEMINDER ON DOCKER</p>
+
+
+
+<p><a href="https://hub.docker.com/r/dlandon/zoneminder">https://hub.docker.com/r/dlandon/zoneminder</a></p>
+
+
+
+<p>14.1 CREATE MOUNTS<br>Create directories<br>sudo mkdir /shares/zoneminder<br>Create Mount<br>sudo mount -t nfs 192.168.0.11:/data/zoneminder /shares/zoneminder -w<br>sudo mkdir /shares/zoneminder/data<br>Mount drive at startup<br>Make a backup of fstab<br>sudo mkdir /systembackups<br>cd /etc/<br>sudo cp fstab /systembackups<br>cd /systembackups &amp;&amp; sudo mv fstab fstab.bak</p>
+
+
+
+<p>Restore fstab if neceasary<br>cd /systembackups<br>sudo cp fstab.bak /etc<br>cd /etc/<br>sudo mv fstab.bak fstab</p>
+
+
+
+<p>Edit fsatb<br>sudo nano /etc/fstab<br>Add this to the bottom and save</p>
+
+
+
+<p>192.168.0.11:/data/zoneminder /shares/zoneminder nfs defaults 0 0</p>
+
+
+
+<p>Add directories for ZoneMinder data<br>cd /shares/zoneminder<br>mkdir data<br>mkdir custom_apps<br>mkdir config</p>
+
+
+
+<p>sudo docker pull dlandon/zoneminder</p>
+
+
+
+<p>sudo docker run -d &#8211;name=&#8221;ZoneMinder&#8221; \<br>&#8211;net=&#8221;bridge&#8221; \<br>&#8211;privileged=&#8221;true&#8221; \<br>-p 8443:443/tcp \<br>-p 9010:9000/tcp \<br>-p 8082:80/tcp \<br>-e TZ=&#8221;Pacific/Auckland&#8221; \<br>-e SHMEM=&#8221;50%&#8221; \<br>-e PUID=&#8221;99&#8243; \<br>-e PGID=&#8221;100&#8243; \<br>-e INSTALL_HOOK=&#8221;1&#8243; \<br>-e INSTALL_FACE=&#8221;1&#8243; \<br>-e INSTALL_TINY_YOLO=&#8221;1&#8243; \<br>-e INSTALL_YOLO=&#8221;&#8221; \<br>-e MULTI_PORT_START=&#8221;0&#8243; \<br>-e MULTI_PORT_END=&#8221;0&#8243; \<br>-v &#8220;/shares/zoneminder/config&#8221;:&#8221;/config&#8221;:rw \<br>-v &#8220;/shares/zoneminder/data&#8221;:&#8221;/var/cache/zoneminder&#8221;:rw \<br>dlandon/zoneminder</p>
+
+
+
+<p>http://192.168.0.20:8082/zm</p>
+
+
+
+<p>8.1 SETUP CAMERAS</p>
+
+
+
+<p>8.1.1 Xiaomi Dafang Integration in Zoneminder</p>
+
+
+
+<p>here<br>8.1.2 Wansview 720p W3</p>
+
+
+
+<p>Sourcetype: Libvlv (slow on ffmpeg)<br>path rtsp://admin:123456@192.168.0.65/live/ch0<br>res 1280&#215;720<br>8.1.3 Camera Connection Database<br>https://www.ispyconnect.com/sources.aspx</p>
+
+
+
+<p>8.1.3.1 Wansview 720p W3</p>
+
+
+
+<p>Sourcetype: Libvlv (slow on ffmpeg)<br>path rtsp://admin:123456@192.168.0.65/live/ch0<br>res 1280&#215;720</p>
+
+
+
+<p>15 OPENCV</p>
+
+
+
+<p>16 MAKE THINGS PRETTY<br>16.1 THEMES<br>https://www.juanmtech.com/themes-in-home-assistant/</p>
+
+
+
+<p>Themes:<br>Bluenight</p>
+
+
+
+<p>16.1.1 Create a themes.yaml file<br>The first thing that you need to do is create a new file where you’re going to store all the themes, and you need to save that file in the Home Assistant Config folder. You can set up the Samba add-on to have access to the config folder and use any text editor like Atom or Notepad++ to create and edit the Yaml files. You can also use the Configurator add-on and manage the files directly from Home Assistant.</p>
+
+
+
+<p>All right so open your text editor and enter the themes that you would like to use. Then, you need to save the file inside the Home Assistant Config &gt; Themes folder, so go into Network, Hass.io, Config and name the file themes.yaml.</p>
+
+
+
+<p>When finished, open the configuration.yaml file, look for the frontend component and below, type the following to include the new Themes file: themes: !include themes/themes.yaml</p>
+
+
+
+<p>frontend:<br>javascript_version: latest<br>themes: !include themes/theme.yaml<br>Save the changes and then restart Home Assistant. After Home Assistant is back online, go into Profile located on the side bar and you should now have a new drop-down where we can select any of the new themes<br>C:\Users\brent\Nextcloud\PROJECTS\Home Automation\YAML Backup\theme.yaml</p>
+
+
+
+<p>16.1.2 Set up an automation to enable a specific theme<br>The next thing that you need to do is create an automation that would set up a specific theme every time you open or sign in to Home Assistant from any device. To do that, open the automations.yaml file and enter the following:</p>
+
+
+
+<p>#</p>
+
+
+
+<p>Theme for day and night</p>
+
+
+
+<p>#</p>
+
+
+
+<ul>
+<li>alias: &#8216;Set HA theme for day and night&#8217; trigger:
+<ul>
+<li>platform: homeassistant<br>event: start</li>
+
+
+
+<li>platform: state<br>entity_id: sun.sun<br>to: above_horizon</li>
+
+
+
+<li>platform: state<br>entity_id: sun.sun<br>to: below_horizon<br>action:</li>
+
+
+
+<li>service_template: frontend.set_theme<br>data_template:<br>name: &gt;<br>{% if states.sun.sun.state == &#8220;above_horizon&#8221; %}<br>BlueNight<br>{% else %}<br>GreyNight<br>{% endif %}</li>
+</ul>
+</li>
+</ul>
+
+
+
+<p>To explain a little bit, under alias, we’re setting up the name for the automation, under trigger, we’re using the homeassistant platform, and we’re setting the event to start. This means that the automation would trigger at the start of Home Assistant. Under action, we’re using the service, frontend.set_theme. This is the command that is going to set up the specific theme. And last, under data, we’re entering the name for the theme that we want to be enabled.</p>
+
+
+
+<p>Save the file and then restart Home Assistant to apply the changes. Now, every time you restart or open Home Assistant from any device, you would get the same theme that you set up in the automation.</p>
+
+
+
+<p>16.1.3 Automatically switch between a light and a dark theme<br>What if you want a dark theme to be enabled at night time and then another theme during the daytime? Well, you can do that using the sun component and another automation that would use the IF statement. Let me show you how to do that.<br>First, open the configuration.yaml file and make sure that you have the sun component. By default, it should be already there but still double check. Then, go back to the automation.yaml file and replace the previous automation with the following:</p>
+
+
+
+<ul>
+<li>alias: &#8216;Set HA theme for day and night&#8217; trigger:
+<ul>
+<li>platform: homeassistant<br>event: start</li>
+
+
+
+<li>platform: state<br>entity_id: sun.sun<br>to: above_horizon</li>
+
+
+
+<li>platform: state<br>entity_id: sun.sun<br>to: below_horizon<br>action:</li>
+
+
+
+<li>service_template: frontend.set_theme<br>data_template:<br>name: &gt;<br>{% if states.sun.sun.state == &#8220;above_horizon&#8221; %}<br>Light &#8211; Green<br>{% else %}<br>Dark &#8211; Green<br>{% endif %}</li>
+</ul>
+</li>
+</ul>
+
+
+
+<p>Besides using the homeassistant platform, we’re also going to use the state platform twice with the entity sun.sun and we would set the first one to above_horizon and the second one to below_horizon. Under action, we’re going to use the frontend.set_theme for the service_template, and under the data_template, we would use the if statement to specify what theme gets enabled at a specific state.<br>Lastly, save the file and restart Home Assistant to apply the changes.</p>
+
+
+
+<p>16.2 THEME BERRYBLUES</p>
+
+
+
+<p>1E1F26 – Midnight Blue</p>
+
+
+
+<p>283655 – Indigo Ink</p>
+
+
+
+<p>4D648D – Blueberry</p>
+
+
+
+<p>D0E1F9 – Periwinkle</p>
+
+
+
+<p>#</p>
+
+
+
+<p>#</p>
+
+
+
+<p>BerryBlues</p>
+
+
+
+<p>#</p>
+
+
+
+<p>#</p>
+
+
+
+<p>BerryBlues:</p>
+
+
+
+<p>#</p>
+
+
+
+<p>Colour Pallett</p>
+
+
+
+<p>1E1F26 – Midnight Blue</p>
+
+
+
+<p>283655 – Indigo Ink</p>
+
+
+
+<p>4D648D – Blueberry</p>
+
+
+
+<p>D0E1F9 – Periwinkle</p>
+
+
+
+<p>#</p>
+
+
+
+<p>lovelace-background: &#8216;center / cover no-repeat url(&#8220;/local/pictures/background/background_landscape.jpg&#8221;) fixed&#8217;</p>
+
+
+
+<p>lovelace-background: &#8216;center / cover no-repeat url(&#8220;/local/pictures/background/technological_sense_geometric_line simple.jpg&#8221;) fixed&#8217;</p>
+
+
+
+<p>lovelace-background: &#8216;center / cover no-repeat url(&#8220;/local/pictures/background/honeycomb_landscape_dark.jpg&#8221;) fixed&#8217;</p>
+
+
+
+<p>Colors</p>
+
+
+
+<p>text-color: &#8216;#D0E1F9&#8217;<br># MyVariables<br>base-hue: &#8216;220&#8217; #Controls the base (and accent) color hue (0-360) | 0=Red 60=Yellow 120=Green 180=Cyan 240=Blue 300=Magenta 360=Red<br>base-sat: &#8216;5%&#8217; #Controls the saturation of the theme (0%-100%) | 0%=Grey 100%=Full Saturation<br># MyVar<br>huesat: &#8216;var(&#8211;base-hue), var(&#8211;base-sat),&#8217;<br># Primary Color #1E1F26<br>primary-color: &#8216;#1E1F26&#8242; #hsl(var(&#8211;huesat) 50%)&#8217; #header colors and some text colors<br>dark-primary-color: &#8216;hsl(var(&#8211;huesat) 60%)&#8217;<br>light-primary-color: &#8216;hsl(var(&#8211;huesat) 30%)&#8217;<br>accent-color: &#8216;hsl(var(&#8211;huesat) 30%)&#8217;<br>medium-grey-color: &#8216;#1E1F26&#8217;<br># Backgrounds<br>primary-background-color: &#8216;hsl(var(&#8211;huesat) 16%)&#8217;<br>secondary-background-color: &#8216;hsl(var(&#8211;huesat) 16%)&#8217; # background behind cards<br>paper-listbox-background-color: &#8216;hsl(var(&#8211;huesat) 16%)&#8217;</p>
+
+
+
+<p>paper-card-background-color: &#8216;hsl(var(&#8211;huesat) 12%&#8217;</p>
+
+
+
+<p>paper-card-background-color: &#8220;rgba(0, 0, 0, 0.5)&#8221; # Changed to try and make the cards with opcity to see the background pic<br>paper-dialog-background-color: &#8216;var(&#8211;paper-card-background-color)&#8217;<br>table-row-background-color: &#8216;hsl(var(&#8211;huesat) 12%)&#8217;<br>table-row-alternative-background-color: &#8216;hsl(var(&#8211;huesat) 10%)&#8217;<br>card-background-color: &#8216;var(&#8211;paper-card-background-color)&#8217;<br># Divider<br>divider-color: &#8216;hsla(0, 0%, 0%, 0)&#8217;<br>dark-divider-opacity: &#8216;0&#8217;<br>light-divider-opacity: &#8216;0&#8217;<br>dark-secondary-opacity: &#8216;1&#8217;<br># Text colors<br>mdc-theme-primary: &#8216;#4D648D&#8217; # give you control over the &#8220;RELOAD…&#8221; text colors<br>mdc-button-text: &#8216;#D0E1F9&#8217;<br>primary-text-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 90%)&#8217;<br>text-primary-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 90%)&#8217;<br>secondary-text-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 80%)&#8217;<br>disabled-text-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 70%)&#8217;<br>sidebar-text_-<em>color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 90%)&#8217; sidebar-text-color: &#8216;#4D648D&#8217; #&#8217;hsl(var(&#8211;huesat) 90%)&#8217; paper-card-header-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 90%)&#8217; paper-button-ink-color: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 50%)&#8217; # Text Adjustments paper-font-headline</em>&#8211;<em>letter-spacing: &#8216;-0.5px&#8217; paper-font-headline</em>&#8211;<em>font-weight: &#8216;400&#8217; paper-font-body1</em>&#8211;<em>font-weight: &#8216;300&#8217; # Nav Menu paper-listbox-background-color: &#8216;#1E1F26&#8217; paper-listbox-color: &#8216;hsl(var(&#8211;huesat) 50%)&#8217; paper-grey-50: &#8216;hsl(var(&#8211;huesat) 50%)&#8217; paper-grey-200: &#8216;#D0E1F9&#8242; #&#8217;hsl(var(&#8211;huesat) 10%)&#8217; #active menu item sidebar-icon-color: &#8216;#4D648D&#8217; #iron-icon-fill-color ========Change this from 50 to 80 to try and make it darker sidebar-selected-icon-color: &#8216;#D0E1F9&#8217; # Selected row icon and background (15%) sidebar-selected-text-color: &#8216;#D0E1F9&#8217; # Paper card paper-item-icon-color: &#8216;hsl(var(&#8211;huesat) 40%)&#8217; paper-item-icon-active-color: &#8216;#4D648D&#8217; paper-item-icon</em>&#8211;<em>color: &#8216;var(&#8211;paper-item-icon-color)&#8217; paper-item-selected</em>&#8211;<em>background-color: &#8216;hsla(0, 0%, 0%, 0.2)&#8217; paper-item-selected</em>-_color: &#8216;hsl(var(&#8211;huesat) 20%)&#8217; #?<br>paper-tabs-selection-bar-color: &#8216;hsla(0, 0%, 0%, 0.2)&#8217;<br>paper-tab-ink: &#8216;hsl(var(&#8211;huesat) 70%)&#8217;<br>paper-input-container-color: &#8216;hsl(var(&#8211;huesat) 60%)&#8217;<br># Labels<br>label-badge-red: &#8216;hsl(20, 50%, 25%)&#8217;<br>label-badge-border-color: &#8216;var(&#8211;label-badge-red)&#8217;<br>label-badge-background-color: &#8216;var(&#8211;paper-card-background-color)&#8217;<br>label-badge-text-color: &#8216;#D0E1F9&#8217;</p>
+
+
+
+<p>label-badge-text-color: &#8216;var(&#8211;primary-text-color)&#8217;</p>
+
+
+
+<p># Shadows<br>shadow-elevation-2dp_-<em>box-shadow: &#8216;0px 0px 0px 0px hsl(var(&#8211;huesat) 10%)&#8217; shadow-elevation-16dp</em>-_box-shadow: &#8216;0px 0px 0px 0px hsl(var(&#8211;huesat) 25%)&#8217;<br># Switches<br>paper-toggle-button-checked-button-color: &#8216;hsl(var(&#8211;base-hue), 90%, 50%)&#8217;<br>paper-toggle-button-checked-bar-color: &#8216;hsl(var(&#8211;huesat) 25%)&#8217;<br>paper-toggle-button-unchecked-button-color: &#8216;hsl(var(&#8211;huesat) 25%)&#8217;<br>paper-toggle-button-unchecked-bar-color: &#8216;hsl(var(&#8211;huesat) 5%)&#8217;<br># Sliders<br>paper-slider-knob-color: &#8216;hsl(var(&#8211;base-hue), 90%, 50%)&#8217;<br>paper-slider-knob-start-color: &#8216;hsl(var(&#8211;base-hue), 80%, 25%)&#8217;<br>paper-slider-pin-color: &#8216;hsl(var(&#8211;base-hue), 90%, 50%)&#8217;<br>paper-slider-active-color: &#8216;hsl(var(&#8211;base-hue), 90%, 50%)&#8217;<br>paper-slider-container-color: &#8216;hsl(var(&#8211;huesat) 28%)&#8217;<br>paper-slider-secondary-color: &#8216;hsl(var(&#8211;huesat) 90%)&#8217;<br>paper-slider-disabled-active-color: &#8216;hsl(var(&#8211;base-hue), 80%, 25%)&#8217;<br>paper-slider-disabled-secondary-color: &#8216;hsl(var(&#8211;base-hue), 80%, 25%)&#8217;<br>paper-dialog-color: &#8216;hsl(var(&#8211;base-hue), 20%, 80%)&#8217;</p>
+
+
+
+<p>#Changes to fix history/logbook menus<br>lumo-primary-text-color: &#8216;var(&#8211;primary-color)&#8217;<br>lumo-secondary-text-color: &#8216;var(&#8211;primary-color)&#8217;<br>lumo-primary-color: &#8216;var(&#8211;primary-color)&#8217;<br>lumo-primary-color-50pct: &#8216;rgba(37,129,172, .5)&#8217;<br>lumo-primary-color-10pct: &#8216;rgba(37,129,172, .1)&#8217;<br>#Calendar day numbers<br>lumo-body-text-color: &#8216;var(&#8211;primary-text-color)&#8217;<br>#Calendar/Date-Picker Background<br>lumo-base-color: &#8216;var(&#8211;medium-grey-color)&#8217;<br>#Month/Year header<br>lumo-header-text-color: &#8216;var(&#8211;lumo-body-text-color)&#8217;<br>#DayOfWeek Header<br>lumo-tertiary-text-color: &#8216;var(&#8211;lumo-body-text-color)&#8217;<br># Background of date in History/Logbook that you clcim to view date-picker<br># #d0e1f9 rgba(208, 225, 249)<br>lumo-shade: &#8216;var(&#8211;medium-grey-color)&#8217;<br>lumo-shade-90pct: &#8216;rgba(208, 225, 249, .9)&#8217;<br>lumo-shade-80pct: &#8216;rgba(208, 225, 249, .8)&#8217;<br>lumo-shade-70pct: &#8216;rgba(208, 225, 249, .7)&#8217;<br>lumo-shade-60pct: &#8216;rgba(208, 225, 249, .6)&#8217;<br>lumo-shade-50pct: &#8216;rgba(208, 225, 249, .5)&#8217;<br>lumo-shade-40pct: &#8216;rgba(208, 225, 249, .4)&#8217;<br>lumo-shade-30pct: &#8216;rgba(208, 225, 249, .3)&#8217;<br>lumo-shade-20pct: &#8216;rgba(208, 225, 249, .2)&#8217;<br>lumo-shade-10pct: &#8216;rgba(208, 225, 249, .1)&#8217;<br>lumo-shade-5pct: &#8216;rgba(208, 225, 249, .05)&#8217;<br>#Removes Gradient in Calendar/Date-Picker and Drop-down lists<br>lumo-tint-5pct: &#8216;var(&#8211;darker-grey-color)&#8217;</p>
+
+
+
+<p>17 LOVELACE</p>
+
+
+
+<p>17.1 REMOTE CONTROLS</p>
+
+
+
+<p>Resources:<br>Home Assistant Lovelace Multi Remote &#8211; https://github.com/mcfrojd/hassio_lovelace_multiremote</p>
+
+
+
+<p>18 AUTOMATIONS</p>
+
+
+
+<p>18.1 DAY AND NIGHT THEME</p>
+
+
+
+<p>Go here</p>
+
+
+
+<p>18.2 SPEAKER VOLUME DAY AND NIGHT</p>
+
+
+
+<p>18.3 DOOR BELL AUTOMATIONS</p>
+
+
+
+<p>18.3.1 Voice Cast to Speakers when Door Bell Rings</p>
+
+
+
+<p>Prerequisites:<br>HACS: Browser Mod here</p>
+
+
+
+<p>Hardware:<br>Aqara Wireless Mini Switch<br>Any speaker with Cast capabilities, in this case all my google speakers.</p>
+
+
+
+<p>Story:<br>I wanted to use a switch at the front door and to have 2 different scenarios, one loud ring between 08:00 and 22:00 and the second low volume ring after 22:00 at night.<br>Day time, volume is at 60% (0.6)<br>Night time, volume is at 20% (0.2)</p>
+
+
+
+<p>I have used my 2 Google Speakers, in the kitchen, Master bedroom and the Android Pad that I use in the lounge to announce when the door bell is pressed.</p>
+
+
+
+<p>I used the automations module in HA to do this.<br>NOTE: When doing the times I initially added 8:00am as 08:00 but you can’t use the first zero, it must show up as ‘8:00’ in the automations.yaml like so…</p>
+
+
+
+<p>condition:</p>
+
+
+
+<ul>
+<li>after: &#8216;8:00&#8217;<br>before: &#8217;22:00&#8242;<br>condition: time</li>
+</ul>
+
+
+
+<p>The ID in the file was self-generated, the second ID, I created just added by increasing by 1, not sure if this is a good or bad thing to do but it hasn’t impacted anything…yet.</p>
+
+
+
+<p>Yaml code here</p>
+
+
+
+<p>To Do:<br>Add Camera Feed with face recognition and popup on tablets and TV, interact by talking through the camera speaker and mic.</p>
+
+
+
+<p>18.3.2 Reset Volume to Normal after Door Bell Activated</p>
+
+
+
+<p>18.3.3 Front Door Camera TV when Doorbell Rings or Motion Detected</p>
+
+
+
+<p>18.3.4 Turn On Front Porch when Motion Detected<br>15 minute timer</p>
+
+
+
+<p>18.3.5 Doorbell Ring Phone Notification<br>Speak when at Home<br>Notification when Away</p>
+
+
+
+<p>18.4 ARRIVE HOME AUTOMATIONS</p>
+
+
+
+<p>18.4.1 Turn on Front Porch Lights when Arrive Home<br>15 minute timer</p>
+
+
+
+<p>18.4.2 Announce “’Person’ is home” when Arrive Home</p>
+
+
+
+<p>Brent is Home<br>Claudia is Home<br>Yaml code here</p>
+
+
+
+<p>19 HARDWARE</p>
+
+
+
+<p>19.1 XIAOMI MIJIA XIAOFANG CAMERA</p>
+
+
+
+<p>Resources:<br>https://github.com/EliasKotlyar/Xiaomi-Dafang-Hacks<br>https://github.com/EliasKotlyar/Xiaomi-Dafang-Hacks/blob/master/hacks/faq.md</p>
+
+
+
+<p>Which Features does the CFW contain?<br>Full working RTSP with H264/MJPEG. Based on https://github.com/mpromonet/v4l2rtspserver<br>SSH-Server(dropbear) with username: root password: ismart12<br>FTP-Server(bftpd) with username: root password: ismart12<br>Webserver(lighttpd) with username: root password: ismart12<br>Image-Snap(Get Jpeg Image)<br>Horizontal/vertical motor rotation / move to center<br>Turn on/off blue/yellow/IR LEDs/IR-Cut<br>Local h264 recording possible:</p>
+
+
+
+<p>19.1.1 Xiaomi Dafang Integration in Zoneminder</p>
+
+
+
+<p><a href="https://github.com/EliasKotlyar/Xiaomi-Dafang-Hacks/blob/master/integration/zoneminder/zoneminder.md">https://github.com/EliasKotlyar/Xiaomi-Dafang-Hacks/blob/master/integration/zoneminder/zoneminder.md</a></p>
+
+
+
+<p>19.2 MI BEDSIDE LAMP 2</p>
+
+
+
+<p>Ella’s Bedroom HomeKit pairing Code: 208-53-469</p>
+
+
+
+<p>The code is underneath the light and it has to be entered in with the “-“ and it cannot be paired with the Mi Home App</p>
+
+
+
+<p>Configuration -&gt; Integration -&gt; “+”<br>Add HomeKit Accessory<br>It will search and then hopefully pickup the lamp, then add your pairing code.</p>
+
+
+
+<p>19.3 XIAOMI AQARA WIRELESS MINI SWITCH</p>
+
+
+
+<p>20 BACKUP</p>
+
+
+
+<p>20.1 CONFIGURATION BACKUP TO GITHUB</p>
+
+
+
+<p>Resources:<br>https://www.home-assistant.io/docs/ecosystem/backup/backup_github/</p>
+
+
+
+<p>INSTALLING AND INITIALIZING GIT<br>In order to put your configuration on GitHub, you must install the Git package on your Home Assistant server (instructions below will work on Raspberry Pi, Ubuntu or any Debian-based system) Note: this isn’t required in Hass.io, it’s included as default so proceed to step 2:<br>sudo apt-get update<br>sudo apt-get install git</p>
+
+
+
+<p>create .gitignore</p>
+
+
+
+<p>cd /usr/share/hassio/homeassistant</p>
+
+
+
+<p>sudo git init<br>sudo git config user.email &#8220;brent@mccabe.kiwi&#8221;<br>sudo git config user.name &#8220;moh-Brent&#8221;<br>sudo git add .<br>sudo git commit</p>
+
+
+
+<p>sudo git remote add origin https://github.com/moh-Brent/Home_Assistant_Config<br>sudo git push -u origin master</p>
+
+
+
+<p>FileZilla Server Port: 14147</p>
+
+
+
+<p>21 RESTORE</p>
+
+
+
+<p>2020-04-14 @ 06:00 Restored file 2020-04-09 13:00:26 – 01.08 – Home Ass Core 0.107.7<br>Issues – Supervisor panel in HA had error<br>Unable to load the panel source: /api/hassio/app/entrypoint.js.</p>
+
+
+
+<p>Try restoring again.</p>
+
+
+
+<p>Random but the Docker images had not changed at all.</p>
+
+
+
+<p>Still didn’t work</p>
+
+
+
+<p>22 FSTAB</p>
+
+
+
+<p>Mount drive at startup<br>Make a backup of fstab<br>sudo mkdir /systembackups<br>cd /etc/<br>sudo cp fstab /systembackups<br>cd /systembackups &amp;&amp; sudo mv fstab fstab.bak</p>
+
+
+
+<p>Restore fstab if neceasary<br>cd /systembackups<br>sudo cp fstab.bak /etc<br>cd /etc/<br>sudo mv fstab.bak fstab</p>
+
+
+
+<p>Edit fsatb<br>sudo nano /etc/fstab<br>Add this to the bottom and save</p>
+
+
+
+<p>/etc/fstab: static file system information.</p>
+
+
+
+<p>#</p>
+
+
+
+<p>Use &#8216;blkid&#8217; to print the universally unique identifier for a</p>
+
+
+
+<p>device; this may be used with UUID= as a more robust way to name devices</p>
+
+
+
+<p>that works even if disks are added and removed. See fstab(5).</p>
+
+
+
+<p>#</p>
+
+
+
+<p>/dev/mapper/mint&#8211;vg-root / ext4 errors=remount-ro 0 1</p>
+
+
+
+<p>/boot/efi was on /dev/sda1 during installation</p>
+
+
+
+<p>UUID=93EF-1AF7 /boot/efi vfat umask=0077 0 1<br>/dev/mapper/mint&#8211;vg-swap_1 none swap sw 0 0</p>
+
+
+
+<p>192.168.0.11:/data/Nextcloud /shares/nextcloud nfs defaults 0 0 &#8211;</p>
+
+
+
+<p>192.168.0.11:/data/plex/mytv /shares/plex/mytv nfs defaults 0 0</p>
+
+
+
+<p>192.168.0.11:/data/plex/mymovies /shares/plex/mymovies nfs defaults 0 0</p>
+
+
+
+<p>192.168.0.11:/data/plex/mymusic /shares/plex/mymusic nfs defaults 0 0</p>
+
+
+
+<p>192.168.0.11:/data/plex/config /shares/plex/config nfs defaults 0 0</p>
+
+
+
+<p>192.168.0.11:/data/backup /shares/backup nfs defaults 0 0<br>192.168.0.11:/data/plex/completed /shares/seedbox/completed nfs defaults 0 0<br>192.168.0.11:/data/plex /shares/plex nfs defaults 0 0</p>
+
+
+
+<p>192.168.0.11:/data/zoneminder /shares/zoneminder nfs defaults 0 0</p>
+
+
+
+<p>sudo mount -t nfs 192.168.0.11:/data/backup /shares/backup -w<br>23 WIKI</p>
+
+
+
+<p><a href="https://docs.requarks.io/install/docker">https://docs.requarks.io/install/docker</a></p>
+
+
+
+<p>sudo docker run -d \<br>-p 3000:3000 \<br>&#8211;name wiki \<br>&#8211;restart unless-stopped \<br>-e &#8220;DB_TYPE= mariadb&#8221; \<br>-e &#8220;DB_HOST=192.168.0.20&#8221; \<br>-e &#8220;DB_PORT=5432&#8221; \<br>-e &#8220;DB_USER=wikijs&#8221; \<br>-e &#8220;DB_PASS=wikijsrocks&#8221; \<br>-e &#8220;DB_NAME=wiki&#8221; \<br>requarks/wiki:2</p>
+
+
+
+<p>Need to change the DB user and password</p>
+</div>
+</div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://thekiwismarthome.github.io/2023/06/29/server-intel-nuc/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
 </rss>
