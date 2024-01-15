@@ -12,7 +12,7 @@
 	<atom:link href="https://thekiwismarthome.github.io/category/smart-home/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
 	<description> Why do it tomorrow, when you can Automate it today! </description>
-	<lastBuildDate>Thu, 05 Oct 2023 21:44:32 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 15 Jan 2024 00:00:15 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -2177,6 +2177,852 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://thekiwismarthome.github.io/2023/06/29/server-intel-nuc/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Home Assistant: Proxmox VE 8.0 Quick Start Guide</title>
+		<link>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/</link>
+					<comments>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/#respond</comments>
+		
+		<dc:creator><![CDATA[haadmin]]></dc:creator>
+		<pubDate>Sun, 25 Jun 2023 09:19:53 +0000</pubDate>
+				<category><![CDATA[Smart Home]]></category>
+		<category><![CDATA[Guides]]></category>
+		<category><![CDATA[Home Assistant]]></category>
+		<category><![CDATA[Proxmox]]></category>
+		<category><![CDATA[Proxmox 8]]></category>
+		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=121</guid>
+
+					<description><![CDATA[in Tags: Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&#160;Home Assistant: Proxmox VE 7.4 Quick Start Guide, but all new [&#8230;]]]></description>
+										<content:encoded><![CDATA[
+<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-3 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:15%"><div style="font-size:0.8rem;" class="has-text-align-right wp-block-post-date"><time datetime="2023-06-25T21:19:53+12:00">25/06/2023</time></div></div>
+
+
+
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:15px">
+<p class="has-small-font-size">in</p>
+</div>
+
+
+
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%"><div class="taxonomy-category wp-block-post-terms"><a href="https://thekiwismarthome.github.io/category/smart-home/" rel="tag">Smart Home</a></div></div>
+</div>
+
+
+
+<div class="wp-block-columns alignwide are-vertically-aligned-center is-layout-flex wp-container-core-columns-layout-4 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:5%">
+<p class="has-text-align-right"><strong>Tags:</strong></p>
+</div>
+
+
+
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%"><div class="taxonomy-post_tag wp-block-post-terms"><a href="https://thekiwismarthome.github.io/tag/guides/" rel="tag">Guides</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/home-assistant/" rel="tag">Home Assistant</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox/" rel="tag">Proxmox</a><span class="wp-block-post-terms__separator">, </span><a href="https://thekiwismarthome.github.io/tag/proxmox-8/" rel="tag">Proxmox 8</a></div></div>
+</div>
+
+
+
+<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-5 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%"><h3 class="simpletoc-title">Table of Contents</h3>
+<ul class="simpletoc-list">
+<li><a href="#whats-covered-in-this-guide">What&#8217;s covered in this guide?</a></li>
+<li><a href="#why-proxmox-ve-for-home-assistant">Why Proxmox VE for Home Assistant?</a></li>
+<li><a href="#proxmox-storage-recommendations">Proxmox Storage Recommendations</a></li>
+<li><a href="#creating-proxmox-usb-boot-media">Creating Proxmox USB Boot Media</a></li>
+<li><a href="#installing-proxmox-ve-80">Installing Proxmox VE 8.0</a></li>
+<li><a href="#proxmox-post-install-configuration">Proxmox Post Install Configuration</a></li>
+<li><a href="#intel-microcode-update-optional">Intel Microcode Update (Optional)</a></li>
+<li><a href="#installing-home-assistant-os-haos-vm">Installing Home Assistant OS (HAOS) VM</a></li>
+<li><a href="#setting-static-ip-address-recommended">Setting Static IP Address (Recommended)</a></li>
+<li><a href="#blocked-dns-over-https-workaround">Blocked DNS over HTTPS Workaround</a></li>
+<li><a href="#usb-passthrough-to-haos-optional">USB Passthrough to HAOS (Optional)</a></li>
+<li><a href="#optimize-cpu-power-optional">Optimize CPU Power (Optional)</a></li>
+<li><a href="#check-smart-monitoring-optional">Check SMART Monitoring (Optional)</a></li>
+<li><a href="#vlan-enable-proxmox-optional">VLAN Enable Proxmox (Optional)</a></li>
+<li><a href="#proxmox-lets-encrypt-ssl-cert-optional">Proxmox Let&#8217;s Encrypt SSL Cert (Optional)</a></li>
+<li><a href="#summary">Summary</a></li></ul></div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="746" height="123" src="https://thekiwismarthome.github.io/wp-content/uploads/2023/06/image.png" alt="" class="wp-image-122" srcset="https://thekiwismarthome.github.io/wp-content/uploads/2023/06/image.png 746w, https://thekiwismarthome.github.io/wp-content/uploads/2023/06/image-300x49.png 300w, https://thekiwismarthome.github.io/wp-content/uploads/2023/06/image-150x25.png 150w" sizes="(max-width: 746px) 100vw, 746px" /></figure>
+
+
+
+<p>Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&nbsp;<strong>Home Assistant: Proxmox VE 7.4 Quick Start Guide</strong>, but all new for Proxmox VE 8.0.&nbsp;</p>
+
+
+
+<p>Just like my 7.4 guide, this posts covers installing Home Assistant OS (HAOS). HAOS is, IMHO, the preferred method to run Home Assistant for the large majority of people. There are other installation flavors, such as supervised or container, but those are out of scope for this post. HAOS makes Home Assistant as turn-key as possible.</p>
+
+
+
+<p>Proxmox VE 8.0 has a new text based fall-back installation UI, which can be very helpful for working around issues with newer CPUs. I did run into GUI installation issues with Proxmox VE 7.4 on my Intel 12th Generation CPUs, so this enhancement is very welcome. We will use the new console install method in this updated post.</p>
+
+
+<h2 class="wp-block-heading" id="whats-covered-in-this-guide">What&#8217;s covered in this guide?</h2>
+
+
+<p>This guide walks you through a bare metal installation of Proxmox, followed by deploying a Home Assistant OS (HAOS) VM. To be more specific I cover:</p>
+
+
+
+<ul>
+<li>Why Proxmox VE for Home Assistant?</li>
+
+
+
+<li>Proxmox Storage Recommendations</li>
+
+
+
+<li>Creating Proxmox USB Boot Media</li>
+
+
+
+<li>Installing Proxmox VE 8</li>
+
+
+
+<li>Proxmox Post-Install Configuration</li>
+
+
+
+<li>Intel Microcode Update (Optional)</li>
+
+
+
+<li>Installing Home Assistant OS (HAOS) VM</li>
+
+
+
+<li>Setting Static IP Address (Recommended)</li>
+
+
+
+<li>Blocked DNS over HTTPS Workaround</li>
+
+
+
+<li>USB Passthrough to HAOS (Optional)</li>
+
+
+
+<li>Optimize CPU Power (Optional)</li>
+
+
+
+<li>Check SMART Monitoring (Optional)</li>
+
+
+
+<li>VLAN Enable Proxmox (Optional)</li>
+
+
+
+<li>Proxmox Let’s Encrypt SSL Cert (Optional)</li>
+</ul>
+
+
+<h2 class="wp-block-heading" id="why-proxmox-ve-for-home-assistant">Why Proxmox VE for Home Assistant?</h2>
+
+
+<p>First, why would you run Home Assistant OS as a VM on Proxmox VE 8? Well, Home Assistant is typically not very resource hungry and even old mini-PCs from several years ago would have a lot of left over computing resources that you can run other services. Running Proxmox VE, which is a free hypervisor based on KVM, has a nice management UI and is pretty easy to use. It allows you to run HAOS in a VM, and you can then run other VMs or LXC containers on the same hardware.&nbsp;</p>
+
+
+
+<p>If you are new to Home Assistant, not super nerdy, and just want a super reliable and easy to use “appliance”, then don’t go the Proxmox VE route. Just grab a cheap used mini/ultra-mini PC and run Home Assistant OS on it “bare metal” and be done with it. But if you know you want HAOS as a VM, potentially do LXC containers down the road, Proxmox VE is a great (and free) option. Even though Home Assistant can do backups, being able to do a whole HAOS VM snapshot at the hypervisor level can be great for roll-back from failed upgrades or “oh crap” mistakes.</p>
+
+
+
+<p>The process covered in this post uses the awesome&nbsp;<a href="https://tteck.github.io/Proxmox/" target="_blank" rel="noreferrer noopener">tteck</a>&nbsp;Proxmox scripts. This makes the process super easy, grabs the latest version of HAOS, and enables GUI-driven advanced customizations. He’s updated his scripts to be compatible with Proxmox VE 8.0.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_11-23-38-scaled.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_418+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_11-23-38-1024x574.jpg" alt="" class="wp-image-11273"/></a><figcaption class="wp-element-caption">Image Courtesy Proxmox.com</figcaption></figure>
+
+
+<h2 class="wp-block-heading" id="proxmox-storage-recommendations">Proxmox Storage Recommendations</h2>
+
+
+<p>Proxmox is designed to be used on everything from an old PC to high-end enterprise production environments. There is certainly some debate on what type of storage configuration you should use. For example, should I use ZFS? Should I use multiple physical storage devices and use ZFS mirroring? Do I need a separate boot drive? Separate log and cache drives?&nbsp;</p>
+
+
+
+<p>Those are all valid questions to ask in an enterprise production environment. However, for a home environment my thinking is KISS (keep it simple stupid), unless you REALLY know what you are doing. Why overly complicate your configuration for a home server?&nbsp;</p>
+
+
+
+<p>For a home environment where you have a NAS (such as Synology, QNAP, etc.) I would suggest:&nbsp;</p>
+
+
+
+<ul>
+<li>Use a single SSD/NVMe (likely M.2) drive in your Proxmox server. Make sure it’s large enough for future growth.&nbsp;</li>
+
+
+
+<li>Use the EXT4 (default) filesystem with LVM-thin (also default)</li>
+
+
+
+<li>Use Proxmox’s built-in backup to do nightly backups of all VMs and LXC containers to your NAS</li>
+
+
+
+<li>Use Home Assistant’s Google Drive backup add-on to do nightly backups to the cloud</li>
+
+
+
+<li>Configure Home Assistant 2023.6 (and later) to backup directly to your NAS</li>
+</ul>
+
+
+
+<p>For more information about Home Assistant Backups and Restores, check out my posts:</p>
+
+
+
+<p><a href="https://www.derekseaman.com/2023/06/home-assistant-the-ultimate-backup-guide.html" target="_blank" rel="noreferrer noopener">Home Assistant: Ultimate Backup Guide</a><br><a href="https://www.derekseaman.com/2023/04/home-assistant-pt-3-restoring-your-configuration.html" target="_blank" rel="noreferrer noopener">Home Assistant: Ultimate Restore Guide</a></p>
+
+
+
+<p>Super nerds may want to deviate from using a single drive in their Proxmox server and throw in ZFS, do ZFS mirroring, and use multiple storage devices. More power to them if that’s what they want. But for the vast majority of Home Assistant users, a single drive with robust backup is more than sufficient.</p>
+
+
+
+<p>Do NOT try and mount NAS storage to the Proxmox host and use that for VM or LXC storage. Always build your VMs or LXCs on local Proxmox storage, or risk running into significant issues.</p>
+
+
+<h2 class="wp-block-heading" id="creating-proxmox-usb-boot-media">Creating Proxmox USB Boot Media</h2>
+
+
+<p>In order to install Proxmox on your server, we need to create a bootable USB drive. This is super easy and you can use your favorite tool like&nbsp;<a href="https://www.balena.io/etcher" target="_blank" rel="noreferrer noopener">Balena Etcher</a>&nbsp;(Mac/PC/Linux). The Proxmox VE installer ISO is very small, at just a bit over 1GB, so your boot media need not be large.&nbsp;</p>
+
+
+
+<ol>
+<li>Download the latest “<a href="https://www.proxmox.com/en/downloads/item/proxmox-ve-8-0-iso-installer" target="_blank" rel="noreferrer noopener">Proxmox VE 8.0 ISO Installer</a>” (I’ll be using 8.0-2)</li>
+
+
+
+<li>Download and install&nbsp;<a href="https://www.balena.io/etcher#download-etcher" target="_blank" rel="noreferrer noopener">Balena Etcher</a></li>
+
+
+
+<li>Insert your USB boot media</li>
+
+
+
+<li>Launch&nbsp;<strong>Balena Etcher</strong>&nbsp;and select&nbsp;<strong>Flash from file</strong>&nbsp;</li>
+</ol>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_09-43-59.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_447+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_09-43-59-1024x614.jpg" alt="" class="wp-image-8364"/></a></figure>
+
+
+
+<p>5. Locate the&nbsp;<strong>Proxmox VE ISO</strong>&nbsp;you downloaded<br>6. Click on&nbsp;<strong>Select target</strong>&nbsp;and select your USB boot media</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_09-48-22.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_447+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_09-48-22-1024x614.jpg" alt="" class="wp-image-8366"/></a></figure>
+
+
+
+<p>7. Click on&nbsp;<strong>Flash</strong>&nbsp;to write the image to the boot media. On a Mac you may be prompted for your password.&nbsp;<br>8. Wait a minute or so for the image to be written and verified.<br><br></p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_08-50-11.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_447+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_08-50-11-1024x614.jpg" alt="" class="wp-image-11239"/></a></figure>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_08-51-19.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_447+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_08-51-19-1024x614.jpg" alt="" class="wp-image-11240"/></a></figure>
+
+
+
+<p>9. After the image is written close Balena Etcher and remove your USB &nbsp;boot media. On a Mac it is automatically safely dismounted so just pull it out.</p>
+
+
+<h2 class="wp-block-heading" id="installing-proxmox-ve-80">Installing Proxmox VE 8.0</h2>
+
+
+<ol>
+<li>Connect a keyboard and monitor to your Proxmox server/mini-pc/NUC/etc.</li>
+
+
+
+<li>Power off your server and insert the USB boot media</li>
+
+
+
+<li>Power on your server and press the right key to enter your BIOS setup (varies by manufacturer)</li>
+
+
+
+<li>Depending on what OS you were previously running, a few settings might need to be tweaked. The name of these settings and menu location varies by BIOS manufacturer. Review the following settings:</li>
+</ol>
+
+
+
+<ul>
+<li>Enable&nbsp;<strong>Virtualization</strong>&nbsp;(may be called VT-x, AMD-V, SVM, etc.)</li>
+
+
+
+<li>Enable&nbsp;<strong>Intel VT-d</strong>&nbsp;or&nbsp;<strong>AMD IOMMU</strong>&nbsp;(Future proofing for PCIe/GPU passthrough)</li>
+
+
+
+<li>Leave&nbsp;<strong>UEFI</strong>&nbsp;boot&nbsp;<strong>enabled</strong></li>
+
+
+
+<li>Enable&nbsp;<strong>auto-power on&nbsp;</strong>(Ensures host will power on after a power interruption)
+<ul>
+<li>This setting can be hard to find, have non-obvious names (e.g. setting&nbsp;<strong>State after G3</strong>&nbsp;to&nbsp;<strong>S0 State</strong>), or not exist at all. Varies by manufacturer.&nbsp;</li>
+</ul>
+</li>
+
+
+
+<li>If you think down the road you might add a PCIe card (like a m.2 Google Coral TPU), make sure you look through the BIOS settings and DISABLE any PCIe power management (ASPM) options you find. &nbsp;</li>
+
+
+
+<li>Change the boot order to set your USB boot media at the top</li>
+</ul>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_10-11-43.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_428+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_10-11-43-1024x587.jpg" alt="" class="wp-image-8372"/></a></figure>
+
+
+
+<p>5. Save the BIOS settings and reboot. If all goes well, Proxmox VE 8.0 installer will start up.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-20-42-scaled.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_593+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-20-42-1024x814.jpg" alt="" class="wp-image-11245"/></a></figure>
+
+
+
+<p><strong>Note:</strong>&nbsp;New to Proxmox VE 8.0 is a&nbsp;<strong>console</strong>&nbsp;installation option. This will gather all the required information for the install, except without using the graphics card. Why can this be helpful? On a lot of newer generation CPUs (like Intel 12th Gen and later), the graphical install would fail to start due to GPU compatibility with the Linux graphics server. There were convoluted workarounds. For this reason, I’ll walk you through the new console install method as it should be compatible with even the latest CPUs. I see no reason to use the Graphical version, as the console installer is fully featured and won’t have any GPU compatibility issues.</p>
+
+
+
+<p>6. Arrow down to&nbsp;<strong>Install Proxmox VE (Console).<br></strong>7. Press enter on&nbsp;<strong>I agree</strong>&nbsp;on the EULA<br>8. Select the&nbsp;<strong>Target harddisk&nbsp;</strong>and press enter on&nbsp;<strong>Next.</strong></p>
+
+
+
+<p><strong>Note:</strong>&nbsp;Don’t change the filesystem unless you know what you are doing and want to use ZFS, Btrfs or xfs. The default is EXT4 with LVM-thin, which is what we will be using.</p>
+
+
+
+<p>9. Select your&nbsp;<strong>Country</strong>,&nbsp;<strong>Time zone</strong>&nbsp;and&nbsp;<strong>Keyboard Layout.</strong></p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-30-14.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_352+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-30-14-1024x483.jpg" alt="" class="wp-image-11246"/></a></figure>
+
+
+
+<p>10. Enter a strong<strong>&nbsp;password</strong>&nbsp;and an&nbsp;<strong>email address</strong></p>
+
+
+
+<p>11. Select your&nbsp;<strong>Management Interface</strong>,&nbsp;<strong>Hostname</strong>,&nbsp;<strong>IP address</strong>,&nbsp;<strong>Gateway</strong>&nbsp;and&nbsp;<strong>DNS Server</strong>.</p>
+
+
+
+<p><strong>Note 1:</strong>&nbsp; If your server is plugged into the network it should grab a DHCP address and populate the other information. I strongly recommend either using a&nbsp;<strong>static IP</strong>, or create a&nbsp;<strong>DHCP reservation</strong>&nbsp;for this server. You don’t want the IP to change on you.&nbsp;</p>
+
+
+
+<p><strong>Note 2</strong>: Put some thought into the Proxmox hostname you want to use.&nbsp;<em><strong>YOU CAN’T</strong></em>&nbsp;change this later or Proxmox will have serious (likely unrecoverable) problems. I’d use something generic like proxmox1.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-33-25.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_363+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-33-25-1024x498.jpg" alt="" class="wp-image-11247"/></a></figure>
+
+
+
+<p>12. Triple check everything on the&nbsp;<strong>Summary</strong>&nbsp;screen is correct then select&nbsp;<strong>Install</strong>.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-34-26.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_427+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-34-26-1024x586.jpg" alt="" class="wp-image-11248"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="proxmox-post-install-configuration">Proxmox Post Install Configuration</h2>
+
+
+<p>Before we install Home Assistant, we need to do a couple of configuration tasks. First, we need to update Proxmox with the latest packages.&nbsp;<strong>Please note you MUST run the post-configuration script</strong>&nbsp;before you do any Proxmox updates or deploy HAOS. If not, you will likely see 401 errors with the enterprise repositories since you (likely) don’t have a Proxmox paid license.</p>
+
+
+
+<ol>
+<li>Open a browser and navigate to the IP address and port 8006 (e.g. https://10.13.2.200:/<strong>8006</strong>). Click through all your browser warnings and connect anyway.</li>
+
+
+
+<li>Login with the&nbsp;<strong>root</strong>&nbsp;username the password you selected during the install process.<br><strong>Note:</strong>&nbsp;You will get a subscription warning. We will fix that in a second. Acknowledge the warning.</li>
+</ol>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_10-56-50.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_408+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_10-56-50.jpg" alt="" class="wp-image-8384"/></a></figure>
+
+
+
+<p>3. In the left pane click on the hostname of your Proxmox server.<br>4. Click on&nbsp;<strong>Shell</strong>&nbsp;in the middle pane and paste in the following command to run the awesome&nbsp;<a href="https://tteck.github.io/Proxmox/" target="_blank" rel="noreferrer noopener">tteck post install script</a>:</p>
+
+
+
+<pre class="wp-block-code"><code>bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-install.sh)"</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-43-17.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_242+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-43-17-1024x332.jpg" alt="" class="wp-image-11253"/></a></figure>
+
+
+
+<p>5. The tteck script will ask you a series of questions. Run the script and answer&nbsp;<strong>Y</strong>&nbsp;to all of the questions. Wait a few minutes for all of the updates to install.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-44-06.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_390+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-44-06-1024x535.jpg" alt="" class="wp-image-11254"/></a></figure>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-45-22.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_326+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-45-22-1024x448.jpg" alt="" class="wp-image-11255"/></a></figure>
+
+
+
+<p>6. When asked if you wish to reboot press&nbsp;<strong>enter</strong>&nbsp;on&nbsp;<strong>yes</strong>.</p>
+
+
+<h2 class="wp-block-heading" id="intel-microcode-update-optional">Intel Microcode Update (Optional)</h2>
+
+
+<p>Intel releases new microcode for their processors from time to time. This is different from BIOS firmware, as the Intel microcode runs inside the processor. It can fix CPU bugs or make other changes, as needed. If you are running on an Intel system you can use the following tteck script to download the latest Intel microcode and install it. A reboot will be needed for the microcode to take effect.&nbsp;</p>
+
+
+
+<pre class="wp-block-code"><code>bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/microcode.sh)"</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<p>After the Proxmox host reboots you can run the following command to see if any microcode update is active. Not all CPUs need microcode updates, so you may well not see anything listed.</p>
+
+
+
+<pre class="wp-block-code"><code>journalctl -k --grep="microcode updated early to"</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-05-01_15-16-17.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_70+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-05-01_15-16-17-1024x96.jpg" alt="" class="wp-image-10478"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="installing-home-assistant-os-haos-vm">Installing Home Assistant OS (HAOS) VM</h2>
+
+
+<p>For the HAOS installation we will be using the awesome&nbsp;<a href="https://tteck.github.io/Proxmox/" target="_blank" rel="noreferrer noopener">tteck Proxmox Helper Scripts</a>.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-28-40.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_552+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-28-40-1024x758.jpg" alt="" class="wp-image-8394"/></a><figcaption class="wp-element-caption">tteck Proxmox Helper Scripts</figcaption></figure>
+
+
+
+<ol>
+<li>Login to Proxmox and select your server in the left pane.</li>
+
+
+
+<li>Click on&nbsp;<strong>Shell</strong>&nbsp;in the middle pane.</li>
+
+
+
+<li>Enter the following command to start the HAOS install via the tteck Proxmox script.<br><strong>Note:</strong>&nbsp;We will be using the advanced settings to optimize the configuration. The script automatically downloads the latest HAOS stable image, creates the Proxmox VM, and will configure the hardware and networking.&nbsp;</li>
+</ol>
+
+
+
+<pre class="wp-block-code"><code>bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/vm/haos-vm.sh)"</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<p>4. Press&nbsp;<strong>Enter</strong>&nbsp;to proceed.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-33-59.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_307+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-33-59-1024x421.jpg" alt="" class="wp-image-8398"/></a></figure>
+
+
+
+<p>5. Select&nbsp;<strong>Advanced</strong>&nbsp;(<em>NOT</em>&nbsp;Yes).</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-35-05-1.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_297+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-35-05-1-1024x407.jpg" alt="" class="wp-image-8401"/></a></figure>
+
+
+
+<p>6. For the&nbsp;<strong>version</strong>&nbsp;chose latest&nbsp;<strong>stable</strong>&nbsp;version<strong>.&nbsp;</strong>HAOS is regularly updated, so the screenshot may not reflect what you see.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-07-39.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_291+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-07-39-1024x399.jpg" alt="" class="wp-image-10925"/></a></figure>
+
+
+
+<p>7. Leave the default&nbsp;<strong>Virtual Machine ID</strong>.<br>8. Leave the default&nbsp;<strong>Machine Type</strong>.<br>9. Chose the&nbsp;<strong>Write Through&nbsp;</strong>Disk Cache (SUPER IMPORTANT) (arrow down then press&nbsp;<strong>space</strong>&nbsp;and then tab to&nbsp;<strong>ok</strong>).&nbsp;</p>
+
+
+
+<p><strong>Explanation:&nbsp;</strong>If you leave this as Default (which is “none” within Proxmox) then the HAOS filesystem or database(s) within HAOS can be corrupted during unexpected power loss to your server.&nbsp;<strong>Write through</strong>&nbsp;causes an fsync for each write. It’s the more secure cache mode, as you can’t lose data but it is also slower.&nbsp;In fact,&nbsp;<a href="https://pve.proxmox.com/wiki/Performance_Tweaks#Disk_Cache" target="_blank" rel="noreferrer noopener">Proxmox documentation</a>&nbsp;gives you a warning for “None” (which is the Default):&nbsp;<strong>Warning: like writeback, you can lose data in case of a power failure.</strong></p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-48-02.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_316+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_11-48-02-1024x434.jpg" alt="" class="wp-image-8406"/></a></figure>
+
+
+
+<p>10. Set the VM’s&nbsp;<strong>Hostname</strong>.<br>11. Change&nbsp;<strong>CPU Model</strong>&nbsp;to&nbsp;<strong>Host</strong>.</p>
+
+
+
+<p><strong>Explanation:</strong>&nbsp;If you have a standalone Proxmox host (i.e. no multi-node clustering with Live Migration), use&nbsp;<strong>Host</strong>&nbsp;mode for the&nbsp;<strong>CPU Model</strong>. The KVM64 model hides some instructions such as MMX, AVX or AES instructions. This can have a performance impact on the VM. Per&nbsp;<a href="https://qemu-project.gitlab.io/qemu/system/qemu-cpu-models.html" target="_blank" rel="noreferrer noopener">QEMU documentation</a>: This [Host mode] passes the host CPU model features, model, stepping, exactly to the guest. This is the recommended CPU to use, provided live migration is not required.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-04_06-38-21a.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_313+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-04_06-38-21a-1024x429.jpg" alt="" class="wp-image-8632"/></a></figure>
+
+
+
+<p>12. Chose your&nbsp;<strong>Core Count</strong>&nbsp;(2 is fine).<br>13. Chose your&nbsp;<strong>RAM</strong>&nbsp;(I’d recommend 4-6GB).<br>14. Leave the&nbsp;<strong>Bridge</strong>.<br>15. Leave the&nbsp;<strong>MAC Address</strong>.<br>16. Leave the&nbsp;<strong>VLAN</strong>.<br>17. Leave the&nbsp;<strong>MTU Size</strong>.<br>18. Select&nbsp;<strong>Yes</strong>&nbsp;to start VM after creation.<br>19. Select&nbsp;<strong>Yes</strong>&nbsp;on&nbsp;<strong>Advanced Settings Complete</strong>.<br>20. If prompted to select the storage use the&nbsp;<strong>space bar</strong>&nbsp;to select the desired disk then tab to&nbsp;<strong>Ok</strong>.</p>
+
+
+
+<p><strong>Note:</strong>&nbsp;I STRONGLY urge you to use local Proxmox storage (e.g.,&nbsp;<strong>local-lvm</strong>), not storage backed by a NAS. If there’s a network hiccup or the NAS goes offline you could easily end up with a corrupted VM.&nbsp;</p>
+
+
+
+<p>21. Wait for the installer to complete. This will take a few minutes.&nbsp;</p>
+
+
+
+<p>22. Once the VM is created, click on it in the left pane and then select&nbsp;<strong>console</strong>&nbsp;in the middle pane. Note the IP address and port number (8123).</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-55-30.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_458+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-23_10-55-30-1024x629.jpg" alt="" class="wp-image-11260"/></a></figure>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-13-51a.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_471+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-13-51a-1024x646.jpg" alt="" class="wp-image-10932"/></a></figure>
+
+
+
+<p>23. Open a browser and open a HTTP connection (http://IP/<strong>:8123</strong>).<br>24. Depending on the speed of your server, you may see a&nbsp;<strong>Preparing Home Assistant</strong>&nbsp;screen for several minutes. Wait until you see Create Account screen.&nbsp;<br>25. On the Home Assistant account screen enter your name, username and password.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-00-23.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_829+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-00-23-921x1024.jpg" alt="" class="wp-image-8410"/></a></figure>
+
+
+
+<p>26. On the HA setup screen enter your&nbsp;<strong>name</strong>,&nbsp;<strong>username</strong>&nbsp;and&nbsp;<strong>password</strong>.<br>27. On the next screen click&nbsp;<strong>detect.&nbsp;</strong>The map should move to your approximate location. Use the +/1 and drag the map around until you locate your house. Getting this right is important for automations that depend on HA detecting if you are home or not.&nbsp;<br>28. Fill in the<strong>&nbsp;country</strong>,&nbsp;<strong>language</strong>,&nbsp;<strong>timezone</strong>,&nbsp;<strong>elevation&nbsp;</strong>and<strong>&nbsp;currency</strong>.<br>30. Click&nbsp;<strong>Next</strong>.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-20-21.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-20-21-481x1024.jpg" alt="" class="wp-image-10934"/></a></figure>
+
+
+
+<p>31. Select what, if any, analytics you went to send back to the Home Assistant mother ship. Click&nbsp;<strong>Next</strong>.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-25-11.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_929+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-25-11-822x1024.jpg" alt="" class="wp-image-10935"/></a></figure>
+
+
+
+<p>32. On the next screen HA will show you all of the devices and services that it found on your network. Do NOT set any of them up here. Just click&nbsp;<strong>Finish</strong>.&nbsp;</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-27-10a.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_584+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-27-10a.jpg" alt="" class="wp-image-10937"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="setting-static-ip-address-recommended">Setting Static IP Address (Recommended)</h2>
+
+
+<p>I would strongly recommend that HAOS be configured to use a static IP address. You can do this by either a DHCP reservation in your router, or set a static IP in the Home Assistant user interface.&nbsp;</p>
+
+
+
+<ol>
+<li>In the left pane click on<strong>&nbsp;Settings -&gt; System -&gt; Network.</strong>&nbsp;Click on&nbsp;<strong>IPv4.</strong>&nbsp;</li>
+
+
+
+<li>Change to&nbsp;<strong>Static</strong>&nbsp;and enter the details.</li>
+
+
+
+<li>Change the address you are connecting to in your bowser and verify HA is using the new IP.</li>
+</ol>
+
+
+<h2 class="wp-block-heading" id="blocked-dns-over-https-workaround">Blocked DNS over HTTPS Workaround</h2>
+
+
+<p>If you are blocking&nbsp;<strong>OUTBOUND</strong>&nbsp;DNS over HTTPS, then you might run into a HA bug where HA floods your firewall with TENS OF MILLIONS of DNS queries indefinitely. In order to work around this bug, we will install the SSH add-on and then modify the HA DNS configuration.&nbsp;</p>
+
+
+
+<ol>
+<li>Click on your name in the lower left panel.</li>
+
+
+
+<li>In the right pane enable&nbsp;<strong>Advanced Mode</strong>.</li>
+
+
+
+<li>Click on&nbsp;<strong>Settings</strong>&nbsp;in the left pane, then&nbsp;<strong>Add-ons</strong>.</li>
+
+
+
+<li>Click on&nbsp;<strong>Add-on store</strong>&nbsp;in the lower right</li>
+
+
+
+<li>Search for “<strong>ssh</strong>” and select the&nbsp;<strong>Advanced SSH &amp; Web Terminal</strong>. Click on it.</li>
+
+
+
+<li>Click&nbsp;<strong>Install.</strong></li>
+
+
+
+<li>After it installs, click on&nbsp;<strong>Show in sidebar</strong>.</li>
+
+
+
+<li>&nbsp;Click on&nbsp;<strong>Configuration</strong>&nbsp;at the top of the screen.&nbsp;</li>
+
+
+
+<li>Enter the username and password that you configured on the initial HA setup screen. Click on&nbsp;<strong>Save.</strong></li>
+</ol>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-37-30.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_267+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-06-19_09-37-30-1024x366.jpg" alt="" class="wp-image-10938"/></a></figure>
+
+
+
+<p>10. Click on the&nbsp;<strong>Info</strong>&nbsp;tab at the top left of the screen.&nbsp;<br>11. Click on&nbsp;<strong>Start.<br></strong>12. In the left pane in HA click on&nbsp;<strong>Terminal</strong>.<br>13. Run the following two commands:</p>
+
+
+
+<pre class="wp-block-code"><code>ha dns options --fallback=false
+ha dns restart</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<p>14. Re-enable the DoH block rule on your firewall.<br>15. Monitor your network to verify your firewall is not being flooded with DNS requests.</p>
+
+
+<h2 class="wp-block-heading" id="usb-passthrough-to-haos-optional">USB Passthrough to HAOS (Optional)</h2>
+
+
+<p>If you have any USB dongles for radios such as z-wave, Zigbee, Thread, etc, we need to pass it through to the HAOS VM. This is optional, and not needed if you have no USB devices to passthrough. I am using the&nbsp;<a href="https://www.seeedstudio.com/Home-Assistant-SkyConnect-p-5479.html" target="_blank" rel="noreferrer noopener">Home Assistant SkyConnect</a>&nbsp;Zigbee/Thread/Matter USB dongle.</p>
+
+
+
+<ol>
+<li>Connect your USB dongle to your server.</li>
+
+
+
+<li>In the left pane click on your HAOS VM.</li>
+
+
+
+<li>In the middle pane click&nbsp;<strong>Hardware</strong>.</li>
+
+
+
+<li>Click on&nbsp;<strong>Add</strong>&nbsp;then&nbsp;<strong>USB Device</strong>.</li>
+
+
+
+<li>Select Use<strong>&nbsp;USB Vendor/Device ID</strong>.</li>
+
+
+
+<li>Chose the USB device to passthrough.</li>
+</ol>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-34-25.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_464+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-34-25.jpg" alt="" class="wp-image-8411"/></a></figure>
+
+
+
+<p>7. In the upper right hand corner of the VM pane click on the down arrow next to&nbsp;<strong>Shutdown</strong>&nbsp;and select&nbsp;<strong>Reboot</strong>.<br>8. Home Assistant will auto-discover the dongle after the reboot.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-37-23.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_220+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_13-37-23.jpg" alt="" class="wp-image-8412"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="optimize-cpu-power-optional">Optimize CPU Power (Optional)</h2>
+
+
+<p>Depending on your server hardware and how concerned you are about power consumption, you might want to tweak how Proxmox handles CPU scaling. I have a 12th Generation Alder Lake CPU (i5-1235U), which idles at 8w-10w according to a smart power plug.&nbsp;</p>
+
+
+
+<p>Processors have different power governors, so run this command to see which ones are available to you:</p>
+
+
+
+<pre class="wp-block-code"><code>cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors</code></pre>
+
+
+
+<p>Copy</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-02_14-55-10.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_134+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-02_14-55-10-1024x184.jpg" alt="" class="wp-image-8439"/></a></figure>
+
+
+
+<p>My processor lists&nbsp;<strong>performance</strong>&nbsp;and&nbsp;<strong>powersave</strong>&nbsp;options. Run the following commands to set the mode to&nbsp;<strong>powersave</strong>&nbsp;permanently. Change the&nbsp;<strong>GOVERNOR</strong>&nbsp;setting as needed for your processor and desired power mode.&nbsp;</p>
+
+
+
+<pre class="wp-block-code"><code>apt install cpufrequtils
+
+cat &lt;&lt; 'EOF' &gt; /etc/default/cpufrequtils
+GOVERNOR="powersave"
+EOF</code></pre>
+
+
+
+<p>Copy</p>
+
+
+<h2 class="wp-block-heading" id="check-smart-monitoring-optional">Check SMART Monitoring (Optional)</h2>
+
+
+<p>Proxmox should enable SMART disk monitoring by default. But it’s a good idea to check the SMART health stats to make sure your media isn’t having any issues. On rare occasions a motherboard may not support SMART, so it’s always best to check that it is working.</p>
+
+
+
+<p>Check SMART Health:</p>
+
+
+
+<ol>
+<li>In the left pane change to&nbsp;<strong>Server View</strong>. Click on your Proxmox host.</li>
+
+
+
+<li>In the middle pane click on&nbsp;<strong>Disks</strong>.</li>
+
+
+
+<li>&nbsp;In the right pane you should see your disk(s) and&nbsp;<strong>SMART&nbsp;</strong>status. You can click on the main disk device then click&nbsp;<strong>Show SMART values&nbsp;</strong>to further inspect the health.</li>
+</ol>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-05-02_06-26-53.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_161+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-05-02_06-26-53-1024x221.jpg" alt="" class="wp-image-10528"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="vlan-enable-proxmox-optional">VLAN Enable Proxmox (Optional)</h2>
+
+
+<p>Out of the box Proxmox is not VLAN aware. Even if you don’t need VLANs right now, you can still enable a check box to make Proxmox VLAN aware. Then down the road when you want to setup VLANs, it’s one less thing to remember to do and VLANs will just work.</p>
+
+
+
+<p>To enable VLANs:</p>
+
+
+
+<ol>
+<li>In the left pane change to&nbsp;<strong>Server View</strong>. Click on your Proxmox host.</li>
+
+
+
+<li>In the middle pane click on&nbsp;<strong>Network</strong>&nbsp;(under system).</li>
+
+
+
+<li>Click on&nbsp;<strong>Linux Bridge</strong>&nbsp;(<strong>vmbr0).</strong>&nbsp;Click on<strong>&nbsp;Edit.</strong></li>
+
+
+
+<li>Tick the box next to<strong>&nbsp;VLAN aware&nbsp;</strong>and click&nbsp;<strong>OK.</strong></li>
+</ol>
+
+
+
+<p><strong>Tip:&nbsp;</strong>If you install other services on your Proxmox server like HomeBridge, Scrypted, etc. then turning on&nbsp;<strong>VLAN enable</strong>&nbsp;might cause an issue with IGMP snooping on your physical switches. This is not a guaranteed problem. I had to disable IGMP snooping on all of my physical switches or any Homekit/multi-cast services would not function. Turning off IGMP snooping on a small home network isn’t really a big deal. Another person I know had to do a switch firmware upgrade. Or you can try using AVAHI as the mDNS provider for any services like HomeBridge and Scrypted.</p>
+
+
+
+<figure class="wp-block-image"><a href="https://www.derekseaman.com/wp-content/uploads/2023-04-06_18-17-43.jpg"><img decoding="async" src="https://sp-ao.shortpixel.ai/client/q_lossy+w_746+h_326+to_auto+ret_img/https://www.derekseaman.com/wp-content/uploads/2023-04-06_18-17-43-1024x448.jpg" alt="" class="wp-image-8801"/></a></figure>
+
+
+<h2 class="wp-block-heading" id="proxmox-lets-encrypt-ssl-cert-optional">Proxmox Let&#8217;s Encrypt SSL Cert (Optional)</h2>
+
+
+<p>If you want to secure Proxmox with a trusted SSL certificate and even add Proxmox as an iFrame to Home Assistant follow my post&nbsp;<a href="https://www.derekseaman.com/2023/04/proxmox-lets-encrypt-ssl-the-easy-button.html" target="_blank" rel="noreferrer noopener">Proxmox Let’s Encrypt SSL: The Easy Button</a></p>
+
+
+<h2 class="wp-block-heading" id="summary">Summary</h2>
+
+
+<p>You now have Home Assistant OS (HAOS) running on Proxmox VE 8.0! The whole process is pretty easy and with the&nbsp;<a href="https://tteck.github.io/Proxmox/" target="_blank" rel="noreferrer noopener"><strong>tteck</strong></a>&nbsp;scripts, makes creating the HAOS VM a snap. Tteck has a bunch of other Proxmox scripts to setup a variety of VMs and LXC containers. Visually Proxmox VE 8.0 is pretty much the same as 7.4. However, the new console setup process bypasses any possible graphical install issues with newer generation GPUs. This is a welcomed change. Plus now that the Linux Kernel 6.2 is the default, makes the installation that much quicker and easier.&nbsp;</p>
+</div>
+</div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
