@@ -12,7 +12,7 @@
 	<atom:link href="https://thekiwismarthome.github.io/tag/home-assistant/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
 	<description> Why do it tomorrow, when you can Automate it today! </description>
-	<lastBuildDate>Mon, 15 Jan 2024 00:00:15 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 22 Jan 2024 01:34:21 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,192 @@
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.4.2</generator>
 	<item>
+		<title>RPi Voice Assistant Remote Satelite</title>
+		<link>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/</link>
+					<comments>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/#respond</comments>
+		
+		<dc:creator><![CDATA[haadmin]]></dc:creator>
+		<pubDate>Mon, 22 Jan 2024 01:22:52 +0000</pubDate>
+				<category><![CDATA[Raspberry Pi]]></category>
+		<category><![CDATA[Remote Satellite]]></category>
+		<category><![CDATA[RPi]]></category>
+		<category><![CDATA[Smart Home]]></category>
+		<category><![CDATA[Voice Assistant]]></category>
+		<category><![CDATA[Home Assistant]]></category>
+		<category><![CDATA[Remote]]></category>
+		<category><![CDATA[Satellite]]></category>
+		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=212</guid>
+
+					<description><![CDATA[Resources https://github.com/rhasspy/wyoming-satellite install RPi OS Liteadd Instructions here Update OS Edit Network Settings Once you have all the necessary information, set up a static private IP address on your Raspberry Pi by employing one of the two methods described below. Set up Static IP Address via CLI The command-line interface method for static IP setup&#8230; <a class="more-link" href="https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/">Continue reading <span class="screen-reader-text">RPi Voice Assistant Remote Satelite</span></a>]]></description>
+										<content:encoded><![CDATA[<h2 class="wp-block-heading" id="resources">Resources</h2>
+
+
+<p><a href="https://github.com/rhasspy/wyoming-satellite" target="_blank" rel="noreferrer noopener">https://github.com/rhasspy/wyoming-satellite</a></p>
+
+
+
+<p>install RPi OS Lite<br><em>add Instructions here</em></p>
+
+
+
+<p>Update OS</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo apt-get update</code></code></pre>
+
+
+
+<pre class="wp-block-code"><code>sudo apt-get upgrade</code></pre>
+
+
+<h3 class="wp-block-heading" id="ftoc-heading-5">Edit Network Settings</h3>
+
+
+<p>Once you have all the necessary information, set up a static private IP address on your Raspberry Pi by employing one of the two methods described below.</p>
+
+
+<h4 class="wp-block-heading" id="ftoc-heading-6">Set up Static IP Address via CLI</h4>
+
+
+<p>The command-line interface method for static IP setup involves editing the DHCP configuration file.</p>
+
+
+
+<p>1. Open the&nbsp;<strong><code>dhcpcd.conf</code></strong>&nbsp;file in a&nbsp;<a href="https://phoenixnap.com/kb/best-linux-text-editors-for-coding" target="_blank" rel="noreferrer noopener">text editor</a>.</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo nano /etc/dhcpcd.conf</code></code></pre>
+
+
+
+<p>2. Scroll to the bottom of the file and add the lines below with the information you obtained in the previous steps of this tutorial.</p>
+
+
+
+<p><code>interface [interface-name]<br>static ip_address=[ip-address]/[cidr-suffix<br>static routers=[router-ip-address]<br>static domain_name_servers=[dns-address]</code></p>
+
+
+
+<p>The screenshot below shows an example configuration.</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://phoenixnap.com/kb/wp-content/uploads/2023/02/editing-etc-dhcpcd-conf-raspberry-pi.png" alt="Editing the network settings file to set up a static IP address on Raspberry Pi." class="wp-image-159664"/></figure>
+
+
+
+<p>Save the file and exit.</p>
+
+
+
+<p>3. Reboot Raspberry Pi by typing:</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo reboot</code></code></pre>
+
+
+<h2 class="wp-block-heading" id="wyoming-satellite">Wyoming Satellite</h2>
+
+<h2 class="wp-block-heading" id="install-dependencies">Install Dependencies</h2>
+
+
+<p>After flashing and booting the satellite, connect to it over SSH using the username/password you configured during flashing.</p>
+
+
+
+<p><strong>On the satellite</strong>, make sure system dependencies are installed:</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo apt-get update \
+sudo apt-get install --no-install-recommends \
+  git \
+  python3-venv</code></code></pre>
+
+
+
+<p>Clone the&nbsp;<code>wyoming-satellite</code>&nbsp;repository:</p>
+
+
+
+<pre class="wp-block-code"><code><code>git clone https://github.com/rhasspy/wyoming-satellite.git</code></code></pre>
+
+
+
+<p>Now you can run the installer:</p>
+
+
+
+<pre class="wp-block-code"><code><code>cd wyoming-satellite/<br>python3 -m installer</code></code></pre>
+
+
+<h2 class="wp-block-heading" id="satellite"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#satellite"></a>Satellite</h2>
+
+
+<p>Under the &#8220;Satellite&#8221; menu, select &#8220;Satellite Type&#8221; and choose &#8220;Local wake word detection&#8221; (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="microphone"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#microphone"></a>Microphone</h2>
+
+
+<p>Make sure you USB microphone is plugged in.</p>
+
+
+
+<p>Under the &#8220;Microphone&#8221; menu, select &#8220;Autodetect&#8221;, and speak loudly into the microphone for a few seconds.</p>
+
+
+
+<p>In &#8220;Audio Settings&#8221;, set &#8220;Noise Suppression&#8221; to &#8220;Medium&#8221; and &#8220;Auto Gain&#8221; to 15.</p>
+
+
+<h2 class="wp-block-heading" id="speakers"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#speakers"></a>Speakers</h2>
+
+
+<p>Make sure your USB speakers are plugged in.</p>
+
+
+
+<p>Under the &#8220;Speakers&#8221; menu, choose &#8220;Test All Speakers&#8221;. For each device, choose &#8220;Play Sound&#8221; and listen. If you hear the sound, select &#8220;Choose This Device&#8221;; otherwise, select &#8220;Next Device&#8221;.</p>
+
+
+
+<p>In &#8220;Toggle Feedback Sounds&#8221;, enable &#8220;On wake-up&#8221; and &#8220;After voice command&#8221; (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="wake-word"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#wake-word"></a>Wake Word</h2>
+
+
+<p>Under the &#8220;Wake Word&#8221; menu, select &#8220;Wake Word System&#8221; and choose &#8220;openWakeWord&#8221; (with the space bar). When prompted, install openWakeWord.</p>
+
+
+
+<p>In the &#8220;openWakeWord&#8221; menu, choose &#8220;Download Community Wake Words&#8221;. Back in the &#8220;Wake Word&#8221; menu, select &#8220;Choose Wake Word&#8221; and select one (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="apply-settings"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#apply-settings"></a>Apply Settings</h2>
+
+
+<p>From the main menu, select &#8220;Apply Settings&#8221; and enter your password.</p>
+
+
+
+<p>Check logs with:</p>
+
+
+
+<pre class="wp-block-code"><code>sudo journalctl -f -u wyoming-satellite.service</code></pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Home Assistant: Proxmox VE 8.0 Quick Start Guide</title>
 		<link>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/</link>
 					<comments>https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/#respond</comments>
@@ -33,7 +219,7 @@
 		<category><![CDATA[Proxmox 8]]></category>
 		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=121</guid>
 
-					<description><![CDATA[in Tags: Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&#160;Home Assistant: Proxmox VE 7.4 Quick Start Guide, but all new [&#8230;]]]></description>
+					<description><![CDATA[in Tags: Hot off the press is Proxmox VE 8.0, which GA’d on June 22, 2023. It is based on Debian Bookworm, and has a number of new features like defaulting to Linux Kernel 6.2. This post is a completely refreshed version of my popular&#160;Home Assistant: Proxmox VE 7.4 Quick Start Guide, but all new&#8230; <a class="more-link" href="https://thekiwismarthome.github.io/2023/06/25/home-assistant-proxmox-ve-8-0-quick-start-guide/">Continue reading <span class="screen-reader-text">Home Assistant: Proxmox VE 8.0 Quick Start Guide</span></a>]]></description>
 										<content:encoded><![CDATA[
 <div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-1 wp-block-columns-is-layout-flex">
 <div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:15%"><div style="font-size:0.8rem;" class="has-text-align-right wp-block-post-date"><time datetime="2023-06-25T21:19:53+12:00">25/06/2023</time></div></div>
@@ -66,22 +252,53 @@
 <div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-3 wp-block-columns-is-layout-flex">
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%"><h3 class="simpletoc-title">Table of Contents</h3>
 <ul class="simpletoc-list">
-<li><a href="#whats-covered-in-this-guide">What&#8217;s covered in this guide?</a></li>
-<li><a href="#why-proxmox-ve-for-home-assistant">Why Proxmox VE for Home Assistant?</a></li>
-<li><a href="#proxmox-storage-recommendations">Proxmox Storage Recommendations</a></li>
-<li><a href="#creating-proxmox-usb-boot-media">Creating Proxmox USB Boot Media</a></li>
-<li><a href="#installing-proxmox-ve-80">Installing Proxmox VE 8.0</a></li>
-<li><a href="#proxmox-post-install-configuration">Proxmox Post Install Configuration</a></li>
-<li><a href="#intel-microcode-update-optional">Intel Microcode Update (Optional)</a></li>
-<li><a href="#installing-home-assistant-os-haos-vm">Installing Home Assistant OS (HAOS) VM</a></li>
-<li><a href="#setting-static-ip-address-recommended">Setting Static IP Address (Recommended)</a></li>
-<li><a href="#blocked-dns-over-https-workaround">Blocked DNS over HTTPS Workaround</a></li>
-<li><a href="#usb-passthrough-to-haos-optional">USB Passthrough to HAOS (Optional)</a></li>
-<li><a href="#optimize-cpu-power-optional">Optimize CPU Power (Optional)</a></li>
-<li><a href="#check-smart-monitoring-optional">Check SMART Monitoring (Optional)</a></li>
-<li><a href="#vlan-enable-proxmox-optional">VLAN Enable Proxmox (Optional)</a></li>
-<li><a href="#proxmox-lets-encrypt-ssl-cert-optional">Proxmox Let&#8217;s Encrypt SSL Cert (Optional)</a></li>
-<li><a href="#summary">Summary</a></li></ul></div>
+<li><a href="#whats-covered-in-this-guide">What&#8217;s covered in this guide?</a>
+
+</li>
+<li><a href="#why-proxmox-ve-for-home-assistant">Why Proxmox VE for Home Assistant?</a>
+
+</li>
+<li><a href="#proxmox-storage-recommendations">Proxmox Storage Recommendations</a>
+
+</li>
+<li><a href="#creating-proxmox-usb-boot-media">Creating Proxmox USB Boot Media</a>
+
+</li>
+<li><a href="#installing-proxmox-ve-80">Installing Proxmox VE 8.0</a>
+
+</li>
+<li><a href="#proxmox-post-install-configuration">Proxmox Post Install Configuration</a>
+
+</li>
+<li><a href="#intel-microcode-update-optional">Intel Microcode Update (Optional)</a>
+
+</li>
+<li><a href="#installing-home-assistant-os-haos-vm">Installing Home Assistant OS (HAOS) VM</a>
+
+</li>
+<li><a href="#setting-static-ip-address-recommended">Setting Static IP Address (Recommended)</a>
+
+</li>
+<li><a href="#blocked-dns-over-https-workaround">Blocked DNS over HTTPS Workaround</a>
+
+</li>
+<li><a href="#usb-passthrough-to-haos-optional">USB Passthrough to HAOS (Optional)</a>
+
+</li>
+<li><a href="#optimize-cpu-power-optional">Optimize CPU Power (Optional)</a>
+
+</li>
+<li><a href="#check-smart-monitoring-optional">Check SMART Monitoring (Optional)</a>
+
+</li>
+<li><a href="#vlan-enable-proxmox-optional">VLAN Enable Proxmox (Optional)</a>
+
+</li>
+<li><a href="#proxmox-lets-encrypt-ssl-cert-optional">Proxmox Let&#8217;s Encrypt SSL Cert (Optional)</a>
+
+</li>
+<li><a href="#summary">Summary</a>
+</li></ul></div>
 
 
 

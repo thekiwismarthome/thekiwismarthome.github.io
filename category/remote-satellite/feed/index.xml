@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Remote Satellite &#8211; The Kiwi Smart Home</title>
+	<atom:link href="https://thekiwismarthome.github.io/category/remote-satellite/feed/" rel="self" type="application/rss+xml" />
+	<link>https://thekiwismarthome.github.io/</link>
+	<description> Why do it tomorrow, when you can Automate it today! </description>
+	<lastBuildDate>Mon, 22 Jan 2024 01:34:21 +0000</lastBuildDate>
+	<language>en-NZ</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.2</generator>
+	<item>
+		<title>RPi Voice Assistant Remote Satelite</title>
+		<link>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/</link>
+					<comments>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/#respond</comments>
+		
+		<dc:creator><![CDATA[haadmin]]></dc:creator>
+		<pubDate>Mon, 22 Jan 2024 01:22:52 +0000</pubDate>
+				<category><![CDATA[Raspberry Pi]]></category>
+		<category><![CDATA[Remote Satellite]]></category>
+		<category><![CDATA[RPi]]></category>
+		<category><![CDATA[Smart Home]]></category>
+		<category><![CDATA[Voice Assistant]]></category>
+		<category><![CDATA[Home Assistant]]></category>
+		<category><![CDATA[Remote]]></category>
+		<category><![CDATA[Satellite]]></category>
+		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=212</guid>
+
+					<description><![CDATA[Resources https://github.com/rhasspy/wyoming-satellite install RPi OS Liteadd Instructions here Update OS Edit Network Settings Once you have all the necessary information, set up a static private IP address on your Raspberry Pi by employing one of the two methods described below. Set up Static IP Address via CLI The command-line interface method for static IP setup&#8230; <a class="more-link" href="https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/">Continue reading <span class="screen-reader-text">RPi Voice Assistant Remote Satelite</span></a>]]></description>
+										<content:encoded><![CDATA[<h2 class="wp-block-heading" id="resources">Resources</h2>
+
+
+<p><a href="https://github.com/rhasspy/wyoming-satellite" target="_blank" rel="noreferrer noopener">https://github.com/rhasspy/wyoming-satellite</a></p>
+
+
+
+<p>install RPi OS Lite<br><em>add Instructions here</em></p>
+
+
+
+<p>Update OS</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo apt-get update</code></code></pre>
+
+
+
+<pre class="wp-block-code"><code>sudo apt-get upgrade</code></pre>
+
+
+<h3 class="wp-block-heading" id="ftoc-heading-5">Edit Network Settings</h3>
+
+
+<p>Once you have all the necessary information, set up a static private IP address on your Raspberry Pi by employing one of the two methods described below.</p>
+
+
+<h4 class="wp-block-heading" id="ftoc-heading-6">Set up Static IP Address via CLI</h4>
+
+
+<p>The command-line interface method for static IP setup involves editing the DHCP configuration file.</p>
+
+
+
+<p>1. Open the&nbsp;<strong><code>dhcpcd.conf</code></strong>&nbsp;file in a&nbsp;<a href="https://phoenixnap.com/kb/best-linux-text-editors-for-coding" target="_blank" rel="noreferrer noopener">text editor</a>.</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo nano /etc/dhcpcd.conf</code></code></pre>
+
+
+
+<p>2. Scroll to the bottom of the file and add the lines below with the information you obtained in the previous steps of this tutorial.</p>
+
+
+
+<p><code>interface [interface-name]<br>static ip_address=[ip-address]/[cidr-suffix<br>static routers=[router-ip-address]<br>static domain_name_servers=[dns-address]</code></p>
+
+
+
+<p>The screenshot below shows an example configuration.</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://phoenixnap.com/kb/wp-content/uploads/2023/02/editing-etc-dhcpcd-conf-raspberry-pi.png" alt="Editing the network settings file to set up a static IP address on Raspberry Pi." class="wp-image-159664"/></figure>
+
+
+
+<p>Save the file and exit.</p>
+
+
+
+<p>3. Reboot Raspberry Pi by typing:</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo reboot</code></code></pre>
+
+
+<h2 class="wp-block-heading" id="wyoming-satellite">Wyoming Satellite</h2>
+
+<h2 class="wp-block-heading" id="install-dependencies">Install Dependencies</h2>
+
+
+<p>After flashing and booting the satellite, connect to it over SSH using the username/password you configured during flashing.</p>
+
+
+
+<p><strong>On the satellite</strong>, make sure system dependencies are installed:</p>
+
+
+
+<pre class="wp-block-code"><code><code>sudo apt-get update \
+sudo apt-get install --no-install-recommends \
+  git \
+  python3-venv</code></code></pre>
+
+
+
+<p>Clone the&nbsp;<code>wyoming-satellite</code>&nbsp;repository:</p>
+
+
+
+<pre class="wp-block-code"><code><code>git clone https://github.com/rhasspy/wyoming-satellite.git</code></code></pre>
+
+
+
+<p>Now you can run the installer:</p>
+
+
+
+<pre class="wp-block-code"><code><code>cd wyoming-satellite/<br>python3 -m installer</code></code></pre>
+
+
+<h2 class="wp-block-heading" id="satellite"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#satellite"></a>Satellite</h2>
+
+
+<p>Under the &#8220;Satellite&#8221; menu, select &#8220;Satellite Type&#8221; and choose &#8220;Local wake word detection&#8221; (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="microphone"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#microphone"></a>Microphone</h2>
+
+
+<p>Make sure you USB microphone is plugged in.</p>
+
+
+
+<p>Under the &#8220;Microphone&#8221; menu, select &#8220;Autodetect&#8221;, and speak loudly into the microphone for a few seconds.</p>
+
+
+
+<p>In &#8220;Audio Settings&#8221;, set &#8220;Noise Suppression&#8221; to &#8220;Medium&#8221; and &#8220;Auto Gain&#8221; to 15.</p>
+
+
+<h2 class="wp-block-heading" id="speakers"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#speakers"></a>Speakers</h2>
+
+
+<p>Make sure your USB speakers are plugged in.</p>
+
+
+
+<p>Under the &#8220;Speakers&#8221; menu, choose &#8220;Test All Speakers&#8221;. For each device, choose &#8220;Play Sound&#8221; and listen. If you hear the sound, select &#8220;Choose This Device&#8221;; otherwise, select &#8220;Next Device&#8221;.</p>
+
+
+
+<p>In &#8220;Toggle Feedback Sounds&#8221;, enable &#8220;On wake-up&#8221; and &#8220;After voice command&#8221; (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="wake-word"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#wake-word"></a>Wake Word</h2>
+
+
+<p>Under the &#8220;Wake Word&#8221; menu, select &#8220;Wake Word System&#8221; and choose &#8220;openWakeWord&#8221; (with the space bar). When prompted, install openWakeWord.</p>
+
+
+
+<p>In the &#8220;openWakeWord&#8221; menu, choose &#8220;Download Community Wake Words&#8221;. Back in the &#8220;Wake Word&#8221; menu, select &#8220;Choose Wake Word&#8221; and select one (with the space bar).</p>
+
+
+<h2 class="wp-block-heading" id="apply-settings"><a href="https://github.com/rhasspy/wyoming-satellite/blob/master/docs/tutorial_installer.md#apply-settings"></a>Apply Settings</h2>
+
+
+<p>From the main menu, select &#8220;Apply Settings&#8221; and enter your password.</p>
+
+
+
+<p>Check logs with:</p>
+
+
+
+<pre class="wp-block-code"><code>sudo journalctl -f -u wyoming-satellite.service</code></pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://thekiwismarthome.github.io/2024/01/22/rpi-voice-assistant-remote-satelite/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
