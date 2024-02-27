@@ -12,7 +12,7 @@
 	<atom:link href="https://thekiwismarthome.github.io/tag/diy/feed/" rel="self" type="application/rss+xml" />
 	<link>https://thekiwismarthome.github.io/</link>
 	<description> Why do it tomorrow, when you can Automate it today! </description>
-	<lastBuildDate>Tue, 27 Feb 2024 20:44:24 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 27 Feb 2024 21:25:17 +0000</lastBuildDate>
 	<language>en-NZ</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,7 +28,6 @@
 		<pubDate>Tue, 27 Feb 2024 20:38:26 +0000</pubDate>
 				<category><![CDATA[DIY]]></category>
 		<category><![CDATA[ESP32]]></category>
-		<category><![CDATA[ESPHome]]></category>
 		<category><![CDATA[Smart Home]]></category>
 		<guid isPermaLink="false">https://thekiwismarthome.github.io/?p=234</guid>
 
