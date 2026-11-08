@@ -1,0 +1,156 @@
+/* The Kiwi Smart Home. Blue from the logo, with the kiwi green as a small accent.
+   Plus Jakarta Sans for headings and DM Sans for text, the same as the Recipe Manager and Shopping List Manager sites. */
+:root {
+  --vp-font-family-base: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --kh-display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --kh-kiwi: #6FA82B;
+  --kh-kiwi-soft: #E6F2D3;
+  --vp-c-brand-1: #0A5CA8;
+  --vp-c-brand-2: #0B6BC0;
+  --vp-c-brand-3: #0B6BC0;
+  --vp-c-brand-soft: #DCEBF8;
+  --vp-button-brand-bg: #0B6BC0;
+  --vp-button-brand-hover-bg: #0A5CA8;
+  --vp-button-brand-active-bg: #084C8C;
+  --vp-button-brand-text: #fff;
+  --vp-c-bg: #F6F9FC;
+  --vp-c-bg-alt: #EAF1F8;
+  --vp-c-bg-soft: #FFFFFF;
+}
+.dark {
+  --kh-kiwi: #A8DB5C;
+  --kh-kiwi-soft: #243318;
+  --vp-c-brand-1: #5AAEF0;
+  --vp-c-brand-2: #3D95DE;
+  --vp-c-brand-3: #3D95DE;
+  --vp-c-brand-soft: #14293D;
+  --vp-button-brand-bg: #5AAEF0;
+  --vp-button-brand-hover-bg: #7CBFF4;
+  --vp-button-brand-active-bg: #9ACFF7;
+  --vp-button-brand-text: #07131F;
+  --vp-c-bg: #0E141B;
+  --vp-c-bg-alt: #121B25;
+  --vp-c-bg-soft: #18222E;
+}
+h1, h2, h3, .VPHero .name, .VPHero .text, .VPFeature .title { font-family: var(--kh-display); letter-spacing: -.02em; }
+.vp-doc h2 { border-top: 0; padding-top: 12px; }
+.VPNavBarTitle .title { font-family: var(--kh-display); font-weight: 800; }
+
+/* Home */
+.VPHero .name { color: var(--vp-c-brand-2) !important; background: none !important; -webkit-text-fill-color: currentColor !important; font-size: 15px !important; font-family: var(--vp-font-family-mono); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+.VPHero .text { font-weight: 800; text-wrap: balance; }
+.VPHero .tagline { color: var(--vp-c-text-2); }
+.VPHero .image-bg { display: none; }
+.VPHero .image-container { transform: none !important; height: auto !important; width: auto !important; }
+.VPHero .image { position: relative; }
+.VPHero .image::before { content: ""; position: absolute; inset: 4% 2% 0; background: var(--vp-c-brand-soft); border-radius: 44px; transform: rotate(2deg); }
+.VPFeature { border-radius: 20px !important; }
+.VPFeature .icon { background: var(--vp-c-brand-soft) !important; font-size: 22px; }
+
+/* Sections inside pages */
+.kh-lead { font-size: 18px; color: var(--vp-c-text-2); max-width: 46em; }
+.kh-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: 24px 0; }
+.kh-feature { text-decoration: none !important; display: flex; flex-direction: column; gap: 8px; padding: 26px; border-radius: 24px; border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); min-width: 0; transition: border-color .15s, transform .15s; }
+.kh-feature:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
+.kh-feature .kh-kicker { font: 500 12px var(--vp-font-family-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--vp-c-brand-1); }
+.kh-feature b { font: 800 24px/1.15 var(--kh-display); letter-spacing: -.02em; color: var(--vp-c-text-1); }
+.kh-feature span.kh-body { font-size: 15px; color: var(--vp-c-text-2); line-height: 1.55; }
+.kh-feature .kh-go { margin-top: 6px; font-weight: 600; color: var(--vp-c-brand-1); }
+.kh-feature.meadow { border-top: 5px solid #0F7B5A; }
+.kh-feature.sunset { border-top: 5px solid #B8481F; }
+
+.kh-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; margin: 20px 0 28px; }
+.kh-card { display: flex; flex-direction: column; gap: 8px; padding: 20px; border-radius: 20px; border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); min-width: 0; }
+.kh-card:hover { border-color: var(--vp-c-brand-1); }
+.kh-card h3 { margin: 2px 0 0 !important; font-size: 19px; padding: 0; border: 0; }
+.kh-card h3 a { color: var(--vp-c-text-1); text-decoration: none; }
+.kh-card h3 a:hover { color: var(--vp-c-brand-1); }
+.kh-card p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--vp-c-text-2); flex: 1; }
+.kh-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.kh-kicker { font: 500 11.5px var(--vp-font-family-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--vp-c-text-3); }
+.kh-badge { font: 600 11.5px var(--vp-font-family-base); padding: 2px 9px; border-radius: 999px; white-space: nowrap; background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1); }
+.kh-badge[data-status="live"], .kh-badge[data-status="stable"] { background: var(--kh-kiwi-soft); color: #3F6B10; }
+.dark .kh-badge[data-status="live"], .dark .kh-badge[data-status="stable"] { color: var(--kh-kiwi); }
+.kh-badge[data-status="wip"] { background: #FFF1D6; color: #8A5A00; }
+.dark .kh-badge[data-status="wip"] { background: #3A2D12; color: #F2C057; }
+.kh-badge[data-status="unmaintained"] { background: var(--vp-c-default-soft); color: var(--vp-c-text-2); }
+.kh-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.kh-tags span { font: 500 11.5px var(--vp-font-family-mono); padding: 1px 8px; border-radius: 6px; background: var(--vp-c-default-soft); color: var(--vp-c-text-2); }
+.kh-links { display: flex; gap: 14px; font-size: 14px; font-weight: 600; padding-top: 4px; }
+.kh-links a { text-decoration: none; }
+.kh-links a:hover { text-decoration: underline; }
+
+.kh-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: s; margin: 24px 0; }
+.kh-steps > div { background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-divider); border-radius: 20px; padding: 20px; min-width: 0; }
+.kh-steps > div::before { counter-increment: s; content: "Step " counter(s); font: 500 12px var(--vp-font-family-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--vp-c-brand-1); }
+.kh-steps h3 { margin: 8px 0 6px !important; font-size: 18px; }
+.kh-steps p { margin: 0 0 10px; font-size: 15px; color: var(--vp-c-text-2); }
+.kh-steps div[class*="language-"] { margin: 8px 0 0; }
+
+.kh-links-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 20px 0; }
+.kh-links-grid a { text-decoration: none; padding: 18px; border-radius: 18px; border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.kh-links-grid a:hover { border-color: var(--vp-c-brand-1); }
+.kh-links-grid b { font: 700 16px var(--kh-display); color: var(--vp-c-text-1); }
+.kh-links-grid span { font-size: 14px; color: var(--vp-c-text-2); }
+
+.kh-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 8px; }
+.kh-meta a, .kh-meta span { text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); color: var(--vp-c-text-1); }
+.kh-meta a:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
+.kh-meta a.primary { background: var(--vp-button-brand-bg); border-color: transparent; color: var(--vp-button-brand-text); }
+.kh-meta a.primary:hover { background: var(--vp-button-brand-hover-bg); color: var(--vp-button-brand-text); }
+
+.kh-notes { list-style: none; padding: 0; margin: 18px 0; display: flex; flex-direction: column; gap: 12px; }
+.kh-notes li { margin: 0; }
+.kh-notes a { display: block; text-decoration: none; padding: 16px 20px; border-radius: 16px; border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); }
+.kh-notes a:hover { border-color: var(--vp-c-brand-1); }
+.kh-notes b { display: block; font: 700 17px var(--kh-display); color: var(--vp-c-text-1); }
+.kh-notes span { font-size: 14px; color: var(--vp-c-text-2); }
+
+@media (max-width: 860px) { .kh-two, .kh-steps { grid-template-columns: minmax(0, 1fr); } .kh-links-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .kh-links-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* On small screens VitePress pulls the hero image up with negative margins, which makes the phones cover the text */
+@media (max-width: 959px) {
+  .VPHero .image { margin: 8px 0 28px !important; order: 1; }
+  .VPHero .image::before { inset: 3% 0 0; }
+}
+
+/* Logo sizes: a bigger mark in the top bar and the full logo above the home headline */
+.VPNavBarTitle .logo { height: 44px; width: 44px; border-radius: 12px; }
+.VPNavBarTitle .title { gap: 12px; font-size: 17px; }
+.kh-hero-logo { display: block; width: 200px; height: 200px; border-radius: 40px; margin: 0 0 24px; box-shadow: 0 18px 40px -20px rgba(11, 36, 80, .55); }
+@media (max-width: 959px) { .kh-hero-logo { width: 140px; height: 140px; border-radius: 30px; margin: 0 auto 20px; } }
+
+/* Download panel (Downloads.vue) */
+.kh-dl { margin: 24px 0 32px; border: 1px solid var(--vp-c-divider); border-radius: 20px; background: var(--vp-c-bg-soft); overflow: hidden; }
+.kh-dl-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; background: var(--vp-c-brand-soft); flex-wrap: wrap; }
+.kh-dl-head b { display: block; font: 800 18px var(--kh-display); letter-spacing: -.01em; color: var(--vp-c-text-1); }
+.kh-dl-head span { font-size: 14px; color: var(--vp-c-text-2); }
+.kh-dl-zip { text-decoration: none !important; background: var(--vp-button-brand-bg); color: var(--vp-button-brand-text) !important; font-weight: 700; padding: 11px 20px; border-radius: 999px; display: inline-flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.kh-dl-zip:hover { background: var(--vp-button-brand-hover-bg); }
+.kh-dl-zip small { font-weight: 500; opacity: .85; font-size: 12px; }
+.kh-dl-group h4 { margin: 0; padding: 14px 22px 4px; font: 500 12px var(--vp-font-family-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--vp-c-brand-1); }
+.kh-dl-group ul { list-style: none; margin: 0; padding: 0; }
+.kh-dl-group li { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 22px; border-top: 1px solid var(--vp-c-divider); margin: 0; }
+.kh-dl-group h4 + ul li:first-child { border-top: 0; }
+.kh-dl-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.kh-dl-name { font: 600 14px var(--vp-font-family-mono); text-decoration: none !important; word-break: break-all; }
+.kh-dl-what { font-size: 14px; color: var(--vp-c-text-1); }
+.kh-dl-where { font-size: 12.5px; color: var(--vp-c-text-3); }
+.kh-dl-side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.kh-dl-size { font: 12px var(--vp-font-family-mono); color: var(--vp-c-text-3); min-width: 54px; text-align: right; }
+.kh-dl-btn { text-decoration: none !important; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--vp-c-brand-1); }
+.kh-dl-btn:hover { background: var(--vp-c-brand-soft); }
+.kh-dl-gh { font-size: 13px; color: var(--vp-c-text-2) !important; text-decoration: none !important; }
+.kh-dl-gh:hover { color: var(--vp-c-brand-1) !important; }
+.kh-dl-missing { padding: 14px 18px; border-radius: 12px; background: var(--vp-c-danger-soft); }
+@media (max-width: 640px) {
+  .kh-dl-group li { flex-direction: column; align-items: stretch; gap: 8px; }
+  .kh-dl-side { justify-content: space-between; }
+  .kh-dl-size { text-align: left; }
+}
+
+/* A step list with numbers, used on the how-to pages */
+.kh-edit { margin: 16px 0; }

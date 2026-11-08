@@ -1,0 +1,7 @@
+node_modules
+.vitepress/cache
+.vitepress/dist
+# Local copies of the Recipe Manager / Shopping List Manager demos, so the home page works in `npm run dev`.
+# On the real site those two come from their own GitHub Pages sites at the same address.
+public/Recipe-Manager
+public/shopping-list-manager-card

@@ -1,0 +1,683 @@
+{
+ "find-my-phone": {
+  "title": "Find my phone",
+  "repo": "HA-Extras",
+  "dir": "find-my-phone",
+  "files": [
+   {
+    "path": "script-find-my-phone.yaml",
+    "name": "script-find-my-phone.yaml",
+    "what": "Takes the phone off silent, sets the alarm volume to maximum and sends the alarm notification.",
+    "where": "Settings, Automations & scenes, Scripts",
+    "group": "",
+    "size": 1199,
+    "repoPath": "find-my-phone/script-find-my-phone.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "automation-find-my-phone.yaml",
+    "name": "automation-find-my-phone.yaml",
+    "what": "Listens for the spoken phrases and runs the script, or clears the notification.",
+    "where": "Settings, Automations & scenes",
+    "group": "",
+    "size": 906,
+    "repoPath": "find-my-phone/automation-find-my-phone.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "find-my-phone.zip",
+   "size": 1233
+  }
+ },
+ "stock-alerts": {
+  "title": "Stock Alerts",
+  "repo": "HA-Extras",
+  "dir": "stock-alerts",
+  "files": [
+   {
+    "path": "package-stock-alerts.yaml",
+    "name": "package-stock-alerts.yaml",
+    "what": "The whole backend: helpers, add and clear scripts and the monitoring automation.",
+    "where": "config/packages/stock_alerts.yaml",
+    "group": "",
+    "size": 8268,
+    "repoPath": "stock-alerts/package-stock-alerts.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "dashboard-card.yaml",
+    "name": "dashboard-card.yaml",
+    "what": "The dashboard card, a native version and an optional Mushroom version.",
+    "where": "Dashboard, Add card, Manual",
+    "group": "",
+    "size": 2921,
+    "repoPath": "stock-alerts/dashboard-card.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "stock-alerts.zip",
+   "size": 3804
+  }
+ },
+ "shares-banner": {
+  "title": "Shares banner",
+  "repo": "HA-Extras",
+  "dir": "stocks_shares",
+  "files": [
+   {
+    "path": "shares_banner.yaml",
+    "name": "shares_banner.yaml",
+    "what": "One button-card that scrolls every Yahoo Finance sensor across the top of a dashboard.",
+    "where": "Dashboard, Add card, Manual",
+    "group": "",
+    "size": 1975,
+    "repoPath": "stocks_shares/shares_banner.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "shares-banner.zip",
+   "size": 1163
+  }
+ },
+ "bilresa-blueprint": {
+  "title": "IKEA BILRESA blueprint",
+  "repo": "HA-Extras",
+  "dir": "Blueprints",
+  "files": [
+   {
+    "path": "ikea_bilresa_scroll_wheel_full.yaml",
+    "name": "ikea_bilresa_scroll_wheel_full.yaml",
+    "what": "The blueprint: toggle, white, colour cycling and eased dimming for the three button groups.",
+    "where": "Settings, Automations & scenes, Blueprints, Import",
+    "group": "",
+    "size": 9343,
+    "repoPath": "Blueprints/ikea_bilresa_scroll_wheel_full.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "bilresa-blueprint.zip",
+   "size": 3016
+  }
+ },
+ "nspanel-keep-alive": {
+  "title": "NSPanel keep-alive",
+  "repo": "HA-Extras",
+  "dir": "nspanel-view-assist",
+  "files": [
+   {
+    "path": "automation-nspanel-view-assist.yaml",
+    "name": "automation-nspanel-view-assist.yaml",
+    "what": "Checks the foreground app over ADB and relaunches View Assist if it is not in front.",
+    "where": "Settings, Automations & scenes",
+    "group": "",
+    "size": 5308,
+    "repoPath": "nspanel-view-assist/automation-nspanel-view-assist.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "nspanel-keep-alive.zip",
+   "size": 2297
+  }
+ },
+ "hermes-webui-lxc": {
+  "title": "Hermes WebUI LXC",
+  "repo": "HA-Extras",
+  "dir": "hermes-webui-lxc",
+  "files": [
+   {
+    "path": "create-lxc.sh",
+    "name": "create-lxc.sh",
+    "what": "Run on the Proxmox host. Creates the container, then runs install.sh inside it.",
+    "where": "Proxmox host, as root",
+    "group": "",
+    "size": 4974,
+    "repoPath": "hermes-webui-lxc/create-lxc.sh",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "install.sh",
+    "name": "install.sh",
+    "what": "Installs Hermes WebUI and its systemd service. Also used to update.",
+    "where": "Inside the container",
+    "group": "",
+    "size": 5958,
+    "repoPath": "hermes-webui-lxc/install.sh",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "hermes-webui-lxc.zip",
+   "size": 4919
+  }
+ },
+ "news-reader": {
+  "title": "News Reader",
+  "repo": "HA-Extras",
+  "dir": "news-feed",
+  "files": [
+   {
+    "path": "community/news-reader-card/news-reader-card.js",
+    "name": "news-reader-card.js",
+    "what": "The custom card: channel tabs, headline list, story page and read-aloud.",
+    "where": "<config>/www/community/news-reader-card/",
+    "group": "Card",
+    "size": 16474,
+    "repoPath": "news-feed/community/news-reader-card/news-reader-card.js",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/news-banner-sensors.yaml",
+    "name": "news-banner-sensors.yaml",
+    "what": "National headlines, sensor.news_headlines.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 366,
+    "repoPath": "news-feed/config/entities/sensors/news-banner-sensors.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-world-sensor.yaml",
+    "name": "rnz-world-sensor.yaml",
+    "what": "World, sensor.rnz_world.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 353,
+    "repoPath": "news-feed/config/entities/sensors/rnz-world-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-political-sensor.yaml",
+    "name": "rnz-political-sensor.yaml",
+    "what": "Politics, sensor.rnz_politics.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 363,
+    "repoPath": "news-feed/config/entities/sensors/rnz-political-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-business-sensor.yaml",
+    "name": "rnz-business-sensor.yaml",
+    "what": "Business, sensor.rnz_business.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 362,
+    "repoPath": "news-feed/config/entities/sensors/rnz-business-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-sport-sensor.yaml",
+    "name": "rnz-sport-sensor.yaml",
+    "what": "Sport, sensor.rnz_sport.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 353,
+    "repoPath": "news-feed/config/entities/sensors/rnz-sport-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-pacific-sensor.yaml",
+    "name": "rnz-pacific-sensor.yaml",
+    "what": "Pacific, sensor.rnz_pacific.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 359,
+    "repoPath": "news-feed/config/entities/sensors/rnz-pacific-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-te-manu-korihi-sensor.yaml",
+    "name": "rnz-te-manu-korihi-sensor.yaml",
+    "what": "Te Ao Māori, sensor.rnz_te_ao_maori.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 374,
+    "repoPath": "news-feed/config/entities/sensors/rnz-te-manu-korihi-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-education-sensor.yaml",
+    "name": "rnz-education-sensor.yaml",
+    "what": "Education, sensor.rnz_education.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 365,
+    "repoPath": "news-feed/config/entities/sensors/rnz-education-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/metservice-warnings-sensor.yaml",
+    "name": "metservice-warnings-sensor.yaml",
+    "what": "MetService warnings, sensor.metservice_warnings.",
+    "where": "entities/sensors/",
+    "group": "Feed sensors",
+    "size": 374,
+    "repoPath": "news-feed/config/entities/sensors/metservice-warnings-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "pyscript/rnz_read_aloud.py",
+    "name": "rnz_read_aloud.py",
+    "what": "The pyscript service pyscript.rnz_read_aloud. Fetches the story and speaks it.",
+    "where": "<config>/pyscript/",
+    "group": "Read-aloud (optional)",
+    "size": 4049,
+    "repoPath": "news-feed/pyscript/rnz_read_aloud.py",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-bulletin-audio-sensor.yaml",
+    "name": "rnz-bulletin-audio-sensor.yaml",
+    "what": "Finds the latest bulletin MP3, sensor.rnz_latest_bulletin.",
+    "where": "entities/sensors/",
+    "group": "Audio bulletin (optional)",
+    "size": 900,
+    "repoPath": "news-feed/config/entities/sensors/rnz-bulletin-audio-sensor.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-bulletin-button-card.yaml",
+    "name": "rnz-bulletin-button-card.yaml",
+    "what": "A play button for the latest bulletin.",
+    "where": "Dashboard",
+    "group": "Audio bulletin (optional)",
+    "size": 2164,
+    "repoPath": "news-feed/config/entities/sensors/rnz-bulletin-button-card.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "news-feed-banner.yaml",
+    "name": "news-feed-banner.yaml",
+    "what": "The older scrolling headline banner.",
+    "where": "Dashboard",
+    "group": "Older versions",
+    "size": 3528,
+    "repoPath": "news-feed/news-feed-banner.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "config/entities/sensors/rnz-read-aloud-button-card.yaml",
+    "name": "rnz-read-aloud-button-card.yaml",
+    "what": "A single read-aloud button. The card now has one per row.",
+    "where": "Dashboard",
+    "group": "Older versions",
+    "size": 1863,
+    "repoPath": "news-feed/config/entities/sensors/rnz-read-aloud-button-card.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "rnz-read-aloud.yaml",
+    "name": "rnz-read-aloud.yaml",
+    "what": "Reference notes for the standalone read-aloud button.",
+    "where": "Reference",
+    "group": "Older versions",
+    "size": 1731,
+    "repoPath": "news-feed/rnz-read-aloud.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "news-reader.zip",
+   "size": 17903
+  }
+ },
+ "ksh-style-buttons": {
+  "title": "KSH Style Buttons",
+  "repo": "HA-Extras",
+  "dir": "ksh-style-buttons",
+  "files": [
+   {
+    "path": "templates/ksh-style-buttons.yaml",
+    "name": "ksh-style-buttons.yaml",
+    "what": "The ksh_tap_beep template: haptic buzz, click and the tap action.",
+    "where": "Top of the dashboard, button_card_templates",
+    "group": "Start here",
+    "size": 4418,
+    "repoPath": "ksh-style-buttons/templates/ksh-style-buttons.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "example-dashboard.yaml",
+    "name": "example-dashboard.yaml",
+    "what": "Every tile in one working 4-column grid.",
+    "where": "A dashboard to try them out",
+    "group": "Start here",
+    "size": 72027,
+    "repoPath": "ksh-style-buttons/example-dashboard.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "cards/ksh-intercom-card.js",
+    "name": "ksh-intercom-card.js",
+    "what": "The custom intercom card, with a config editor.",
+    "where": "<config>/www/ksh-intercom-card.js",
+    "group": "Start here",
+    "size": 14778,
+    "repoPath": "ksh-style-buttons/cards/ksh-intercom-card.js",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/home.yaml",
+    "name": "home.yaml",
+    "what": "Navigate home.",
+    "where": "A grid card",
+    "group": "Navigation",
+    "size": 1946,
+    "repoPath": "ksh-style-buttons/buttons/home.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/news.yaml",
+    "name": "news.yaml",
+    "what": "Go to the news view.",
+    "where": "A grid card",
+    "group": "Navigation",
+    "size": 2698,
+    "repoPath": "ksh-style-buttons/buttons/news.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/shares.yaml",
+    "name": "shares.yaml",
+    "what": "Go to the shares view.",
+    "where": "A grid card",
+    "group": "Navigation",
+    "size": 2580,
+    "repoPath": "ksh-style-buttons/buttons/shares.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/calendar.yaml",
+    "name": "calendar.yaml",
+    "what": "A live date tile drawn in CSS.",
+    "where": "A grid card",
+    "group": "Navigation",
+    "size": 2603,
+    "repoPath": "ksh-style-buttons/buttons/calendar.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/light.yaml",
+    "name": "light.yaml",
+    "what": "Light, brightness-aware.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 4888,
+    "repoPath": "ksh-style-buttons/buttons/light.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/climate.yaml",
+    "name": "climate.yaml",
+    "what": "Climate, coloured by mode.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 4993,
+    "repoPath": "ksh-style-buttons/buttons/climate.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/vacuum.yaml",
+    "name": "vacuum.yaml",
+    "what": "Vacuum: start, pause or locate.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 8314,
+    "repoPath": "ksh-style-buttons/buttons/vacuum.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/ambilight.yaml",
+    "name": "ambilight.yaml",
+    "what": "Ambilight effects.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 6105,
+    "repoPath": "ksh-style-buttons/buttons/ambilight.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/tv.yaml",
+    "name": "tv.yaml",
+    "what": "TV. Only shows when relevant.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 3584,
+    "repoPath": "ksh-style-buttons/buttons/tv.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/music.yaml",
+    "name": "music.yaml",
+    "what": "Music.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 2614,
+    "repoPath": "ksh-style-buttons/buttons/music.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/alarm.yaml",
+    "name": "alarm.yaml",
+    "what": "Alarm.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 4120,
+    "repoPath": "ksh-style-buttons/buttons/alarm.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/sofa.yaml",
+    "name": "sofa.yaml",
+    "what": "Sofa.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 6941,
+    "repoPath": "ksh-style-buttons/buttons/sofa.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/washer.yaml",
+    "name": "washer.yaml",
+    "what": "Washer. Only shows when relevant.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 10252,
+    "repoPath": "ksh-style-buttons/buttons/washer.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/dryer.yaml",
+    "name": "dryer.yaml",
+    "what": "Dryer. Only shows when relevant.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 9446,
+    "repoPath": "ksh-style-buttons/buttons/dryer.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/byd.yaml",
+    "name": "byd.yaml",
+    "what": "BYD car tile.",
+    "where": "A grid card",
+    "group": "Home",
+    "size": 3689,
+    "repoPath": "ksh-style-buttons/buttons/byd.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/intercom.yaml",
+    "name": "intercom.yaml",
+    "what": "Intercom call tile.",
+    "where": "A grid card",
+    "group": "Intercom",
+    "size": 1255,
+    "repoPath": "ksh-style-buttons/buttons/intercom.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/intercom-picker.yaml",
+    "name": "intercom-picker.yaml",
+    "what": "Pick who to call.",
+    "where": "A grid card",
+    "group": "Intercom",
+    "size": 6085,
+    "repoPath": "ksh-style-buttons/buttons/intercom-picker.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/intercom-card.yaml",
+    "name": "intercom-card.yaml",
+    "what": "Intercom as a button-card.",
+    "where": "A grid card",
+    "group": "Intercom",
+    "size": 5128,
+    "repoPath": "ksh-style-buttons/buttons/intercom-card.yaml",
+    "source": "sibling checkout"
+   },
+   {
+    "path": "buttons/intercom-hub.yaml",
+    "name": "intercom-hub.yaml",
+    "what": "Intercom with no resource needed. The fallback for the custom card.",
+    "where": "A grid card",
+    "group": "Intercom",
+    "size": 15764,
+    "repoPath": "ksh-style-buttons/buttons/intercom-hub.yaml",
+    "source": "sibling checkout"
+   }
+  ],
+  "zip": {
+   "name": "ksh-style-buttons.zip",
+   "size": 52163
+  }
+ },
+ "rotary-thermostat": {
+  "title": "Rotary thermostat",
+  "repo": "Rotary-Display-Thermostat-ZX2D10GE01R-V484",
+  "dir": "",
+  "files": [
+   {
+    "path": "nesp.yaml",
+    "name": "nesp.yaml",
+    "what": "The main ESPHome file: pins, display, rotary encoder, buttons and the Home Assistant entities.",
+    "where": "Your ESPHome folder",
+    "group": "ESPHome",
+    "size": 22478,
+    "repoPath": "nesp.yaml",
+    "source": "GitHub"
+   },
+   {
+    "path": "nesp/_neo-nesp_UI.yaml",
+    "name": "_neo-nesp_UI.yaml",
+    "what": "The LVGL screens and the scripts that update them. Included by nesp.yaml.",
+    "where": "Your ESPHome folder, keep the nesp/ path",
+    "group": "ESPHome",
+    "size": 48272,
+    "repoPath": "nesp/_neo-nesp_UI.yaml",
+    "source": "GitHub"
+   },
+   {
+    "path": "nesp/colors/homeassistant",
+    "name": "homeassistant",
+    "what": "The Home Assistant colour palette. Included by nesp.yaml.",
+    "where": "Your ESPHome folder, keep the nesp/colors/ path",
+    "group": "ESPHome",
+    "size": 2372,
+    "repoPath": "nesp/colors/homeassistant",
+    "source": "GitHub"
+   },
+   {
+    "path": "nesp/fonts/materialdesignicons-webfont.ttf",
+    "name": "materialdesignicons-webfont.ttf",
+    "what": "Material Design Icons font for the icons on the screen.",
+    "where": "fonts/ next to nesp.yaml",
+    "group": "ESPHome",
+    "size": 1307660,
+    "repoPath": "nesp/fonts/materialdesignicons-webfont.ttf",
+    "source": "GitHub"
+   },
+   {
+    "path": "common.yaml",
+    "name": "common.yaml",
+    "what": "Starter for the file nesp.yaml expects: logger, API, OTA and Wi-Fi. Edit it.",
+    "where": "Next to nesp.yaml",
+    "group": "ESPHome",
+    "size": 785,
+    "repoPath": null,
+    "source": "this site"
+   },
+   {
+    "path": "secrets.yaml",
+    "name": "secrets.yaml",
+    "what": "Example secrets file. Replace the values.",
+    "where": "Next to nesp.yaml",
+    "group": "ESPHome",
+    "size": 341,
+    "repoPath": null,
+    "source": "this site"
+   }
+  ],
+  "zip": {
+   "name": "rotary-thermostat.zip",
+   "size": 624027
+  }
+ },
+ "rotary-clock": {
+  "title": "Rotary clock, heat pump and light dimmer",
+  "repo": "Rotary-Display-Clock-HeatPump-LightDimmer",
+  "dir": "",
+  "files": [
+   {
+    "path": "clock-hp-ld.yaml",
+    "name": "clock-hp-ld.yaml",
+    "what": "The ESPHome file. Still being developed.",
+    "where": "Your ESPHome folder",
+    "group": "ESPHome",
+    "size": 105949,
+    "repoPath": "clock-hp-ld.yaml",
+    "source": "GitHub"
+   },
+   {
+    "path": "TODO.md",
+    "name": "TODO.md",
+    "what": "The to-do list for this project.",
+    "where": "Reference",
+    "group": "Reference",
+    "size": 598,
+    "repoPath": "TODO.md",
+    "source": "GitHub"
+   }
+  ],
+  "zip": {
+   "name": "rotary-clock.zip",
+   "size": 20783
+  }
+ },
+ "berryblues-theme": {
+  "title": "BerryBlues theme",
+  "repo": "",
+  "dir": "",
+  "files": [
+   {
+    "path": "BerryBlues.yaml",
+    "name": "BerryBlues.yaml",
+    "what": "The theme, rebuilt from my old notes. Check it before you rely on it.",
+    "where": "config/themes/",
+    "group": "Theme",
+    "size": 4800,
+    "repoPath": null,
+    "source": "this site"
+   }
+  ],
+  "zip": {
+   "name": "berryblues-theme.zip",
+   "size": 1627
+  }
+ }
+}

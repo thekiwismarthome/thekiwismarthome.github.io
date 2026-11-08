@@ -1,0 +1,16 @@
+{
+  "name": "thekiwismarthome-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "local-demos": "node scripts/local-demos.mjs",
+    "sync": "node scripts/sync-downloads.mjs",
+    "dev": "npm run local-demos && vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "fflate": "^0.8.3",
+    "vitepress": "^1.6.3"
+  }
+}

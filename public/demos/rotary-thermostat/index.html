@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rotary thermostat simulator</title>
+<meta name="description" content="A working simulation of the rotary thermostat screens, the knob and a pretend Home Assistant. Nothing to install.">
+<link rel="icon" href="../../favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Roboto:wght@400&display=swap">
+<style>
+:root {
+  --bg: #F6F9FC; --panel: #FFFFFF; --alt: #EAF1F8; --line: #D7E2EE; --text: #14202C; --text2: #475A6E; --text3: #6B7E92;
+  --brand: #0B6BC0; --brand-ink: #FFFFFF; --brand-soft: #DCEBF8; --ok: #2E7D32; --warn: #B45309;
+  --led: transparent;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0E141B; --panel: #18222E; --alt: #121B25; --line: #26364A; --text: #E8EEF5; --text2: #A7B6C8; --text3: #8294A8; --brand: #5AAEF0; --brand-ink: #07131F; --brand-soft: #14293D; --ok: #7BD389; --warn: #F5B461; }
+}
+:root[data-theme="light"] { --bg: #F6F9FC; --panel: #FFFFFF; --alt: #EAF1F8; --line: #D7E2EE; --text: #14202C; --text2: #475A6E; --text3: #6B7E92; --brand: #0B6BC0; --brand-ink: #FFFFFF; --brand-soft: #DCEBF8; --ok: #2E7D32; --warn: #B45309; }
+:root[data-theme="dark"] { --bg: #0E141B; --panel: #18222E; --alt: #121B25; --line: #26364A; --text: #E8EEF5; --text2: #A7B6C8; --text3: #8294A8; --brand: #5AAEF0; --brand-ink: #07131F; --brand-soft: #14293D; --ok: #7BD389; --warn: #F5B461; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.5 "DM Sans", "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); }
+button, select, input { font: inherit; color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 40px; }
+header.top { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+header.top h1 { margin: 0; font-size: 22px; letter-spacing: -.01em; }
+header.top p { margin: 0; color: var(--text2); max-width: 46em; }
+header.top .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* The device */
+.stage { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.device { position: relative; width: min(100%, 520px); aspect-ratio: 1; border-radius: 50%; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; outline: none;
+  background: radial-gradient(circle at 30% 25%, #4a5560 0%, #1d242b 55%, #0d1115 100%);
+  box-shadow: 0 0 0 2px #0a0d10, 0 18px 40px -16px rgba(0,0,0,.6), 0 0 50px 8px var(--led), inset 0 2px 3px rgba(255,255,255,.18);
+  transition: box-shadow .5s; }
+.device:active { cursor: grabbing; }
+.device:focus-visible { box-shadow: 0 0 0 3px var(--brand), 0 18px 40px -16px rgba(0,0,0,.6), 0 0 50px 8px var(--led); }
+.ledring { position: absolute; inset: 1.6%; border-radius: 50%; border: 5px solid var(--led); opacity: .95; filter: blur(.4px); transition: border-color .5s; }
+.bezel { position: absolute; inset: 5%; border-radius: 50%; background: #05070a; box-shadow: inset 0 0 0 3px #1b2229, inset 0 3px 8px rgba(0,0,0,.9); }
+.glass { position: absolute; inset: 6.4%; border-radius: 50%; overflow: hidden; background: #000; }
+.glass svg { width: 100%; height: 100%; display: block; }
+.glass::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(145deg, rgba(255,255,255,.07), transparent 38%); pointer-events: none; }
+.pad { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.pad button { appearance: none; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 10px 18px; font-weight: 600; cursor: pointer; min-width: 116px; }
+.pad button:hover { border-color: var(--brand); }
+.pad button.main { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.pad button:focus-visible, .btn:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.hint { font-size: 13.5px; color: var(--text2); text-align: center; max-width: 34em; margin: 0; }
+.hint kbd { font: 12px "JetBrains Mono", ui-monospace, monospace; background: var(--alt); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 1px 6px; }
+.where { font: 12.5px "JetBrains Mono", ui-monospace, monospace; color: var(--text3); }
+
+/* The pretend Home Assistant */
+.ha { display: grid; gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; }
+.card h2 { margin: 0 0 2px; font-size: 15px; letter-spacing: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.card h2 code, .card .eid { font: 12px "JetBrains Mono", ui-monospace, monospace; color: var(--text3); font-weight: 400; }
+.card p.sub { margin: 0 0 10px; color: var(--text2); font-size: 13.5px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+@media (max-width: 520px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+label.f { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 13px; color: var(--text2); align-items: baseline; }
+label.f > select, label.f > input { grid-column: 1 / -1; }
+label.f span.v { font: 12.5px "JetBrains Mono", monospace; color: var(--text); }
+select, input[type="number"] { width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); }
+input[type="range"] { width: 100%; accent-color: var(--brand); }
+.toggle { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.toggle:first-of-type { border-top: 0; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--brand); }
+.btn { appearance: none; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn:hover { border-color: var(--brand); }
+#log { margin: 8px 0 0; padding: 0; list-style: none; max-height: 230px; overflow: auto; font: 12px/1.55 "JetBrains Mono", ui-monospace, monospace; border: 1px solid var(--line); border-radius: 12px; background: var(--alt); }
+#log li { padding: 4px 10px; border-top: 1px solid var(--line); word-break: break-word; }
+#log li:first-child { border-top: 0; }
+#log .out { color: var(--brand); } #log .in { color: var(--ok); } #log .note { color: var(--text3); }
+.row-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.legend { font-size: 13px; color: var(--text2); margin: 0; padding-left: 18px; }
+.legend li { margin: 2px 0; }
+svg .pg { transition: opacity .4s; }
+.embed .wrap { padding: 12px 12px 20px; }
+@media (min-width: 601px) {
+  .embed .layout { grid-template-columns: 300px minmax(0, 1fr); gap: 18px; }
+  .embed .ha { max-height: 700px; overflow: auto; padding-right: 4px; }
+  .embed .pad button { min-width: 0; padding: 9px 14px; }
+  .embed .grid2 { grid-template-columns: minmax(0, 1fr); }
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Rotary thermostat simulator</h1>
+      <p>The same screens and rules as the ESPHome config for the 2.1 inch rotary display, running in your browser with a pretend Home Assistant. Nothing is installed and nothing is sent anywhere.</p>
+    </div>
+    <div class="links">
+      <a href="../../extras/rotary-thermostat" target="_top">Build guide</a>
+      <a href="../../downloads/rotary-thermostat.zip" download>Download the config</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <section class="stage" aria-label="The thermostat">
+      <div class="device" id="device" tabindex="0" role="application" aria-label="Thermostat dial. Arrow keys turn it, Enter presses it.">
+        <div class="ledring" id="ledring"></div>
+        <div class="bezel"></div>
+        <div class="glass"><svg id="screen" viewBox="0 0 480 480" role="img" aria-label="Thermostat screen"></svg></div>
+      </div>
+      <div class="pad" role="group" aria-label="Dial controls">
+        <button id="ccw" type="button" title="Turn anticlockwise (Left arrow)">↺ Turn left</button>
+        <button id="push" type="button" class="main" title="Press the dial (Enter)">Press</button>
+        <button id="cw" type="button" title="Turn clockwise (Right arrow)">Turn right ↻</button>
+      </div>
+      <p class="hint">Scroll over the dial, drag around it, or use <kbd>←</kbd> <kbd>→</kbd> to turn it. Click it or press <kbd>Enter</kbd> to push. The dial is the only control, the same as the real hardware.</p>
+      <p class="where" id="where" aria-live="polite"></p>
+    </section>
+
+    <section class="ha" aria-label="Pretend Home Assistant">
+      <div class="card">
+        <h2>Climate <code>climate.ac_living_room</code></h2>
+        <p class="sub">Change these like Home Assistant would. The dial follows.</p>
+        <div class="grid2">
+          <label class="f">Mode
+            <select id="hMode">
+              <option value="off">Off</option><option value="heat">Heat</option><option value="cool">Cool</option>
+              <option value="heat_cool">Auto (heat_cool)</option><option value="dry">Dehumidify (dry)</option><option value="fan_only">Fan only</option>
+            </select></label>
+          <label class="f">Target temperature <span class="v" id="vSet"></span>
+            <input type="range" id="hSet" min="16" max="30" step="0.5"></label>
+          <label class="f">Room temperature <span class="v" id="vCur"></span>
+            <input type="range" id="hCur" min="12" max="34" step="0.1"></label>
+          <label class="f">Room humidity <span class="v" id="vHum"></span>
+            <input type="range" id="hHum" min="20" max="90" step="1"></label>
+          <label class="f">Fan speed
+            <select id="hFan"><option>auto</option><option>quiet</option><option>low</option><option>medium</option><option>high</option><option>super high</option></select></label>
+          <label class="f">Preset
+            <select id="hPreset"><option>none</option><option>eco</option><option>comfort</option><option>boost</option></select></label>
+        </div>
+        <div class="toggle" style="margin-top:10px"><label for="drift">Let the room warm and cool towards the target</label><input type="checkbox" id="drift" checked></div>
+      </div>
+
+      <div class="card">
+        <h2>Weather and zones <code>weather.home_2</code></h2>
+        <p class="sub">Shown on the dial when the system is off, and on the menu.</p>
+        <div class="grid2">
+          <label class="f">Condition
+            <select id="wIcon"></select></label>
+          <label class="f">Temperature <span class="v" id="vWt"></span>
+            <input type="range" id="wTemp" min="-5" max="42" step="1"></label>
+          <label class="f">Feels like <span class="v" id="vWf"></span>
+            <input type="range" id="wFeel" min="-8" max="45" step="1"></label>
+          <label class="f">Rain chance <span class="v" id="vWr"></span>
+            <input type="range" id="wRain" min="0" max="100" step="5"></label>
+          <label class="f">Forecast low <span class="v" id="vWl"></span>
+            <input type="range" id="wLow" min="-5" max="35" step="1"></label>
+          <label class="f">Forecast high <span class="v" id="vWh"></span>
+            <input type="range" id="wHigh" min="0" max="45" step="1"></label>
+        </div>
+        <div style="margin-top:10px">
+          <div class="toggle"><label for="z1">Downstairs zone open <span class="eid">cover.zone_1_downstairs</span></label><input type="checkbox" id="z1"></div>
+          <div class="toggle"><label for="z2">Upstairs zone open <span class="eid">cover.zone_2_upstairs</span></label><input type="checkbox" id="z2"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row-head"><h2 style="margin:0">Messages</h2>
+          <span><button class="btn" id="clear" type="button">Clear</button> <button class="btn" id="reset" type="button">Reset everything</button></span></div>
+        <p class="sub" style="margin-top:4px">What the dial sends to Home Assistant, and what comes back.</p>
+        <label class="f" style="max-width:260px">Pretend network delay <span class="v" id="vLat"></span>
+          <input type="range" id="lat" min="0" max="1000" step="50" value="150"></label>
+        <ul id="log" aria-live="polite"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Things to try</h2>
+        <ul class="legend">
+          <li>Turn the dial on the main screen to change the target. Notice it moves by 0.5 degrees a click.</li>
+          <li>Press to open the ring menu. Turn to pick an icon, press to choose it. The label in the middle names the one you are on.</li>
+          <li>Set the mode to <b>Off</b>, then turn the dial. It switches the system on first, as the real one does.</li>
+          <li>Choose <b>Fan only</b>. The temperature scale disappears and a big fan icon shows.</li>
+          <li>Turn the network delay up and spin the dial quickly. Each click sends the last <i>confirmed</i> target plus 0.5, so fast turns can lose steps. That is how the config works today.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+'use strict';
+/* ---------------------------------------------------------------------------------------------------------------------
+   Rotary thermostat simulator.
+   Mirrors nesp.yaml and nesp/_neo-nesp_UI.yaml from the Rotary-Display-Thermostat-ZX2D10GE01R-V484 repository:
+   the same pages, positions, colours, fonts sizes and rules. Names in comments match the ESPHome ids.
+   --------------------------------------------------------------------------------------------------------------------- */
+
+/* Material Design Icons (Apache 2.0), only the ones the firmware uses. */
+const ICONS = {"back":"M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z","fan":"M12,11A1,1 0 0,0 11,12A1,1 0 0,0 12,13A1,1 0 0,0 13,12A1,1 0 0,0 12,11M12.5,2C17,2 17.11,5.57 14.75,6.75C13.76,7.24 13.32,8.29 13.13,9.22C13.61,9.42 14.03,9.73 14.35,10.13C18.05,8.13 22.03,8.92 22.03,12.5C22.03,17 18.46,17.1 17.28,14.73C16.78,13.74 15.72,13.3 14.79,13.11C14.59,13.59 14.28,14 13.88,14.34C15.87,18.03 15.08,22 11.5,22C7,22 6.91,18.42 9.27,17.24C10.25,16.75 10.69,15.71 10.89,14.79C10.4,14.59 9.97,14.27 9.65,13.87C5.96,15.85 2,15.07 2,11.5C2,7 5.56,6.89 6.74,9.26C7.24,10.25 8.29,10.68 9.22,10.87C9.41,10.39 9.73,9.97 10.14,9.65C8.15,5.96 8.94,2 12.5,2Z","fire":"M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z","leaf":"M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z","power":"M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13","sofa":"M12.5 7C12.5 5.89 13.39 5 14.5 5H18C19.1 5 20 5.9 20 7V9.16C18.84 9.57 18 10.67 18 11.97V14H12.5V7M6 11.96V14H11.5V7C11.5 5.89 10.61 5 9.5 5H6C4.9 5 4 5.9 4 7V9.15C5.16 9.56 6 10.67 6 11.96M20.66 10.03C19.68 10.19 19 11.12 19 12.12V15H5V12C5 10.9 4.11 10 3 10S1 10.9 1 12V17C1 18.1 1.9 19 3 19V21H5V19H19V21H21V19C22.1 19 23 18.1 23 17V12C23 10.79 21.91 9.82 20.66 10.03Z","speedometer":"M12,16A3,3 0 0,1 9,13C9,11.88 9.61,10.9 10.5,10.39L20.21,4.77L14.68,14.35C14.18,15.33 13.17,16 12,16M12,3C13.81,3 15.5,3.5 16.97,4.32L14.87,5.53C14,5.19 13,5 12,5A8,8 0 0,0 4,13C4,15.21 4.89,17.21 6.34,18.65H6.35C6.74,19.04 6.74,19.67 6.35,20.06C5.96,20.45 5.32,20.45 4.93,20.07V20.07C3.12,18.26 2,15.76 2,13A10,10 0 0,1 12,3M22,13C22,15.76 20.88,18.26 19.07,20.07V20.07C18.68,20.45 18.05,20.45 17.66,20.06C17.27,19.67 17.27,19.04 17.66,18.65V18.65C19.11,17.2 20,15.21 20,13C20,12 19.81,11 19.46,10.1L20.67,8C21.5,9.5 22,11.18 22,13Z","thermometer":"M15 13V5A3 3 0 0 0 9 5V13A5 5 0 1 0 15 13M12 4A1 1 0 0 1 13 5V8H11V5A1 1 0 0 1 12 4Z","drop":"M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97M9.75,10A1.25,1.25 0 0,1 11,11.25A1.25,1.25 0 0,1 9.75,12.5A1.25,1.25 0 0,1 8.5,11.25A1.25,1.25 0 0,1 9.75,10M14.25,14.5A1.25,1.25 0 0,1 15.5,15.75A1.25,1.25 0 0,1 14.25,17A1.25,1.25 0 0,1 13,15.75A1.25,1.25 0 0,1 14.25,14.5Z","cloudy":"M6,19A5,5 0 0,1 1,14A5,5 0 0,1 6,9C7,6.65 9.3,5 12,5C15.43,5 18.24,7.66 18.5,11.03L19,11A4,4 0 0,1 23,15A4,4 0 0,1 19,19H6M19,13H17V12A5,5 0 0,0 12,7C9.5,7 7.45,8.82 7.06,11.19C6.73,11.07 6.37,11 6,11A3,3 0 0,0 3,14A3,3 0 0,0 6,17H19A2,2 0 0,0 21,15A2,2 0 0,0 19,13Z","fog":"M3,15H13A1,1 0 0,1 14,16A1,1 0 0,1 13,17H3A1,1 0 0,1 2,16A1,1 0 0,1 3,15M16,15H21A1,1 0 0,1 22,16A1,1 0 0,1 21,17H16A1,1 0 0,1 15,16A1,1 0 0,1 16,15M1,12A5,5 0 0,1 6,7C7,4.65 9.3,3 12,3C15.43,3 18.24,5.66 18.5,9.03L19,9C21.19,9 22.97,10.76 23,13H21A2,2 0 0,0 19,11H17V10A5,5 0 0,0 12,5C9.5,5 7.45,6.82 7.06,9.19C6.73,9.07 6.37,9 6,9A3,3 0 0,0 3,12C3,12.35 3.06,12.69 3.17,13H1.1L1,12M3,19H5A1,1 0 0,1 6,20A1,1 0 0,1 5,21H3A1,1 0 0,1 2,20A1,1 0 0,1 3,19M8,19H21A1,1 0 0,1 22,20A1,1 0 0,1 21,21H8A1,1 0 0,1 7,20A1,1 0 0,1 8,19Z","hail":"M6,14A1,1 0 0,1 7,15A1,1 0 0,1 6,16A5,5 0 0,1 1,11A5,5 0 0,1 6,6C7,3.65 9.3,2 12,2C15.43,2 18.24,4.66 18.5,8.03L19,8A4,4 0 0,1 23,12A4,4 0 0,1 19,16H18A1,1 0 0,1 17,15A1,1 0 0,1 18,14H19A2,2 0 0,0 21,12A2,2 0 0,0 19,10H17V9A5,5 0 0,0 12,4C9.5,4 7.45,5.82 7.06,8.19C6.73,8.07 6.37,8 6,8A3,3 0 0,0 3,11A3,3 0 0,0 6,14M10,18A2,2 0 0,1 12,20A2,2 0 0,1 10,22A2,2 0 0,1 8,20A2,2 0 0,1 10,18M14.5,16A1.5,1.5 0 0,1 16,17.5A1.5,1.5 0 0,1 14.5,19A1.5,1.5 0 0,1 13,17.5A1.5,1.5 0 0,1 14.5,16M10.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,15A1.5,1.5 0 0,1 9,13.5A1.5,1.5 0 0,1 10.5,12Z","lightning":"M6,16A5,5 0 0,1 1,11A5,5 0 0,1 6,6C7,3.65 9.3,2 12,2C15.43,2 18.24,4.66 18.5,8.03L19,8A4,4 0 0,1 23,12A4,4 0 0,1 19,16H18A1,1 0 0,1 17,15A1,1 0 0,1 18,14H19A2,2 0 0,0 21,12A2,2 0 0,0 19,10H17V9A5,5 0 0,0 12,4C9.5,4 7.45,5.82 7.06,8.19C6.73,8.07 6.37,8 6,8A3,3 0 0,0 3,11A3,3 0 0,0 6,14H7A1,1 0 0,1 8,15A1,1 0 0,1 7,16H6M12,11H15L13,15H15L11.25,22L12,17H9.5L12,11Z","night":"M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z","partly-cloudy":"M12.74,5.47C15.1,6.5 16.35,9.03 15.92,11.46C17.19,12.56 18,14.19 18,16V16.17C18.31,16.06 18.65,16 19,16A3,3 0 0,1 22,19A3,3 0 0,1 19,22H6A4,4 0 0,1 2,18A4,4 0 0,1 6,14H6.27C5,12.45 4.6,10.24 5.5,8.26C6.72,5.5 9.97,4.24 12.74,5.47M11.93,7.3C10.16,6.5 8.09,7.31 7.31,9.07C6.85,10.09 6.93,11.22 7.41,12.13C8.5,10.83 10.16,10 12,10C12.7,10 13.38,10.12 14,10.34C13.94,9.06 13.18,7.86 11.93,7.3M13.55,3.64C13,3.4 12.45,3.23 11.88,3.12L14.37,1.82L15.27,4.71C14.76,4.29 14.19,3.93 13.55,3.64M6.09,4.44C5.6,4.79 5.17,5.19 4.8,5.63L4.91,2.82L7.87,3.5C7.25,3.71 6.65,4.03 6.09,4.44M18,9.71C17.91,9.12 17.78,8.55 17.59,8L19.97,9.5L17.92,11.73C18.03,11.08 18.05,10.4 18,9.71M3.04,11.3C3.11,11.9 3.24,12.47 3.43,13L1.06,11.5L3.1,9.28C3,9.93 2.97,10.61 3.04,11.3M19,18H16V16A4,4 0 0,0 12,12A4,4 0 0,0 8,16H6A2,2 0 0,0 4,18A2,2 0 0,0 6,20H19A1,1 0 0,0 20,19A1,1 0 0,0 19,18Z","pouring":"M9,12C9.53,12.14 9.85,12.69 9.71,13.22L8.41,18.05C8.27,18.59 7.72,18.9 7.19,18.76C6.65,18.62 6.34,18.07 6.5,17.54L7.78,12.71C7.92,12.17 8.47,11.86 9,12M13,12C13.53,12.14 13.85,12.69 13.71,13.22L11.64,20.95C11.5,21.5 10.95,21.8 10.41,21.66C9.88,21.5 9.56,20.97 9.7,20.43L11.78,12.71C11.92,12.17 12.47,11.86 13,12M17,12C17.53,12.14 17.85,12.69 17.71,13.22L16.41,18.05C16.27,18.59 15.72,18.9 15.19,18.76C14.65,18.62 14.34,18.07 14.5,17.54L15.78,12.71C15.92,12.17 16.47,11.86 17,12M17,10V9A5,5 0 0,0 12,4C9.5,4 7.45,5.82 7.06,8.19C6.73,8.07 6.37,8 6,8A3,3 0 0,0 3,11C3,12.11 3.6,13.08 4.5,13.6V13.59C5,13.87 5.14,14.5 4.87,14.96C4.59,15.43 4,15.6 3.5,15.32V15.33C2,14.47 1,12.85 1,11A5,5 0 0,1 6,6C7,3.65 9.3,2 12,2C15.43,2 18.24,4.66 18.5,8.03L19,8A4,4 0 0,1 23,12C23,13.5 22.2,14.77 21,15.46V15.46C20.5,15.73 19.91,15.57 19.63,15.09C19.36,14.61 19.5,14 20,13.72V13.73C20.6,13.39 21,12.74 21,12A2,2 0 0,0 19,10H17Z","rainy":"M6,14.03A1,1 0 0,1 7,15.03C7,15.58 6.55,16.03 6,16.03C3.24,16.03 1,13.79 1,11.03C1,8.27 3.24,6.03 6,6.03C7,3.68 9.3,2.03 12,2.03C15.43,2.03 18.24,4.69 18.5,8.06L19,8.03A4,4 0 0,1 23,12.03C23,14.23 21.21,16.03 19,16.03H18C17.45,16.03 17,15.58 17,15.03C17,14.47 17.45,14.03 18,14.03H19A2,2 0 0,0 21,12.03A2,2 0 0,0 19,10.03H17V9.03C17,6.27 14.76,4.03 12,4.03C9.5,4.03 7.45,5.84 7.06,8.21C6.73,8.09 6.37,8.03 6,8.03A3,3 0 0,0 3,11.03A3,3 0 0,0 6,14.03M12,14.15C12.18,14.39 12.37,14.66 12.56,14.94C13,15.56 14,17.03 14,18C14,19.11 13.1,20 12,20A2,2 0 0,1 10,18C10,17.03 11,15.56 11.44,14.94C11.63,14.66 11.82,14.4 12,14.15M12,11.03L11.5,11.59C11.5,11.59 10.65,12.55 9.79,13.81C8.93,15.06 8,16.56 8,18A4,4 0 0,0 12,22A4,4 0 0,0 16,18C16,16.56 15.07,15.06 14.21,13.81C13.35,12.55 12.5,11.59 12.5,11.59","snowy":"M6,14A1,1 0 0,1 7,15A1,1 0 0,1 6,16A5,5 0 0,1 1,11A5,5 0 0,1 6,6C7,3.65 9.3,2 12,2C15.43,2 18.24,4.66 18.5,8.03L19,8A4,4 0 0,1 23,12A4,4 0 0,1 19,16H18A1,1 0 0,1 17,15A1,1 0 0,1 18,14H19A2,2 0 0,0 21,12A2,2 0 0,0 19,10H17V9A5,5 0 0,0 12,4C9.5,4 7.45,5.82 7.06,8.19C6.73,8.07 6.37,8 6,8A3,3 0 0,0 3,11A3,3 0 0,0 6,14M7.88,18.07L10.07,17.5L8.46,15.88C8.07,15.5 8.07,14.86 8.46,14.46C8.85,14.07 9.5,14.07 9.88,14.46L11.5,16.07L12.07,13.88C12.21,13.34 12.76,13.03 13.29,13.17C13.83,13.31 14.14,13.86 14,14.4L13.41,16.59L15.6,16C16.14,15.86 16.69,16.17 16.83,16.71C16.97,17.24 16.66,17.79 16.12,17.93L13.93,18.5L15.54,20.12C15.93,20.5 15.93,21.15 15.54,21.54C15.15,21.93 14.5,21.93 14.12,21.54L12.5,19.93L11.93,22.12C11.79,22.66 11.24,22.97 10.71,22.83C10.17,22.69 9.86,22.14 10,21.6L10.59,19.41L8.4,20C7.86,20.14 7.31,19.83 7.17,19.29C7.03,18.76 7.34,18.21 7.88,18.07Z","sunny":"M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z","windy":"M4,10A1,1 0 0,1 3,9A1,1 0 0,1 4,8H12A2,2 0 0,0 14,6A2,2 0 0,0 12,4C11.45,4 10.95,4.22 10.59,4.59C10.2,5 9.56,5 9.17,4.59C8.78,4.2 8.78,3.56 9.17,3.17C9.9,2.45 10.9,2 12,2A4,4 0 0,1 16,6A4,4 0 0,1 12,10H4M19,12A1,1 0 0,0 20,11A1,1 0 0,0 19,10C18.72,10 18.47,10.11 18.29,10.29C17.9,10.68 17.27,10.68 16.88,10.29C16.5,9.9 16.5,9.27 16.88,8.88C17.42,8.34 18.17,8 19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14H5A1,1 0 0,1 4,13A1,1 0 0,1 5,12H19M18,18H4A1,1 0 0,1 3,17A1,1 0 0,1 4,16H18A3,3 0 0,1 21,19A3,3 0 0,1 18,22C17.17,22 16.42,21.66 15.88,21.12C15.5,20.73 15.5,20.1 15.88,19.71C16.27,19.32 16.9,19.32 17.29,19.71C17.47,19.89 17.72,20 18,20A1,1 0 0,0 19,19A1,1 0 0,0 18,18Z","hurricane":"M15,6.79C16.86,7.86 18,9.85 18,12C18,22 6,22 6,22C7.25,21.06 8.38,19.95 9.34,18.71C9.38,18.66 9.41,18.61 9.44,18.55C9.69,18.06 9.5,17.46 9,17.21C7.14,16.14 6,14.15 6,12C6,2 18,2 18,2C16.75,2.94 15.62,4.05 14.66,5.29C14.62,5.34 14.59,5.39 14.56,5.45C14.31,5.94 14.5,6.54 15,6.79M12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14Z","snowflake":"M20.79,13.95L18.46,14.57L16.46,13.44V10.56L18.46,9.43L20.79,10.05L21.31,8.12L19.54,7.65L20,5.88L18.07,5.36L17.45,7.69L15.45,8.82L13,7.38V5.12L14.71,3.41L13.29,2L12,3.29L10.71,2L9.29,3.41L11,5.12V7.38L8.5,8.82L6.5,7.69L5.92,5.36L4,5.88L4.47,7.65L2.7,8.12L3.22,10.05L5.55,9.43L7.55,10.56V13.45L5.55,14.58L3.22,13.96L2.7,15.89L4.47,16.36L4,18.12L5.93,18.64L6.55,16.31L8.55,15.18L11,16.62V18.88L9.29,20.59L10.71,22L12,20.71L13.29,22L14.7,20.59L13,18.88V16.62L15.5,15.17L17.5,16.3L18.12,18.63L20,18.12L19.53,16.35L21.3,15.88L20.79,13.95M9.5,10.56L12,9.11L14.5,10.56V13.44L12,14.89L9.5,13.44V10.56Z","floor1":"M12,3L2,12H5V20H19V12H22L12,3M10,8H14V18H12V10H10V8Z","floor2":"M12,3L2,12H5V20H19V12H22L12,3M9,8H13A2,2 0 0,1 15,10V12A2,2 0 0,1 13,14H11V16H15V18H9V14A2,2 0 0,1 11,12H13V10H9V8Z","therm-up":"M17.41 11.83L20.58 15L22 13.59L17.41 9L12.82 13.59L14.24 15L17.41 11.83M10 13V5C10 3.34 8.66 2 7 2S4 3.34 4 5V13C1.79 14.66 1.34 17.79 3 20S7.79 22.66 10 21 12.66 16.21 11 14C10.72 13.62 10.38 13.28 10 13M7 4C7.55 4 8 4.45 8 5V8H6V5C6 4.45 6.45 4 7 4Z","hazy":"M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64M14,15A1,1 0 0,0 13,14H3A1,1 0 0,0 2,15A1,1 0 0,0 3,16H13A1,1 0 0,0 14,15M22,15A1,1 0 0,0 21,14H17A1,1 0 0,0 16,15A1,1 0 0,0 17,16H21A1,1 0 0,0 22,15M10,19A1,1 0 0,0 11,20H20A1,1 0 0,0 21,19A1,1 0 0,0 20,18H11A1,1 0 0,0 10,19M3,19A1,1 0 0,0 4,20H7A1,1 0 0,0 8,19A1,1 0 0,0 7,18H4A1,1 0 0,0 3,19M12,9A3,3 0 0,1 15,12H17A5,5 0 0,0 12,7A5,5 0 0,0 7,12H9A3,3 0 0,1 12,9Z","partly-rainy":"M12.75,4.47C15.1,5.5 16.35,8.03 15.92,10.46C17.19,11.56 18,13.19 18,15V15.17C18.31,15.06 18.65,15 19,15A3,3 0 0,1 22,18A3,3 0 0,1 19,21H17C17,21 16,21 16,20C16,19 17,19 17,19H19A1,1 0 0,0 20,18A1,1 0 0,0 19,17H16V15A4,4 0 0,0 12,11A4,4 0 0,0 8,15H6A2,2 0 0,0 4,17A2,2 0 0,0 6,19H7C7,19 8,19 8,20C8,21 7,21 7,21H6A4,4 0 0,1 2,17A4,4 0 0,1 6,13H6.27C5,11.45 4.6,9.24 5.5,7.25C6.72,4.5 9.97,3.24 12.75,4.47M11.93,6.3C10.16,5.5 8.09,6.31 7.31,8.07C6.85,9.09 6.93,10.22 7.41,11.13C8.5,9.83 10.16,9 12,9C12.7,9 13.38,9.12 14,9.34C13.94,8.06 13.18,6.86 11.93,6.3M13.55,2.63C13,2.4 12.45,2.23 11.88,2.12L14.37,0.82L15.27,3.71C14.76,3.29 14.19,2.93 13.55,2.63M6.09,3.44C5.6,3.79 5.17,4.19 4.8,4.63L4.91,1.82L7.87,2.5C7.25,2.71 6.65,3.03 6.09,3.44M18,8.71C17.91,8.12 17.78,7.55 17.59,7L19.97,8.5L17.92,10.73C18.03,10.08 18.05,9.4 18,8.71M3.04,10.3C3.11,10.9 3.25,11.47 3.43,12L1.06,10.5L3.1,8.28C3,8.93 2.97,9.61 3.04,10.3M12,18.91C12.59,19.82 13,20.63 13,21A1,1 0 0,1 12,22A1,1 0 0,1 11,21C11,20.63 11.41,19.82 12,18.91M12,15.62C12,15.62 9,19 9,21A3,3 0 0,0 12,24A3,3 0 0,0 15,21C15,19 12,15.62 12,15.62Z","speedometer-slow":"M12 16C13.66 16 15 14.66 15 13C15 11.88 14.39 10.9 13.5 10.39L3.79 4.77L9.32 14.35C9.82 15.33 10.83 16 12 16M12 3C10.19 3 8.5 3.5 7.03 4.32L9.13 5.53C10 5.19 11 5 12 5C16.42 5 20 8.58 20 13C20 15.21 19.11 17.21 17.66 18.65H17.65C17.26 19.04 17.26 19.67 17.65 20.06C18.04 20.45 18.68 20.45 19.07 20.07C20.88 18.26 22 15.76 22 13C22 7.5 17.5 3 12 3M2 13C2 15.76 3.12 18.26 4.93 20.07C5.32 20.45 5.95 20.45 6.34 20.06C6.73 19.67 6.73 19.04 6.34 18.65C4.89 17.2 4 15.21 4 13C4 12 4.19 11 4.54 10.1L3.33 8C2.5 9.5 2 11.18 2 13Z","wardrobe":"M6 2C4.89 2 4 2.9 4 4V19C4 20.11 4.89 21 6 21V22H8V21H16V22H18V21C19.11 21 20 20.11 20 19V4C20 2.9 19.11 2 18 2H6M6 4H11V19H6V4M13 4H18V19H13V4M8 10V13H10V10H8M14 10V13H16V10H14Z","melt":"M8 17.85C8 19.04 7.11 20 6 20S4 19.04 4 17.85C4 16.42 6 14 6 14S8 16.42 8 17.85M16.46 12V10.56L18.46 9.43L20.79 10.05L21.31 8.12L19.54 7.65L20 5.88L18.07 5.36L17.45 7.69L15.45 8.82L13 7.38V5.12L14.71 3.41L13.29 2L12 3.29L10.71 2L9.29 3.41L11 5.12V7.38L8.5 8.82L6.5 7.69L5.92 5.36L4 5.88L4.47 7.65L2.7 8.12L3.22 10.05L5.55 9.43L7.55 10.56V12H2V13H22V12H16.46M9.5 12V10.56L12 9.11L14.5 10.56V12H9.5M20 17.85C20 19.04 19.11 20 18 20S16 19.04 16 17.85C16 16.42 18 14 18 14S20 16.42 20 17.85M14 20.85C14 22.04 13.11 23 12 23S10 22.04 10 20.85C10 19.42 12 17 12 17S14 19.42 14 20.85Z","fan-down":"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M19 19.17L22.17 16L23.59 17.41L19 22L14.41 17.41L15.83 16L19 19.17","fan-plus":"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z","fan1":"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M17 15V17H18V23H20V15H17Z","fan2":"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M16 15V17H19V18H18C16.9 18 16 18.9 16 20V23H21V21H18V20H19C20.11 20 21 19.11 21 18V17C21 15.9 20.11 15 19 15H16Z","fan3":"M13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19M12 13C11.43 13 11 12.55 11 12S11.43 11 12 11C12.54 11 13 11.45 13 12S12.54 13 12 13M21 21V20.5C21 19.67 20.33 19 19.5 19C20.33 19 21 18.33 21 17.5V17C21 15.89 20.1 15 19 15H16V17H19V18H17V20H19V21H16V23H19C20.11 23 21 22.11 21 21","rocket":"M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39C21.61 2.39 16.66 .269 11 5.93C8.81 8.12 7.5 10.53 6.65 12.64C6.37 13.39 6.56 14.21 7.11 14.77L9.24 16.89C9.79 17.45 10.61 17.63 11.36 17.35C13.5 16.53 15.88 15.19 18.07 13C23.73 7.34 21.61 2.39 21.61 2.39M14.54 9.46C13.76 8.68 13.76 7.41 14.54 6.63S16.59 5.85 17.37 6.63C18.14 7.41 18.15 8.68 17.37 9.46C16.59 10.24 15.32 10.24 14.54 9.46M8.88 16.53L7.47 15.12L8.88 16.53M6.24 22L9.88 18.36C9.54 18.27 9.21 18.12 8.91 17.91L4.83 22H6.24M2 22H3.41L8.18 17.24L6.76 15.83L2 20.59V22M2 19.17L6.09 15.09C5.88 14.79 5.73 14.47 5.64 14.12L2 17.76V19.17Z","fan-auto":"M12.5 2C8.93 2 8.14 5.96 10.13 9.65C9.72 9.97 9.4 10.39 9.21 10.87C8.28 10.68 7.23 10.25 6.73 9.26C5.56 6.89 2 7 2 11.5C2 15.07 5.95 15.85 9.64 13.87C9.96 14.27 10.39 14.59 10.88 14.79C10.68 15.71 10.24 16.75 9.26 17.24C6.9 18.42 7 22 11.5 22C12.31 22 13 21.78 13.5 21.41C13.19 20.67 13 19.86 13 19C13 17.59 13.5 16.3 14.3 15.28C14.17 14.97 14.03 14.65 13.86 14.34C14.26 14 14.57 13.59 14.77 13.11C15.26 13.21 15.78 13.39 16.25 13.67C17.07 13.25 18 13 19 13C20.05 13 21.03 13.27 21.89 13.74C21.95 13.37 22 12.96 22 12.5C22 8.92 18.03 8.13 14.33 10.13C14 9.73 13.59 9.42 13.11 9.22C13.3 8.29 13.74 7.24 14.73 6.75C17.09 5.57 17 2 12.5 2M12 11C12.54 11 13 11.45 13 12C13 12.55 12.54 13 12 13C11.43 13 11 12.55 11 12C11 11.45 11.43 11 12 11M18 15C16.89 15 16 15.9 16 17V23H18V21H20V23H22V17C22 15.9 21.1 15 20 15M18 17H20V19H18Z","auto":"M12.92 1.58L11.18 2.58L12.39 4.67L11.8 6.85L9 7.6L7.38 6L7.42 3.59L5.43 3.59L5.43 5.42L3.59 5.42L3.6 7.42L6 7.42L7.65 9.03L6.9 11.82L4.68 12.4L2.59 11.2L1.59 12.93L3.17 13.84L2.26 15.42L4 16.42L5.19 14.33L7.42 13.75L7.92 14.26L9.32 12.86L8.78 12.32L9.53 9.54L12.32 8.78L12.85 9.32L14.26 7.91L13.73 7.37L14.32 5.19L16.41 4L15.41 2.25L13.83 3.16L12.92 1.58M20.72 4L4 20.72L5.27 22L10.16 17.11C10.63 17.43 11.15 17.68 11.71 17.83C14.38 18.55 17.12 16.96 17.83 14.29C18.22 12.86 17.93 11.36 17.11 10.16L22 5.27L20.72 4M18.74 9C19.18 9.63 19.53 10.38 19.75 11.19C19.97 12 20.03 12.81 19.96 13.61L22.65 10.41L18.74 9M19.32 15.95C19 16.67 18.5 17.35 17.93 17.94C17.34 18.53 16.66 19 15.96 19.34L20.05 20.06L19.32 15.95M9 18.71L10.41 22.66L13.59 19.95C12.81 20 12 19.97 11.19 19.76C10.36 19.54 9.62 19.17 9 18.71Z","heat-wave":"M8.5 4.5L5.4 9.5L8.5 14.7L5.2 20.5L3.4 19.6L6.1 14.7L3 9.5L6.7 3.6L8.5 4.5M14.7 4.4L11.6 9.5L14.7 14.5L11.4 20.3L9.6 19.4L12.3 14.5L9.2 9.5L12.9 3.5L14.7 4.4M21 4.4L17.9 9.5L21 14.5L17.7 20.3L15.9 19.4L18.6 14.5L15.5 9.5L19.2 3.5L21 4.4"};
+
+const COL = { white: '#FFFFFF', black: '#000000', graydark: '#455A64', graylight: '#90A4AE', red: '#F44336', green: '#4CAF50', amber: '#FFC107',
+  heat: '#FF5722', cool: '#2196F3', fan_only: '#00BCD4', dry: '#FF9800', heat_cool: '#FFC107', off: '#9E9E9E' };
+// The disc behind the number. Auto uses graylight in the firmware, not amber.
+const DISC = { off: '#000000', heat: COL.heat, cool: COL.cool, fan_only: COL.fan_only, dry: COL.dry, heat_cool: COL.graylight };
+// The RGB LED ring colours from the set_mode_* scripts (red, green, blue as 0..1)
+const RING = { heat: [1, .533, .118], cool: [.498, .675, 1], fan_only: [.749, .98, 1], dry: [1, .753, .549], heat_cool: [1, .894, .804] };
+const MODE_TEXT = { off: 'OFF', heat: 'HEAT TO', cool: 'COOL TO', fan_only: 'FAN ONLY', dry: 'DEHUMIDIFY', heat_cool: 'AUTO TO' };
+const MODE_ICON = { off: 'snowflake', heat: 'fire', cool: 'snowflake', fan_only: 'fan', dry: 'drop', heat_cool: 'auto' };
+const MODE_COLOR = { off: COL.white, heat: COL.heat, cool: COL.cool, fan_only: COL.fan_only, dry: COL.dry, heat_cool: COL.heat_cool };
+// State icons for the fan speed (set_fan_*). The fan menu page uses different icons for some of them; that is how the config is written.
+const FAN_STATE_ICON = { 'auto': 'fan-auto', 'quiet': 'fan-down', 'low': 'fan1', 'medium': 'fan2', 'high': 'fan3', 'super high': 'fan-plus' };
+const PRESET_ICON = { none: ['leaf', COL.white], eco: ['leaf', COL.green], comfort: ['sofa', COL.amber], boost: ['rocket', COL.red] };
+// From the icon text_sensor lambda in nesp.yaml. Fog is mapped to F0F91, which is a wardrobe, not fog.
+const WEATHER = [
+  ['mdi:weather-sunny', 'sunny', 'Sunny'], ['mdi:weather-partly-cloudy', 'partly-cloudy', 'Partly cloudy'], ['mdi:weather-cloudy', 'cloudy', 'Cloudy'],
+  ['mdi:weather-night', 'night', 'Clear night'], ['mdi:weather-rainy', 'rainy', 'Rainy'], ['mdi:weather-partly-rainy', 'partly-rainy', 'Partly rainy'],
+  ['mdi:weather-light-showers', 'partly-rainy', 'Light showers'], ['mdi:weather-pouring', 'pouring', 'Pouring'], ['mdi:weather-lightning-rainy', 'lightning', 'Thunderstorm'],
+  ['mdi:weather-lightning', 'lightning', 'Lightning'], ['mdi:weather-snowy', 'snowy', 'Snowy'], ['mdi:snowflake-melt', 'melt', 'Sleet'],
+  ['mdi:weather-hail', 'hail', 'Hail'], ['mdi:weather-windy', 'windy', 'Windy'], ['mdi:weather-hazy', 'hazy', 'Hazy'],
+  ['mdi:weather-fog', 'wardrobe', 'Fog (shows a wardrobe, a bug in the config)'], ['mdi:weather-hurricane', 'hurricane', 'Hurricane'],
+];
+
+/* ---------- Pretend Home Assistant (the truth) ---------- */
+const ENT = { climate: 'climate.ac_living_room', z1: 'cover.zone_1_downstairs', z2: 'cover.zone_2_upstairs' };
+const initial = () => ({
+  mode: 'cool', lastMode: 'cool', set: 22.0, cur: 24.5, hum: 55, fan: 'auto', preset: 'none',
+  z1: 'open', z2: 'closed', z1t: 22.4, z1h: 48, z2t: 23.9, z2h: 52,
+  wIcon: 'mdi:weather-partly-cloudy', wTemp: 19, wFeel: 18, wLow: 12, wHigh: 21, wRain: 30,
+});
+let ha = initial();
+let lat = 150;
+
+/* ---------- What the device knows (updated by "state changes" after the delay) ---------- */
+let dev = JSON.parse(JSON.stringify(ha));
+let page = 'main';          // main_page, menu_page, mode_page, preset_page, fan_page
+let focusIdx = 0;
+
+const $ = (id) => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+const fmt1 = (x) => (Math.round(x * 10) / 10).toFixed(1);
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+
+/* ---------- Log ---------- */
+function log(kind, text) {
+  const li = document.createElement('li');
+  li.className = kind;
+  const t = new Date().toLocaleTimeString('en-NZ', { hour12: false });
+  li.textContent = `${t}  ${kind === 'out' ? '→' : kind === 'in' ? '←' : '·'} ${text}`;
+  const ul = $('log'); ul.prepend(li);
+  while (ul.children.length > 80) ul.lastChild.remove();
+}
+
+/* ---------- Device actions: homeassistant.action calls ---------- */
+function haAction(action, data) {
+  log('out', `${action} ${JSON.stringify(data)}`);
+  setTimeout(() => {
+    handleAction(action, data);
+    syncToDevice();
+  }, lat);
+}
+function handleAction(action, d) {
+  switch (action) {
+    case 'climate.set_temperature': ha.set = clamp(Math.round(d.temperature * 2) / 2, 16, 30); break;
+    case 'climate.turn_on': if (ha.mode === 'off') ha.mode = ha.lastMode || 'cool'; break;
+    case 'climate.toggle': if (ha.mode === 'off') ha.mode = ha.lastMode || 'cool'; else { ha.lastMode = ha.mode; ha.mode = 'off'; } break;
+    case 'climate.set_hvac_mode': if (d.hvac_mode !== 'off') ha.lastMode = d.hvac_mode; ha.mode = d.hvac_mode; break;
+    case 'climate.set_fan_mode': ha.fan = d.fan_mode; break;
+    case 'climate.set_preset_mode': ha.preset = d.preset_mode; break;
+    case 'cover.toggle': { const k = d.entity_id === ENT.z1 ? 'z1' : 'z2'; ha[k] = ha[k] === 'open' ? 'closed' : 'open'; break; }
+  }
+}
+function syncToDevice(quiet) {
+  // Everything the device subscribes to arrives as a state change
+  const changed = [];
+  for (const k of Object.keys(ha)) if (JSON.stringify(ha[k]) !== JSON.stringify(dev[k]) && k !== 'lastMode') changed.push(`${k}=${ha[k]}`);
+  if (!changed.length) return;
+  dev = JSON.parse(JSON.stringify(ha));
+  if (!quiet) log('in', changed.join(', '));
+  paintPanel();
+  render();
+}
+
+/* ---------- Dial input: the rotary encoder and its push button ---------- */
+function wake() { /* light.turn_on: backlight. The sim backlight is always on. */ }
+function rotate(dir) {
+  wake();
+  if (page === 'main') {
+    // sensor rotary_encoder.on_value: turn the system on when it is off
+    if (dev.mode === 'off') { haAction('climate.turn_on', { entity_id: ENT.climate }); return; }
+    // on_clockwise / on_anticlockwise: only when not off and not fan only
+    if (dev.mode === 'fan_only') { note('Fan only has no target temperature, so turning does nothing.'); return; }
+    haAction('climate.set_temperature', { entity_id: ENT.climate, temperature: dev.set + 0.5 * dir });
+  } else {
+    // LVGL moves focus between the enabled buttons, wrapping round
+    const n = buttons().length;
+    focusIdx = (focusIdx + dir + n) % n;
+    render();
+  }
+}
+function push() {
+  wake();
+  if (page === 'main') { showPage('menu'); return; }
+  const b = buttons()[focusIdx];
+  if (b) b.press();
+}
+let noteT = 0;
+function note(t) { const now = Date.now(); if (now - noteT > 1500) { log('note', t); noteT = now; } }
+
+/* ---------- Pages and menu buttons ---------- */
+function showPage(p) {
+  page = p;
+  focusIdx = Math.max(0, buttons().findIndex((b) => b.initial));
+  if (focusIdx < 0) focusIdx = 0;
+  render();
+}
+const goMain = () => showPage('main');
+const act = (a, d) => haAction(a, Object.assign({ entity_id: ENT.climate }, d));
+
+function buttons() {
+  if (page === 'menu') return [
+    { id: 'z2', x: 0, y: -210, icon: 'floor2', color: dev.z2 === 'open' ? COL.white : COL.graydark, label: 'Upstairs\nZone', press: () => haAction('cover.toggle', { entity_id: ENT.z2 }) },
+    { id: 'z1', x: 105, y: -182, icon: 'floor1', color: dev.z1 === 'open' ? COL.white : COL.graydark, label: 'Downstairs\nZone', press: () => haAction('cover.toggle', { entity_id: ENT.z1 }) },
+    { id: 'back', x: 182, y: -105, icon: 'back', color: COL.white, label: 'Back', press: goMain },
+    { id: 'power', x: 210, y: 0, icon: 'power', initial: true, color: dev.mode === 'off' ? COL.graydark : COL.white, label: dev.mode === 'off' ? 'Turn On' : 'Turn Off',
+      press: () => { haAction('climate.toggle', { entity_id: ENT.climate }); goMain(); } },
+    { id: 'mode', x: 182, y: 105, icon: MODE_ICON[dev.mode], color: MODE_COLOR[dev.mode], label: 'Mode', press: () => showPage('mode') },
+    { id: 'preset', x: 105, y: 182, icon: PRESET_ICON[dev.preset][0], color: PRESET_ICON[dev.preset][1], label: 'Presets', press: () => showPage('preset') },
+    { id: 'fan', x: 0, y: 210, icon: FAN_STATE_ICON[dev.fan], color: COL.white, label: 'Fan\nSpeed', press: () => showPage('fan') },
+  ];
+  if (page === 'mode') {
+    const m = (id, x, y, icon, hv, label, init) => ({ id, x, y, icon, label, initial: init, color: dev.mode === hv ? MODE_COLOR[hv] : COL.white,
+      press: () => { act('climate.set_hvac_mode', { hvac_mode: hv }); goMain(); } });
+    return [
+      { id: 'back', x: 105, y: -182, icon: 'back', color: COL.white, label: 'Back', press: () => showPage('menu') },
+      m('auto', 182, -105, 'auto', 'heat_cool', 'Auto'),
+      m('cool', 210, 0, 'snowflake', 'cool', 'Cool', true),
+      m('heat', 182, 105, 'fire', 'heat', 'Heat'),
+      m('fan', 105, 182, 'fan', 'fan_only', 'Fan'),
+      m('dry', 0, 210, 'drop', 'dry', 'Dehumidify'),
+    ];
+  }
+  if (page === 'preset') {
+    const p = (id, x, y, icon, name, label, init) => ({ id, x, y, icon, label, initial: init, color: dev.preset === name ? PRESET_ICON[name][1] : COL.white,
+      press: () => { act('climate.set_preset_mode', { preset_mode: dev.preset === name ? 'none' : name }); goMain(); } });
+    return [
+      { id: 'back', x: 182, y: -105, icon: 'back', color: COL.white, label: 'Back', press: () => showPage('menu') },
+      p('eco', 210, 0, 'leaf', 'eco', 'Eco', true),
+      p('comfort', 182, 105, 'sofa', 'comfort', 'Comfort'),
+      p('boost', 105, 182, 'rocket', 'boost', 'Boost'),
+    ];
+  }
+  if (page === 'fan') {
+    const f = (id, x, y, icon, mode, label, init) => ({ id, x, y, icon, label, initial: init, color: COL.white,
+      press: () => { act('climate.set_fan_mode', { fan_mode: mode }); goMain(); } });
+    return [
+      { id: 'back', x: 0, y: -210, icon: 'back', color: COL.white, label: 'Back', press: () => showPage('menu') },
+      f('auto', 105, -182, 'fan-auto', 'auto', 'Auto', true),
+      f('superhigh', 182, -105, 'fan3', 'super high', 'Super High'),
+      f('high', 210, 0, 'speedometer', 'high', 'High'),
+      f('medium', 182, 105, 'fan2', 'medium', 'Medium'),
+      f('low', 105, 182, 'speedometer-slow', 'low', 'Low'),
+      f('quiet', 0, 210, 'fan1', 'quiet', 'Quiet'),
+    ];
+  }
+  return [];
+}
+
+/* ---------- Drawing ---------- */
+const svg = $('screen');
+const V = {};   // handles to the persistent SVG nodes
+const MIN = 12, MAX = 34, A0 = 135, SWEEP = 270;
+const angleOf = (t) => A0 + (clamp(t, MIN, MAX) - MIN) / (MAX - MIN) * SWEEP;
+const pt = (r, deg) => [240 + r * Math.cos(deg * Math.PI / 180), 240 + r * Math.sin(deg * Math.PI / 180)];
+function arcPath(r, a1, a2) {
+  const [x1, y1] = pt(r, a1), [x2, y2] = pt(r, a2);
+  const large = (a2 - a1) > 180 ? 1 : 0;
+  return `M${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+}
+function icon(parent, name, size) {
+  const g = el('g', {}, parent);
+  const p = el('path', { d: ICONS[name] || '' }, g);
+  g._p = p; g._size = size;
+  g.set = (n, cx, cy, fill) => {
+    const s = g._size / 24;
+    g.setAttribute('transform', `translate(${(cx - g._size / 2).toFixed(1)} ${(cy - g._size / 2).toFixed(1)}) scale(${s})`);
+    if (n) p.setAttribute('d', ICONS[n] || '');
+    if (fill) p.setAttribute('fill', fill);
+  };
+  return g;
+}
+function text(parent, size, anchor = 'middle', fill = '#fff') {
+  return el('text', { 'font-family': 'Roboto, "Helvetica Neue", Arial, sans-serif', 'font-size': size, 'text-anchor': anchor, fill, 'dominant-baseline': 'central', style: 'white-space:pre' }, parent);
+}
+const measure = (() => { const c = document.createElement('canvas').getContext('2d'); return (s, size) => { c.font = `${size}px Roboto, Arial, sans-serif`; return c.measureText(s).width; }; })();
+
+function build() {
+  const defs = el('defs', {}, svg);
+  el('rect', { width: 480, height: 480, fill: '#000' }, svg);
+
+  /* main_page */
+  const m = V.main = el('g', { class: 'pg' }, svg);
+  V.ring = el('path', { d: arcPath(233, A0, A0 + SWEEP), fill: 'none', stroke: COL.graylight, 'stroke-width': 2 }, m);        // arc_bg
+  V.ticks = el('g', {}, m);                                                                                                     // meter_ticks
+  for (let i = 0; i <= 88; i++) {
+    const a = A0 + i / 88 * SWEEP, [x1, y1] = pt(240, a), [x2, y2] = pt(203, a);
+    el('line', { x1: x1.toFixed(1), y1: y1.toFixed(1), x2: x2.toFixed(1), y2: y2.toFixed(1), stroke: COL.graylight, 'stroke-width': 3 }, V.ticks);
+  }
+  V.knobG = el('g', { style: 'transition: transform .5s cubic-bezier(.3,.7,.3,1)' }, m);                                       // current_temp_arc knob
+  el('circle', { cx: 233, cy: 0, r: 6, fill: '#fff' }, V.knobG);
+  V.diff = el('path', { fill: 'none', stroke: '#fff', 'stroke-width': 2 }, m);                                                  // diff_temp_arc
+  V.needleG = el('g', { style: 'transition: transform .5s cubic-bezier(.3,.7,.3,1)' }, m);                                     // set_temp_needle
+  el('line', { x1: 175, y1: 0, x2: 230, y2: 0, stroke: '#fff', 'stroke-width': 8 }, V.needleG);
+  V.disc = el('circle', { cx: 240, cy: 240, r: 175, fill: '#000', style: 'transition: fill .5s' }, m);                         // mode_bg
+  V.setTxt = text(m, 90); V.setTxt.setAttribute('x', 240); V.setTxt.setAttribute('y', 244);                                     // set_temp_roller
+  V.celsius = text(m, 24); V.celsius.setAttribute('x', 340); V.celsius.setAttribute('y', 197); V.celsius.textContent = '°C';   // celsius_label
+  V.modeTxt = text(m, 24); V.modeTxt.setAttribute('x', 240); V.modeTxt.setAttribute('y', 140);                                  // mode_label
+  V.curTxt = text(m, 24); V.curTxt.setAttribute('x', 240); V.curTxt.setAttribute('y', 360);                                     // current_temp_label
+  V.z1 = icon(m, 'floor1', 24); V.z2 = icon(m, 'floor2', 24);                                                                    // zone_1_label, zone_2_label
+  V.fanSmall = icon(m, 'fan-auto', 48);                                                                                          // fan_icon_label
+  V.fanBig = icon(m, 'fan-auto', 90);                                                                                            // big_fan_icon_label
+  V.wIcon = icon(m, 'sunny', 90);                                                                                                // weather_icon_label
+  V.wTemp = text(m, 90); V.wTemp.setAttribute('x', 240); V.wTemp.setAttribute('y', 244);
+  V.wFore = el('g', {}, m);
+  V.wFeel = text(m, 24); V.wFeel.setAttribute('x', 240); V.wFeel.setAttribute('y', 370);
+
+  /* menu pages share one drawing */
+  const mp = V.menu = el('g', { class: 'pg' }, svg);
+  V.mDate = text(mp, 24, 'start', COL.graydark); V.mDate.setAttribute('x', 30); V.mDate.setAttribute('y', 180);
+  V.mWIcon = icon(mp, 'sunny', 24); V.mWTxt = text(mp, 24, 'start'); V.mWTxt.setAttribute('x', 60); V.mWTxt.setAttribute('y', 213);
+  V.mIndoor = text(mp, 24, 'start', COL.graydark); V.mIndoor.setAttribute('x', 30); V.mIndoor.setAttribute('y', 250); V.mIndoor.textContent = 'INDOOR';
+  V.mIcon2 = icon(mp, 'floor2', 24); V.mIcon1 = icon(mp, 'floor1', 24);
+  V.mZ = el('g', {}, mp);
+  V.mSel = el('g', {}, mp);
+  V.mBtns = el('g', {}, mp);
+}
+
+function setVisible(node, on) { node.style.opacity = on ? 1 : 0; node.style.pointerEvents = 'none'; }
+// A label made of text and icons side by side, centred or left aligned
+function runs(g, parts, size, x, y, align) {
+  g.replaceChildren();
+  const widths = parts.map((p) => (p.icon ? size * 0.95 : measure(p.t, size)));
+  const total = widths.reduce((a, b) => a + b, 0);
+  let cx = align === 'center' ? x - total / 2 : x;
+  parts.forEach((p, i) => {
+    if (p.icon) { const ic = icon(g, p.icon, size); ic.set(p.icon, cx + widths[i] / 2, y, '#fff'); }
+    else { const t = text(g, size, 'start'); t.setAttribute('x', cx); t.setAttribute('y', y); t.textContent = p.t; }
+    cx += widths[i];
+  });
+}
+
+function render() {
+  const onMain = page === 'main';
+  setVisible(V.main, onMain);
+  setVisible(V.menu, !onMain);
+  const mode = dev.mode;
+  const off = mode === 'off', fan = mode === 'fan_only';
+
+  /* --- main page --- */
+  V.disc.setAttribute('fill', DISC[mode]);
+  V.ticks.style.display = off ? 'none' : '';
+  const dial = !off && !fan;                          // roller, arc, needle, labels
+  V.knobG.style.display = dial ? '' : 'none';
+  V.needleG.style.display = dial ? '' : 'none';
+  V.diff.style.display = dial ? '' : 'none';
+  V.setTxt.style.display = dial ? '' : 'none';
+  V.celsius.style.display = dial ? '' : 'none';
+  V.curTxt.style.display = dial ? '' : 'none';
+  V.fanSmall.style.display = dial ? '' : 'none';
+  V.modeTxt.style.display = off ? 'none' : '';
+  V.z1.style.display = V.z2.style.display = off ? 'none' : '';
+  V.fanBig.style.display = fan ? '' : 'none';
+  for (const n of [V.wIcon, V.wTemp, V.wFore, V.wFeel]) n.style.display = off ? '' : 'none';
+
+  V.needleG.style.transform = `translate(240px,240px) rotate(${angleOf(dev.set)}deg)`;
+  V.knobG.style.transform = `translate(240px,240px) rotate(${angleOf(dev.cur)}deg)`;
+  const lo = Math.min(dev.set, dev.cur), hi = Math.max(dev.set, dev.cur);
+  V.diff.setAttribute('d', hi - lo < 0.01 ? '' : arcPath(230, angleOf(lo), angleOf(hi)));
+  V.setTxt.textContent = fmt1(dev.set);
+  V.modeTxt.textContent = MODE_TEXT[mode];
+  V.curTxt.textContent = `${fmt1(dev.cur)}°C`;
+  V.z1.set('floor1', 225, 330, dev.z1 === 'open' ? COL.white : COL.graydark);
+  V.z2.set('floor2', 255, 330, dev.z2 === 'open' ? COL.white : COL.graydark);
+  V.fanSmall.set(FAN_STATE_ICON[dev.fan], 240, 450, '#fff');
+  V.fanBig.set(FAN_STATE_ICON[dev.fan], 240, 240, '#fff');
+  const wi = WEATHER.find((w) => w[0] === dev.wIcon) || WEATHER[0];
+  V.wIcon.set(wi[1], 240, 140, '#fff');
+  V.wTemp.textContent = `${Math.round(dev.wTemp)}°C`;
+  V.wFeel.textContent = `Feels like ${Math.round(dev.wFeel)}°C`;
+  runs(V.wFore, [{ icon: 'therm-up' }, { t: ` ${Math.round(dev.wLow)}–${Math.round(dev.wHigh)}°C  ` }, { icon: 'rainy' }, { t: ` ${Math.round(dev.wRain)}%` }], 24, 240, 310, 'center');
+
+  /* --- led ring (rgb_ring) --- */
+  const c = RING[mode];
+  const led = c ? `rgb(${Math.round(c[0] * 255)},${Math.round(c[1] * 255)},${Math.round(c[2] * 255)})` : 'transparent';
+  document.documentElement.style.setProperty('--led', c ? led.replace('rgb', 'rgba').replace(')', ',.55)') : 'transparent');
+  $('ledring').style.borderColor = led;
+
+  /* --- menu pages --- */
+  if (!onMain) {
+    const d = new Date();
+    V.mDate.textContent = `${d.toLocaleDateString('en-NZ', { weekday: 'short' }).toUpperCase()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    V.mWIcon.set(wi[1], 42, 213, '#fff');
+    V.mWTxt.textContent = `${Math.round(dev.wTemp)}°C`;
+    V.mIcon2.set('floor2', 42, 285, '#fff'); V.mIcon1.set('floor1', 42, 313, '#fff');
+    runs(V.mZ, [{ t: `${Math.round(dev.z2t)}°C ` }, { icon: 'drop' }, { t: ` ${Math.round(dev.z2h)}%` }], 24, 60, 285, 'start');
+    const l2 = V.mZ.appendChild(el('g'));
+    runs(l2, [{ t: `${Math.round(dev.z1t)}°C ` }, { icon: 'drop' }, { t: ` ${Math.round(dev.z1h)}%` }], 24, 60, 313, 'start');
+    const bs = buttons();
+    focusIdx = Math.min(focusIdx, bs.length - 1);
+    V.mBtns.replaceChildren();
+    bs.forEach((b, i) => {
+      const g = el('g', {}, V.mBtns);
+      const cx = 240 + b.x, cy = 240 + b.y;
+      el('circle', { cx, cy, r: 25, fill: 'none', stroke: i === focusIdx ? '#2196F3' : 'none', 'stroke-width': 3 }, g);
+      const ic = icon(g, b.icon, 48); ic.set(b.icon, cx, cy + 2, b.color);
+    });
+    // selected_menu_label: right aligned, centred about x=295
+    V.mSel.replaceChildren();
+    const lines = bs[focusIdx].label.split('\n');
+    const w = Math.max(...lines.map((s) => measure(s, 48)));
+    lines.forEach((s, i) => {
+      const t = text(V.mSel, 48, 'end'); t.setAttribute('x', 295 + w / 2); t.setAttribute('y', 240 + (i - (lines.length - 1) / 2) * 50); t.textContent = s;
+    });
+    $('where').textContent = `${{ menu: 'Menu', mode: 'Mode', preset: 'Presets', fan: 'Fan speed' }[page]}: ${bs[focusIdx].label.replace('\n', ' ')}`;
+  } else $('where').textContent = off ? 'Main screen: off, showing the weather' : fan ? 'Main screen: fan only' : `Main screen: target ${fmt1(dev.set)}°C`;
+
+  svg.setAttribute('aria-label', $('where').textContent);
+}
+
+/* ---------- The control panel on the right ---------- */
+function paintPanel() {
+  $('hMode').value = ha.mode; $('hSet').value = ha.set; $('hCur').value = ha.cur; $('hHum').value = ha.hum; $('hFan').value = ha.fan; $('hPreset').value = ha.preset;
+  $('vSet').textContent = `${fmt1(ha.set)}°C`; $('vCur').textContent = `${fmt1(ha.cur)}°C`; $('vHum').textContent = `${Math.round(ha.hum)}%`;
+  $('wIcon').value = ha.wIcon; $('wTemp').value = ha.wTemp; $('wFeel').value = ha.wFeel; $('wRain').value = ha.wRain; $('wLow').value = ha.wLow; $('wHigh').value = ha.wHigh;
+  $('vWt').textContent = `${ha.wTemp}°C`; $('vWf').textContent = `${ha.wFeel}°C`; $('vWr').textContent = `${ha.wRain}%`; $('vWl').textContent = `${ha.wLow}°C`; $('vWh').textContent = `${ha.wHigh}°C`;
+  $('z1').checked = ha.z1 === 'open'; $('z2').checked = ha.z2 === 'open';
+  $('vLat').textContent = `${lat} ms`;
+}
+function fromPanel(key, val, label) {
+  ha[key] = val;
+  if (key === 'mode' && val !== 'off') ha.lastMode = val;
+  log('note', `Home Assistant: ${label} is now ${val}`);
+  setTimeout(() => syncToDevice(), lat);
+  paintPanel();
+}
+function wirePanel() {
+  $('wIcon').innerHTML = WEATHER.map((w) => `<option value="${w[0]}">${w[2]}</option>`).join('');
+  const num = (id, key, label) => $(id).addEventListener('input', (e) => fromPanel(key, parseFloat(e.target.value), label));
+  $('hMode').addEventListener('change', (e) => fromPanel('mode', e.target.value, 'hvac mode'));
+  num('hSet', 'set', 'target'); num('hCur', 'cur', 'room temperature'); num('hHum', 'hum', 'humidity');
+  $('hFan').addEventListener('change', (e) => fromPanel('fan', e.target.value, 'fan mode'));
+  $('hPreset').addEventListener('change', (e) => fromPanel('preset', e.target.value, 'preset'));
+  $('wIcon').addEventListener('change', (e) => fromPanel('wIcon', e.target.value, 'weather icon'));
+  num('wTemp', 'wTemp', 'outside temperature'); num('wFeel', 'wFeel', 'feels like'); num('wRain', 'wRain', 'rain chance'); num('wLow', 'wLow', 'forecast low'); num('wHigh', 'wHigh', 'forecast high');
+  $('z1').addEventListener('change', (e) => fromPanel('z1', e.target.checked ? 'open' : 'closed', ENT.z1));
+  $('z2').addEventListener('change', (e) => fromPanel('z2', e.target.checked ? 'open' : 'closed', ENT.z2));
+  $('lat').addEventListener('input', (e) => { lat = parseInt(e.target.value, 10); $('vLat').textContent = `${lat} ms`; });
+  $('clear').addEventListener('click', () => { $('log').replaceChildren(); });
+  $('reset').addEventListener('click', () => { ha = initial(); dev = JSON.parse(JSON.stringify(ha)); page = 'main'; paintPanel(); render(); log('note', 'Everything reset'); });
+  $('cw').addEventListener('click', () => rotate(1));
+  $('ccw').addEventListener('click', () => rotate(-1));
+  $('push').addEventListener('click', () => push());
+}
+
+/* ---------- Pointer, wheel and keyboard on the dial ---------- */
+function wireDial() {
+  const d = $('device');
+  let wheelAcc = 0;
+  d.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    wheelAcc += e.deltaY;
+    while (Math.abs(wheelAcc) >= 40) { rotate(wheelAcc > 0 ? 1 : -1); wheelAcc -= Math.sign(wheelAcc) * 40; }
+  }, { passive: false });
+  let drag = null;
+  const ang = (e) => { const r = d.getBoundingClientRect(); return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI; };
+  d.addEventListener('pointerdown', (e) => { d.setPointerCapture(e.pointerId); drag = { a: ang(e), acc: 0, moved: false, x: e.clientX, y: e.clientY }; d.focus({ preventScroll: true }); });
+  d.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    let da = ang(e) - drag.a; if (da > 180) da -= 360; if (da < -180) da += 360;
+    drag.a = ang(e); drag.acc += da;
+    if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 8) drag.moved = true;
+    while (Math.abs(drag.acc) >= 18) { rotate(drag.acc > 0 ? 1 : -1); drag.acc -= Math.sign(drag.acc) * 18; }
+  });
+  const end = () => { if (drag && !drag.moved) push(); drag = null; };
+  d.addEventListener('pointerup', end);
+  d.addEventListener('pointercancel', () => { drag = null; });
+  d.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); rotate(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); rotate(-1); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); push(); }
+    else if (e.key === 'Escape' && page !== 'main') { e.preventDefault(); goMain(); }
+  });
+}
+
+/* ---------- The room warms and cools ---------- */
+setInterval(() => {
+  if (!$('drift').checked) return;
+  const target = (ha.mode === 'off' || ha.mode === 'fan_only') ? ha.wTemp : ha.set;
+  const rate = (ha.mode === 'off' || ha.mode === 'fan_only') ? 0.05 : ha.preset === 'boost' ? 0.2 : 0.1;
+  const heating = ha.mode === 'heat' || ha.mode === 'heat_cool';
+  const cooling = ha.mode === 'cool' || ha.mode === 'heat_cool';
+  let next = ha.cur;
+  if (ha.mode === 'off' || ha.mode === 'fan_only') next += Math.sign(target - ha.cur) * Math.min(rate, Math.abs(target - ha.cur));
+  else if ((ha.cur < target && heating) || (ha.cur > target && cooling)) next += Math.sign(target - ha.cur) * Math.min(rate, Math.abs(target - ha.cur));
+  else if (ha.mode === 'dry') next += Math.sign(target - ha.cur) * Math.min(rate / 2, Math.abs(target - ha.cur));
+  next = Math.round(next * 10) / 10;
+  if (next !== ha.cur) { ha.cur = next; setTimeout(() => syncToDevice(true), lat); paintPanel(); }
+}, 1500);
+setInterval(() => { if (page !== 'main') render(); }, 15000);   // the clock on the menu
+
+const q = new URLSearchParams(location.search);
+document.documentElement.dataset.theme = q.get('theme') || '';
+if (window.parent !== window) {
+  // Inside a page: hide the title (the page has its own) and tell the page how tall we are
+  document.querySelector('header.top h1').style.display = 'none';
+  document.querySelector('header.top .links').style.display = 'none';
+  document.documentElement.classList.add('embed');
+  const tell = () => parent.postMessage({ type: 'kh-demo-height', src: location.pathname, height: document.documentElement.scrollHeight }, '*');
+  new ResizeObserver(tell).observe(document.body); addEventListener('load', tell);
+}
+build(); wirePanel(); paintPanel(); render();
+log('note', 'Ready. This is a simulation: no real device or Home Assistant is involved.');
+</script>
+</body>
+</html>

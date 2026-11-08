@@ -1,0 +1,3341 @@
+substitutions:
+  name: rotary-clock-hp-light
+  device_name: rotary-clock-hp-light
+  friendly_name: Rotary Clock, Heat Pump and Light Dimmer
+  board: esp32-s3-devkitc-1
+  area: Office # (options: Office, Lounge, Kitchen, Master Bedroom, ...)
+  device_description: 'Rotary Display thermostat on ZX2D10GE01R-V4848 with WT32-S3-WROVER-N16R8 with ST7701S display'
+  
+#####SETTINGS:#####
+  current_weather: weather.home_2
+  climate_entity: climate.ac_living_room
+  screensaver: 30min
+  static_ip: 192.168.0.124
+  light_entity_lounge: light.lounge_dimmer_2
+  light_control: light.lounge_dimmer_2
+  clock_timezone: "Pacific/Auckland"
+  clock_background_image: "clock" # (options are: clock, hacker, starrysky)
+  clock_type: "default_clock" # (options are: default_clock, flip_clock, clock_7segment)
+  
+  imagewidth: "360" # ILI9341 (breadboard 2.4") "240" or GC9A01A (Ball v1) "240" or ST7789V (Xingzhi Cube) "240"
+  imageheight: "360" # ILI9341 (breadboard 2.4") "320" or GC9A01A (Ball v1) "240" or ST7789V (Xingzhi Cube) "240"
+  screenwidth: "480"
+  screenheight: "480"
+  displaymodel: "GC9A01A" # ILI9341 (breadboard 2.4"), GC9A01A (Ball v1) or ST7789V (Xingzhi Cube)
+  invertcolors: "false" # ILI9341 (breadboard 2.4") "false" or GC9A01A (Ball v1) "true" or ST7789V (Xingzhi Cube) "true"
+
+  # file_path: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images
+  file_path: /config/www/images/voice-assistant-main/assets/images
+
+  backlight_pin: "38" # Display Backlight
+  lcd_cs_pin: "21"          # Display CS (Chip Select)
+  lcd_dc_pin: "10"          # Display DC (Data/Command)
+  lcd_de_pin: "39"          #
+  lcd_reset_pin: "18"       # Display Reset
+  vsync_pin: "48"
+  hsync_pin: "40"
+  pclk_pin: "45"
+  spi_clk_pin: "47"         # SPI Clock
+  spi_mosi_pin: "41"        # SPI MOSI (Data Out)
+
+  clock_background_file: /config/www/images/voice_assistant_main/assets/images/Other/${screenwidth}x${screenheight}/${clock_background_image}.png
+  # testgif: /config/www/gifs/va_talking.gif
+  # weathersvg: /config/www/images/weather_icons/animated/clear-day.svg
+  weather_img_filepath: /config/www/images/weather_icons/static
+  # startup_sound_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/sounds/${startup_sound}.flac
+
+  loading_illustration_background_color: "000000"
+  idle_illustration_background_color: "000000"
+  listening_illustration_background_color: "000000"
+  thinking_illustration_background_color: "000000"
+  replying_illustration_background_color: "000000"
+  error_illustration_background_color: "000000"
+
+
+  # These unique characters have been extracted from every test file of every language available on https://github.com/home-assistant/intents (14 March 2024)
+  # However, the Figtree font only contains Latin characters, so there is no point using this... unlessyou change the font configuration accordingly.
+  allowed_characters: " !#%'()+,-./0123456789:;<>?@ABCDEFGHIJKLMNOPQRSTUVWYZ[]_abcdefghijklmnopqrstuvwxyz{|}°²³µ¿ÁÂÄÅÉÖÚßàáâãäåæçèéêëìíîðñòóôõöøùúûüýþāăąćčďĐđēėęěğĮįıļľŁłńňőřśšťũūůűųźŻżŽžơưșțΆΈΌΐΑΒΓΔΕΖΗΘΚΜΝΠΡΣΤΥΦάέήίαβγδεζηθικλμνξοπρςστυφχψωϊόύώАБВГДЕЖЗИКЛМНОПРСТУХЦЧШЪЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђєіїјљњћאבגדהוזחטיכלםמןנסעפץצקרשת،ءآأإئابةتجحخدذرزسشصضطظعغفقكلمنهوىيٹپچڈکگںھہیےংকচতধনফবযরলশষস়ািু্చయలిెొ్ംഅആഇഈഉഎഓകഗങചജഞടഡണതദധനപഫബഭമയരറലളവശസഹാിീുൂെേൈ്ൺൻർൽൾაბგდევზთილმნოპრსტუფქყშჩცძჭხạảấầẩậắặẹẽếềểệỉịọỏốồổỗộớờởợụủứừửữựỳ—、一上不个中为主乾了些亮人任低佔何作供依侧係個側偵充光入全关冇冷几切到制前動區卧厅厨及口另右吊后吗启吸呀咗哪唔問啟嗎嘅嘛器圍在场執場外多大始安定客室家密寵对將小少左已帘常幫幾库度庫廊廚廳开式後恆感態成我戲戶户房所扇手打执把拔换掉控插摄整斯新明是景暗更最會有未本模機檯櫃欄次正氏水沒没洗活派温測源溫漏潮激濕灯為無煙照熱燈燥物狀玄现現瓦用發的盞目着睡私空窗立笛管節簾籬紅線红罐置聚聲脚腦腳臥色节著行衣解設調請謝警设调走路車车运連遊運過道邊部都量鎖锁門閂閉開關门闭除隱離電震霧面音頂題顏颜風风食餅餵가간감갔강개거게겨결경고공과관그금급기길깥꺼껐꼽나난내네놀누는능니다닫담대더데도동됐되된됨둡드든등디때떤뜨라래러렇렌려로료른를리림링마많명몇모무문물뭐바밝방배변보부불블빨뽑사산상색서설성세센션소쇼수스습시신실싱아안않알았애야어얼업없었에여연열옆오온완외왼요운움워원위으은을음의이인일임입있작잠장재전절정제져조족종주줄중줘지직진짐쪽차창천최추출충치침커컴켜켰쿠크키탁탄태탬터텔통트튼티파팬퍼폰표퓨플핑한함해했행혀현화활후휴힘，？"
+
+  # Add support for non-unicode characters by using better glyphset
+  font_glyphsets: "GF_Latin_Core"
+  # for Greek use "Noto Sans" for other languages use a compatible font family
+  font_family: Figtree
+
+<<: !include common.yaml
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  comment: ${device_description}
+  min_version: 2025.5.0
+  name_add_mac_suffix: false
+  # platformio_options:
+  #   board_build.flash_mode: dio
+  #   board_build.arduino.memory_type: qio_opi
+  on_boot:
+    priority: 600
+    then:
+      - light.turn_on: backlight
+      # - light.turn_on:
+      #     id: rgb_led_ring
+      #     effect: rainbow
+      # - script.execute: draw_display
+      # - delay: 30s
+      # - if:
+      #     condition:
+      #       lambda: return id(init_in_progress);
+      #     then:
+      #       - lambda: id(init_in_progress) = false;
+      #       - script.execute: draw_display
+
+
+esp32:
+  board: ${board}
+  flash_size: 16MB
+  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: ${static_ip}
+    gateway: 192.168.0.1
+    subnet: 255.255.255.0
+    dns1: 192.168.0.20
+    dns2: 192.168.0.21
+
+captive_portal:
+
+external_components:
+  - source: github://pr#10342
+    components: [lvgl]
+    refresh: 1h
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: ${clock_timezone}
+    servers:
+     - 0.pool.ntp.org
+     - 1.pool.ntp.org
+     - 2.pool.ntp.org
+    on_time_sync:
+      - script.execute: time_update
+    on_time:
+      - seconds: '*'
+        then:
+          - script.execute: time_update
+      # - minutes: '*'  #### remove this if not required
+      #   seconds: 0
+      #   then:
+      #     - script.execute: time_update
+      - hours: 2,3,4,5
+        minutes: 5
+        seconds: 0
+        then:
+          - switch.turn_on: switch_antiburn
+      - hours: 2,3,4,5
+        minutes: 35
+        seconds: 0
+        then:
+          - switch.turn_off: switch_antiburn
+
+
+button:
+  - platform: restart
+    name: "Restart"
+    entity_category: config
+
+  - platform: factory_reset
+    name: "Factory Reset"
+    id: Reset
+    entity_category: config
+
+  - platform: template      # Home assistant control
+    id: lounge_dimmer_increase_10
+    name: "Lounge Dimmer +10"
+    icon: "mdi:vibrate"
+    on_press:  
+      - homeassistant.service:
+          service: script.lounge_dimmer_increase
+  
+  - platform: template      # Home assistant control
+    id: lounge_dimmer_decrease_10
+    name: "Lounge Dimmer -10"
+    icon: "mdi:vibrate"
+    on_press:  
+      - homeassistant.service:
+          service: script.lounge_dimmer_decrease
+
+number:
+  #### Not sure if i'll use screensavver or turn off screen
+  - platform: template
+    id: clock_delay_seconds
+    name: "Clock Screensaver Delay"
+    unit_of_measurement: "s"
+    icon: "mdi:timer-outline"
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    mode: box
+    min_value: 5
+    max_value: 600
+    step: 5
+    initial_value: 10
+
+sensor:
+  ### ROTARY ENCODER
+  - platform: rotary_encoder
+    name: Rotary Encoder
+    id: rotary
+    icon: mdi:cached
+    internal: true
+    pin_a:
+      number: 6
+      inverted: true
+      mode: INPUT
+    pin_b:
+      number: 5
+      inverted: true
+      mode: INPUT
+    min_value: 0
+    max_value: 100
+    restore_mode: ALWAYS_ZERO
+    filters:
+      debounce: 0.25s
+    on_value:
+      then:
+        - light.turn_on: backlight
+
+    on_clockwise:
+      then:
+        - logger.log: "Turned Clockwise"
+        - if:
+            condition:
+              lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+            then:
+              - logger.log: "Light Dimmer doing something +5% ..............."
+              - homeassistant.action:
+                  action: light.turn_on
+                  data:
+                    entity_id: ${light_entity_lounge}
+                    brightness_step_pct: "5"  # Increase by 5% each step
+              - script.execute: update_light_display  # Update your LVGL display
+    on_anticlockwise:
+      - logger.log: "Turned Anticlockwise"
+      - if:
+          condition:
+            lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+          then:
+            - logger.log: "Light Dimmer doing something -5% ..............."
+            - homeassistant.action:
+                action: light.turn_on
+                data:
+                  entity_id: ${light_entity_lounge}
+                  brightness_step_pct: "-5"  # Decrease by 5% each step
+            - script.execute: update_light_display
+
+  - platform: wifi_signal
+    name: "WiFi Signal dB"
+    id: wifi_signal_db
+    update_interval: 60s
+    internal: true
+    
+  - platform: internal_temperature
+    id: cpu_temperature
+    name: "CPU Temperature"
+    # filters:
+    #   - lambda: return (x * 1.8) + 32;
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    entity_category: diagnostic
+    
+  - platform: template
+    id: esp_memory
+    icon: mdi:memory
+    name: ESP Free Memory
+    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
+    unit_of_measurement: 'kB'
+    state_class: measurement
+    entity_category: "diagnostic"
+    update_interval: 60s
+  
+  # Reports the WiFi signal strength in %
+  - platform: copy
+    id: wifi_signal_db_percent
+    source_id: wifi_signal_db
+    name: "WiFi Strength"
+    icon: mdi:wifi
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+      - throttle: 60s
+    unit_of_measurement: "%"
+    entity_category: diagnostic
+
+
+  #### HASS - Lounge Light Brightness ####
+  
+  - platform: homeassistant
+    name: "Lounge Light Brightness"
+    id: lounge_light_brightness
+    entity_id: ${light_entity_lounge}
+    attribute: brightness
+    # Convert HA brightness (0-255) to percentage (0-100)
+    filters:
+      - lambda: |-
+          // Handle None/null values when light is off
+          if (isnan(x)) {
+            return 0.0;
+          }
+          // Convert HA brightness (0-255) to percentage (0-100)
+          return x / 2.55;
+    # Optional: Update display when brightness changes from any source
+    on_value:
+      then:
+        - script.execute: update_light_display
+
+  
+  ### HASS - MET Temperature
+  - platform: homeassistant
+    entity_id: ${current_weather}
+    id: met_temp
+    attribute: temperature
+    internal: true
+    on_value:
+      # - lvgl.label.update:
+      #     id: weather_temp_label
+      #     text:
+      #       format: "%.0f°C"
+      #       args: [ 'round(x)' ]
+      - lvgl.label.update:
+          id: menu_weather_label
+          text: 
+            format: "%.0f°C"
+            args: [ 'round(id(met_temp).state)']
+
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: min_temp
+    internal: true
+    attribute: min_temp
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: max_temp
+    internal: true
+    attribute: max_temp
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: target_temperature
+    entity_category: diagnostic
+    attribute: temperature
+    internal: true
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: target_temp_high
+    entity_category: diagnostic
+    attribute: target_temp_high
+    internal: true
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: target_temp_low
+    entity_category: diagnostic
+    attribute: target_temp_low
+    internal: true
+
+  ### HASS - HVAC SET TEMP
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: set_temperature
+    attribute: temperature
+    internal: true
+    on_value:
+      - lvgl.indicator.update:
+          id: set_temp_needle
+          value: !lambda return x * 10;
+      - lvgl.indicator.update:
+          id: diff_temp_arc
+          start_value: !lambda |-
+            return id(set_temperature).state < id(current_temperature).state ? id(set_temperature).state * 10 : id(current_temperature).state * 10;
+          end_value: !lambda |-
+            return id(set_temperature).state < id(current_temperature).state ? id(current_temperature).state * 10 : id(set_temperature).state * 10;
+      - lvgl.roller.update:
+          id: set_temp_roller
+          selected_index: !lambda return 2 * (x - 16);  # returns index of roller value
+
+  ### HASS - HVAC CURRENT TEMP
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: current_temperature
+    attribute: current_temperature
+    internal: true
+    on_value:
+      - lvgl.arc.update:
+          id: current_temp_arc
+          value: !lambda return x * 10;
+      - lvgl.indicator.update:
+          id: diff_temp_arc
+          start_value: !lambda |-
+            return id(set_temperature).state < id(current_temperature).state ? id(set_temperature).state * 10 : id(current_temperature).state * 10;
+          end_value: !lambda |-
+            return id(set_temperature).state < id(current_temperature).state ? id(current_temperature).state * 10 : id(set_temperature).state * 10;
+      - lvgl.label.update:
+          id: current_temp_label
+          text:
+            format: "%.1f°C"
+            args: [ 'round(x * 10) / 10' ]
+
+  ### HASS - HVAC CURRENT HUMIDITY
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: current_humidity
+    attribute: current_humidity
+    internal: true
+
+binary_sensor:
+
+  - platform: status
+    name: "Status"
+    icon: mdi:check-network-outline
+    entity_category: diagnostic
+  
+  ### CENTRE PUSH BUTTON
+  - platform: gpio
+    name: Button
+    id: push_button
+    icon: mdi:circle-outline
+    internal: true
+    pin:
+      number: 3
+      mode: INPUT
+      inverted: true
+      ignore_strapping_warning: true
+## Cant get it to work reliably    
+#     filters:
+# #      - invert:
+#       - delayed_on: 200ms 
+#       # When a signal ON is received, wait until publishing an ON state. If an OFF value is received while waiting, the ON action is discarded. 
+#       # Only send an ON value if the binary sensor has stayed ON for at least the specified time period. 
+#       ## Useful for debouncing push buttons.
+#       - delayed_off: 100ms 
+#       # When a signal OFF is received, wait until publishing an OFF state. 
+#       # If an ON value is received while waiting, the OFF action is discarded. 
+#       # Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period. 
+#       ## Useful for debouncing push buttons.
+#       - delayed_on_off: 300ms 
+#       # Only send an ON or OFF value if the binary sensor has stayed in the same state for at least the specified time period. 
+      ## Useful for debouncing binary switches.
+    # on_press:
+    #   then:
+    #     # - script.execute:
+    #     #     id: vibrate
+    #     #     length_ms: 5
+    #     - light.turn_on: backlight 
+    #     - if:
+    #         condition:
+    #           lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+    #         then:
+    #           - logger.log: "Light Dimmer Pushing That Button should be doing something ..............."
+    #           - script.execute: 
+    #               id: vibrate
+    #               length_ms: 50
+    #           - script.execute: toggle_lounge_light
+            # else:
+            #   # On other pages - existing functionality
+            #   - logger.log: "Short press on other page"
+            #   - script.execute: 
+            #       id: vibrate
+            #       length_ms: 50
+    on_click:
+      - min_length: 50ms
+        max_length: 999ms
+        then:
+          - light.turn_on: backlight 
+          - if:
+              condition:
+                lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+              then:
+                - logger.log: "Short Press - Going from Light Dimmer Page to Clock Page"
+                - script.execute: 
+                    id: vibrate
+                    length_ms: 50
+                - script.execute: goto_clock_page
+                # - logger.log: "Light Dimmer Pushing That Button should be doing something ..............."
+                # - script.execute: 
+                #     id: vibrate
+                #     length_ms: 50
+                #   - script.execute: toggle_lounge_light
+      - min_length: 1000ms
+        max_length: 5000ms
+        then:
+          - light.turn_on: backlight 
+          - if:
+              condition:
+                lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+              then:
+                # - logger.log: "Light Dimmer Pushing That Button should be doing something ..............."
+                # - script.execute: 
+                #     id: vibrate
+                #     length_ms: 50
+                # - script.execute: goto_clock_page
+                - logger.log: "Long Press - Light Dimmer Toggle ON/OFF"
+                - script.execute: 
+                    id: vibrate
+                    length_ms: 50
+                - script.execute: toggle_lounge_light
+output:
+  - platform: ledc
+    pin: ${backlight_pin}
+    id: backlight_output
+    inverted: false 
+
+  - platform: template
+    id: clock_color_r
+    type: float
+    write_action:
+      - lambda: |-
+          // Nothing to do — value is just stored
+          return;
+
+  - platform: template
+    id: clock_color_g
+    type: float
+    write_action:
+      - lambda: |-
+          return;
+
+  - platform: template
+    id: clock_color_b
+    type: float
+    write_action:
+      - lambda: |-
+          return;
+
+light:
+  - platform: monochromatic
+    id: backlight 
+    name: Screen Backlight
+    icon: "mdi:television"
+    entity_category: config
+    output: backlight_output
+    restore_mode: ALWAYS_ON
+    default_transition_length: 250ms
+  
+  - platform: esp32_rmt_led_strip
+    id: rgb_led_ring
+    name: RGB LED Ring
+    disabled_by_default: false
+    entity_category: config
+    pin: 4
+    default_transition_length: 0s
+    chipset: WS2812
+    num_leds: 13
+    rgb_order: grb
+    effects:
+      - pulse:
+      - random:
+      - strobe:
+      - addressable_rainbow:
+      - addressable_color_wipe:
+      - addressable_scan:
+      - addressable_twinkle:
+      - addressable_random_twinkle:
+      - addressable_fireworks:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 250ms
+          update_interval: 250ms
+          min_brightness: 50%
+          max_brightness: 100%
+      - pulse:
+          name: "Fast Pulse"
+          transition_length: 100ms
+          update_interval: 100ms
+          min_brightness: 50%
+          max_brightness: 100%
+      - strobe:
+          name: Police Effect
+          colors:
+            - state: true
+              brightness: 100%
+              red: 100%
+              green: 0%
+              blue: 0%
+              duration: 400ms
+            - state: true
+              brightness: 100%
+              red: 0%
+              green: 0%
+              blue: 100%
+              duration: 400ms
+
+  - platform: rgb
+    id: clock_color_picker
+    name: "Clock Color"
+    entity_category: config
+    red: clock_color_r
+    green: clock_color_g
+    blue: clock_color_b
+
+script:
+
+## Lounge Dimmer Scripts ##
+###########################
+  - id: update_light_display
+    then:
+      - delay: 100ms  # Wait for HA to update
+      # - if:
+      #     condition:
+      #       lambda: 'return strcmp(id(active_lvgl_page).c_str(), "lounge_light_page") == 0;'
+      #     then:
+      - if:
+          condition:
+            # Check if light is actually on, state == 0 then off
+            lambda: 'return id(lounge_light_brightness).state == 0;'
+          then:
+            # Light is OFF and brightness is 0 - show as inactive
+            - lvgl.label.update:
+                id: clock_lounge_light_button_label
+                text: "\U000F0336"  # mdi:lightbulb-outline (outline icon)
+                styles: style_menu_button_label  # Reset to original style
+          else:
+            # Light is ON or has brightness - show as active
+            - lvgl.label.update:
+                id: clock_lounge_light_button_label
+                text: "\U000F0335"  # mdi:lightbulb (filled icon)
+                text_color: 0xDAA520  # Goldenrod color
+      - lvgl.arc.update:
+          id: lounge_light_arc
+          value: !lambda |-
+            // Check if light is actually on
+            if (!id(lounge_light_brightness).state) {
+              return 0;  // Light is off, show 0
+            }
+            
+            // Check if brightness sensor has valid state
+            if (!id(lounge_light_brightness).has_state()) {
+              return 0;
+            }
+            
+            float brightness = id(lounge_light_brightness).state;
+            if (isnan(brightness) || brightness < 0) {
+              return 0;
+            }
+            
+            return (int)brightness;
+          # # value: !lambda 'return (int)id(lounge_light_brightness).state;'
+          # value: !lambda |-
+          #   if (id(lounge_light_brightness).has_state()) {
+          #     return (int)id(lounge_light_brightness).state;
+          #   }
+          #   return 0;
+      # # Update arc color based on brightness
+      # - lvgl.arc.update:
+      #     id: lounge_light_arc
+          arc_color: !lambda |-
+            // Check if light is off first
+            if (!id(lounge_light_brightness).state) {
+              return lv_color_hex(0x1a1a1a);  // Dark gray when off
+            }
+            //float brightness = id(lounge_light_brightness).state;
+            // Check if sensor has valid state
+            if (!id(lounge_light_brightness).has_state()) {
+              return lv_color_hex(0x1a1a1a);  // Dark gray for unavailable
+            }
+            
+            float brightness = id(lounge_light_brightness).state;
+            
+            // Handle NaN or invalid values
+            if (isnan(brightness) || brightness < 0) {
+              return lv_color_hex(0x1a1a1a);  // Dark gray for invalid values
+            }
+            
+            // Define 10 color steps from 5% to 100%
+            if (brightness < 11) {
+              return lv_color_hex(0xed9e00);
+            } else if (brightness < 21) {
+              return lv_color_hex(0xEEA719);
+            } else if (brightness < 31) {
+              return lv_color_hex(0xF0B133);
+            } else if (brightness < 41) {
+              return lv_color_hex(0xF2BB4C);
+            } else if (brightness < 51) {
+              return lv_color_hex(0xF4C466);
+            } else if (brightness < 61) {
+              return lv_color_hex(0xF6CE7F);
+            } else if (brightness < 71) {
+              return lv_color_hex(0xF7D899);
+            } else if (brightness < 81) {
+              return lv_color_hex(0xF9E1B2);
+            } else if (brightness < 91) {
+              return lv_color_hex(0xFBEBCC);
+            } else if (brightness < 101) {
+              return lv_color_hex(0xFDF5E5);
+            } else {
+              return lv_color_hex(0xed9e00);
+            };
+      - lvgl.label.update:
+          id: lounge_light_label 
+          text: !lambda |-
+            return std::to_string((int)id(lounge_light_brightness).state) + "%";
+      - lvgl.roller.update:
+          id: lounge_light_roller
+          selected_index: !lambda |-
+            // Get current brightness percentage (0-100)
+            float brightness = id(lounge_light_brightness).state;
+            
+            // Map brightness to roller index based on your roller options
+            // Method 1: If roller has 5% increments (0%, 5%, 10%, 15%, ... 100%) = 21 total options
+            int index = (int)(brightness / 5);
+            
+            ESP_LOGI("roller_update", "Brightness: %.1f%%, Roller index: %d", brightness, index);
+            return index;
+
+  - id: toggle_lounge_light
+    then:
+      - homeassistant.service:
+          service: light.toggle
+          data:
+            entity_id: ${light_entity_lounge}
+
+  - id: light_toggle_vibrate
+    then: 
+      - switch.turn_on: vibration
+      - delay: 0.1s
+      - logger.log: "light_toggle_vibrate"
+      - switch.turn_off: vibration
+      - homeassistant.action:
+          action: light.toggle
+          data:
+            entity_id: ${light_entity_lounge}
+
+  - id: long_vibrate
+    then:
+      - switch.turn_on: vibration
+      - delay: 2s
+      - logger.log: "long vibrate"
+      - switch.turn_off: vibration
+
+  - id: display_off
+    then:
+      - light.turn_off: backlight
+  - id: display_on
+    then:
+      - light.turn_on: backlight
+  
+  - id: set_mode_off
+    then:
+      - lvgl.label.update:
+          id: mode_label
+          text_color: mode_off
+          text: "OFF \U000F1A43"  # mdi:heat-pump
+      - lvgl.widget.update:
+          id: mode_bg
+          bg_color: black
+      - light.turn_off: rgb_led_ring
+      - lvgl.label.update:
+          id: clock_heatpump_icon_label
+          text_color: darkgrey
+          text: "\U000F1A44"  # mdi:heat-pump-outline
+
+  - id: set_mode_heat
+    then:
+      - lvgl.label.update:
+          id: mode_label
+          text_color: mode_heat
+          text: "HEAT \U000F0238"
+      - lvgl.widget.update:
+          id: mode_bg
+          bg_color: mode_heat
+      - light.turn_on:
+          id: rgb_led_ring
+          brightness: 100%
+          red:   1.000
+          green: 0.341
+          blue:  0.133
+      - lvgl.label.update:
+          id: clock_heatpump_icon_label
+          text_color: mode_heat
+          text: "\U000F0238" # mdi:fire
+      - lvgl.label.update:
+          id: nesp_mode_icon_label
+          text_color: mode_heat
+          text: "\U000F0238" # mdi:fire
+  
+  - id: set_mode_cool
+    then:
+      - lvgl.label.update:
+          id: mode_label
+          text_color: mode_cool
+          text: "COOL \U000F0717"
+      - lvgl.widget.update:
+          id: mode_bg
+          bg_color: mode_cool
+      - light.turn_on:
+          id: rgb_led_ring
+          brightness: 100%
+          red: 0.129
+          green: 0.588
+          blue: 0.953
+      - lvgl.label.update:
+          id: clock_heatpump_icon_label
+          text_color: mode_cool
+          text: "\U000F0717"  # mdi:snowflake
+      - lvgl.label.update:
+          id: nesp_mode_icon_label
+          text_color: mode_cool
+          text: "\U000F0717"  # mdi:snowflake
+
+  - id: set_mode_dry
+    then:
+      - lvgl.label.update:
+          id: mode_label
+          text_color: mode_dry
+          text: "DRY \U000F058E"
+      - lvgl.widget.update:
+          id: mode_bg
+          bg_color: mode_fan
+      - light.turn_on:
+          id: rgb_led_ring
+          brightness: 100%
+          red: 1.000
+          green: 0.596
+          blue: 0.000
+      - lvgl.label.update:
+          id: clock_heatpump_icon_label
+          text_color: mode_dry
+          text: "\U000F058E"  # mdi:water-percent
+      - lvgl.label.update:
+          id: nesp_mode_icon_label
+          text_color: mode_dry
+          text: "\U000F058E"  # mdi:water-percent
+  
+  - id: set_mode_heat_cool # auto
+    then:
+      # - script.execute: show_widgets
+      - lvgl.label.update:
+          id: mode_label
+          text_color: mode_heat_cool
+          text: "AUTO \U000F1A79"
+      - lvgl.widget.update:
+          id: mode_bg
+          bg_color: graylight
+      - light.turn_on:
+          id: rgb_led_ring
+          brightness: 100%
+          red:   1.000
+          green: 0.894
+          blue:  0.804
+      - lvgl.label.update:
+          id: clock_heatpump_icon_label
+          text_color: mode_heat_cool
+          text: "\U000F1A79"  # mdi:sun-snowflake-variant
+      - lvgl.label.update:
+          id: nesp_mode_icon_label
+          text_color: mode_heat_cool
+          text: "\U000F1A79"  # mdi:sun-snowflake-variant
+
+  #### fan UI scripts ####
+  - id: set_fan_auto
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F171D"  #fan-auto
+  - id: set_fan_quiet
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F146D"  # mdi:fan-chevron-down
+  - id: set_fan_low
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F1472"  # mdi:fan-speed-1
+  - id: set_fan_medium
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F1473"  # mdi:fan-speed-2
+  - id: set_fan_high
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F1474"  # mdi:fan-speed-3
+  - id: set_fan_super_high
+    then:
+      - lvgl.label.update:
+          id: nesp_fan_button_label
+          text: "\U000F146E"  # mdi:fan-chevron-up
+  
+  # Page navigate with animation
+  - id: goto_clock_page
+    then:
+      - lvgl.page.show:
+          id: clock_page
+          animation: FADE_OUT
+          time: 500ms
+      - script.execute: update_light_display
+  - id: goto_heatpump_page
+    then:
+      - lvgl.page.show:
+          id: heatpump_page
+          animation: FADE_OUT
+          time: 500ms
+  - id: goto_weather_page
+    then:
+      - lvgl.page.show:
+          id: weather_page
+          animation: FADE_OUT
+          time: 500ms
+  - id: goto_lounge_light_page
+    then:
+      - lvgl.page.show:
+          id: lounge_light_page
+          animation: FADE_OUT
+          time: 500ms
+  
+  - id: goto_fan_page
+    then:
+      - lvgl.page.show:
+          id: fan_page
+          animation: FADE_OUT
+          time: 500ms
+  - id: goto_mode_page
+    then:
+      - lvgl.page.show:
+          id: mode_page
+          animation: FADE_IN
+          time: 500ms
+  - id: goto_preset_page
+    then:
+      - lvgl.page.show:
+          id: preset_page
+          animation: FADE_IN
+          time: 500ms
+  
+  - id: vibrate
+    parameters:
+      length_ms: int
+    then:
+      # XXX doesn't delay properly for short lengths (10-100ms)
+      - switch.turn_on: vibration
+      - delay: !lambda return length_ms;
+      - switch.turn_off: vibration
+
+  - id: time_update
+    then:
+      - lvgl.arc.update:
+          id: second_hand_arc
+          value: !lambda |-
+            return id(sntp_time).now().second;
+
+      - lvgl.arc.update:
+          id: minute_hand_arc
+          value: !lambda |-
+            return id(sntp_time).now().minute;
+
+      - lvgl.arc.update:
+          id: hour_hand_arc
+          value: !lambda |-
+            auto now = id(sntp_time).now();
+            return std::fmod(now.hour, 12) * 60 + now.minute;
+    
+      - lvgl.label.update:
+          id: lbl_time_h
+          text: !lambda |-
+             return id(sntp_time).now().strftime("%H");      
+      - lvgl.label.update:
+          id: lbl_time_m
+          text: !lambda |-
+             return id(sntp_time).now().strftime(":%M");
+      
+      - lvgl.label.update:
+          id: time_date_day_label
+          text: !lambda |-
+             return id(sntp_time).now().strftime("%a");
+      
+      - lvgl.label.update:
+          id: time_date_date_label
+          text: !lambda |-
+             return id(sntp_time).now().strftime("%d");
+      
+      - lvgl.label.update:
+          id: time_date_month_label
+          text: !lambda |-
+             return id(sntp_time).now().strftime("%b");
+
+  #### Screensaver ####
+  - id: reset_screensaver
+    then:
+      - lambda: |-
+          id(show_clock) = false;
+          id(idle_seconds) = 0;
+
+
+switch:
+  - platform: template
+    id: ticks_switch
+    name: "Clock Second Ticks On/Off"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    turn_on_action:
+      # Show meter with ticks, hide meter without ticks
+      - lvgl.widget.update:
+          id: clock_face_with_ticks
+          hidden: false
+      - lvgl.widget.update:
+          id: clock_face_no_ticks
+          hidden: true
+    turn_off_action:
+      # Hide meter with ticks, show meter without ticks
+      - lvgl.widget.update:
+          id: clock_face_with_ticks
+          hidden: true
+      - lvgl.widget.update:
+          id: clock_face_no_ticks
+          hidden: false
+  
+  - platform: gpio
+    pin: 7 #Vibrating motor | Feedback for human-computer interaction |            GPIO 7
+    id: vibration
+    name: Vibration Motor
+    icon: mdi:vibrate
+    internal: true
+
+  ### DISPLAY ANTI BURN-IN
+  - platform: template
+    name: Antiburn
+    id: switch_antiburn
+    icon: mdi:television-shimmer
+    optimistic: true
+    internal: true
+    turn_on_action:
+      - logger.log: "Starting Antiburn"
+      - light.turn_off: backlight 
+      - if:
+          condition: lvgl.is_paused
+          then:
+            - lvgl.resume:
+            - lvgl.widget.redraw:
+            - delay: 1s
+      - lvgl.pause:
+          show_snow: true
+    turn_off_action:
+      - logger.log: "Stopping Antiburn"
+      - if:
+          condition: lvgl.is_paused
+          then:
+            - lvgl.resume:
+            - lvgl.widget.redraw:
+            - delay: 1s
+            - lvgl.pause:
+      - light.turn_on: backlight 
+
+
+  - platform: template
+    id: show_text
+    name: Show Text
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+  
+  - platform: template
+    id: clock_enabled
+    name: "Clock Screensaver"
+    icon: "mdi:clock-outline"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+    on_turn_off:
+      # If it was showing, hide it immediately
+      - lambda: |-
+          if (id(show_clock)) id(show_clock) = false;
+          id(idle_seconds) = 0;
+      # - display.page.show: idle_page
+      - component.update: main_display
+
+  - platform: template
+    id: clock_24h
+    name: "Clock 24h Format"
+    icon: "mdi:clock-time-four-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: clock_show_seconds
+    name: "Clock Show Seconds"
+    icon: "mdi:timer-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON  # starts with seconds visible
+
+  - platform: template
+    id: clock_show_date
+    name: "Clock Show Date"
+    icon: "mdi:calendar"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: clock_show_dots
+    name: "Clock Show Dots"
+    icon: "mdi:dots-circle"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: clock_show_wallpaper
+    name: "Clock Show Wallpaper"
+    icon: "mdi:dots-circle"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+globals:
+  - id: active_lvgl_page
+    type: std::string
+  
+  - id: init_in_progress
+    type: bool
+    restore_value: false
+    initial_value: "true"
+
+  - id: idle_seconds
+    type: int
+    restore_value: no
+    initial_value: "0"
+
+  - id: show_clock
+    type: bool
+    restore_value: no
+    initial_value: "false"
+
+
+image:
+ 
+  rgb565:
+    - file: ${clock_background_file}
+      id: clock_background
+      resize: 480x480
+      # type: RGB565
+      transparency: alpha_channel
+    #### This is for the weather icon on the clock ####
+    - file: ${weather_img_filepath}/night.png
+      id: night_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/cloudy.png
+      id: cloudy_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/hurricane.png
+      id: hurricane_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/hurricane.png
+      id: exceptional_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/haze.png
+      id: haze_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/fog.png
+      id: fog_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/pouring.png
+      id: pouring_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/partly_rainy.png
+      id: partly_rainy_img
+      resize: 100x100
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/sunny.png
+      resize: 150x150
+      id: sunny_img
+      transparency: alpha_channel
+    - file: ${weather_img_filepath}/partly-cloudy.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: partly_cloudy_img
+    - file: ${weather_img_filepath}/rainy.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: rainy_img
+    - file: ${weather_img_filepath}/snowy.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: snowy_img
+    - file: ${weather_img_filepath}/lightning.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: lightning_img
+    - file: ${weather_img_filepath}/lightning-rainy.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: lightning_rainy_img
+    - file: ${weather_img_filepath}/windy.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: windy_img
+    - file: ${weather_img_filepath}/hail.png
+      resize: 100x100
+      transparency: alpha_channel
+      id: hail_img
+    - file: ${weather_img_filepath}/unknown.svg
+      resize: 100x100
+      transparency: alpha_channel
+      id: unknown_img
+
+# MATERIAL COLOR PALETTE
+# COLORS FROM HOME ASSISTANT BASE
+# https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+
+# check if white or black on color and color on black
+# https://webaim.org/resources/contrastchecker/
+
+# packages:
+#   colors: !include colors/HOMEASSISTANT
+
+color:
+
+- id: idle_color
+  hex: ${idle_illustration_background_color}
+# - id: listening_color
+#   hex: ${listening_illustration_background_color}
+# - id: thinking_color
+#   hex: ${thinking_illustration_background_color}
+# - id: replying_color
+#   hex: ${replying_illustration_background_color}
+# - id: loading_color
+#   hex: ${loading_illustration_background_color}
+
+- id: error_color
+  hex: ${error_illustration_background_color}
+
+- id: black
+  red:   0.0000
+  green: 0.0000
+  blue:  0.0000
+  white: 0.0000
+
+# #263238 - 900
+- id: graydarker
+  red: 0.149
+  green: 0.196
+  blue: 0.220
+  white: 0.0000
+
+# #455A64 - 700
+- id: graydark
+  red: 0.271
+  green: 0.353
+  blue: 0.392
+  white: 0.0000
+
+# #607D8B - 500
+- id: gray
+  red: 0.376
+  green: 0.490
+  blue: 0.545
+  white: 0.0000
+
+# #90A4AE - 300
+- id: graylight
+  red: 0.565
+  green: 0.643
+  blue: 0.682
+  white: 0.0000
+
+# #CFD8DC - 100
+- id: graylighter
+  red: 0.812
+  green: 0.847
+  blue: 0.863
+  white: 0.0
+
+- id: white
+  red:   1.0000
+  green: 1.0000
+  blue:  1.0000
+  white: 0.0000
+
+### BASIC COLORS
+
+- id: red # F44336      RGB (244, 67, 54)
+  red: 0.957
+  green: 0.263
+  blue: 0.212
+  white: 0.0
+
+### STATE COLORS
+
+# AUTO - green
+- id: mode_auto
+  red: 0.298
+  green: 0.686
+  blue: 0.314
+  white: 0.0
+
+# OFF - gray 500
+- id: mode_off
+  red: 0.620
+  green: 0.620
+  blue: 0.620
+  white: 0.0
+
+# ECO - green - #4CAF50
+- id: mode_eco
+  red: 0.298
+  green: 0.686
+  blue: 0.314
+  white: 0.0
+
+- id: green
+  red: 0.298
+  green: 0.686
+  blue: 0.314
+  white: 0.0  
+
+# COOL - blue - #2196F3
+- id: mode_cool
+  red: 0.129
+  green: 0.588
+  blue: 0.953
+  white: 0.0
+
+- id: blue
+  red: 0.129
+  green: 0.588
+  blue: 0.953
+  white: 0.0  
+
+# HEAT - deep orange - #FF5722
+- id: mode_heat
+  red: 1.000
+  green: 0.341
+  blue: 0.133
+  white: 0.0
+
+- id: deep_orange
+  red: 1.000
+  green: 0.341
+  blue: 0.133
+  white: 0.0  
+
+# DRY - orange - #FF9800
+- id: mode_dry
+  red: 1.000
+  green: 0.596
+  blue: 0.000
+  white: 0.0
+
+- id: orange
+  red: 1.000
+  green: 0.596
+  blue: 0.000
+  white: 0.0  
+
+# FAN - cyan - #00BCD4
+- id: mode_fan
+  red: 0.000
+  green: 0.737
+  blue: 0.831
+  white: 0.0
+
+- id: cyan
+  red: 0.000
+  green: 0.737
+  blue: 0.831
+  white: 0.0  
+
+# HEAT_COOL - Amber - ##FFC107
+- id: mode_heat_cool
+  red: 1.000
+  green: 0.757
+  blue: 0.027
+  white: 0.0
+
+- id: amber
+  red: 1.000
+  green: 0.757
+  blue: 0.027
+  white: 0.0  
+
+# IDLE - Teal - #009688
+- id: mode_idle
+  red: 0.000
+  green: 0.588
+  blue: 0.533
+  white: 0.0
+
+- id: teal
+  red: 0.000
+  green: 0.588
+  blue: 0.533
+  white: 0.0
+
+font:
+ 
+  - file: #'gfonts://Roboto@400'
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    id: font_clock_h
+    size: 200
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]
+  - file: #'gfonts://Roboto@400'
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 100
+    id: font_clock_colon
+    size: 280
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]
+  
+  - file: #'gfonts://Roboto@400'
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    id: font_clock_m
+    size: 150
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]
+  
+  - file: #'gfonts://Roboto@400'
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    id: font_clock_date
+    size: 50
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]
+  
+  - file:
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    id: antonio_50  # use instead of roboto_med
+    size: 50
+    bpp: 4
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]  
+  - file:
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    id: antonio_med  # use instead of roboto_med
+    size: 50
+    bpp: 4
+    glyphsets:
+      - ${font_glyphsets}
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F050F", # mdi:thermometer
+          "\U000F058E", # mdi:water-percent
+          "\U000F0425", # mdi:power
+          "\U000F0238", # mdi:fire
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F004D", # mdi:arrow-left
+          ]
+
+  - file:
+      type: gfonts
+      family: Antonio #Fredoka #Orbitron
+      weight: 400
+    glyphs: ' -0123456789.°C'
+    id: antonio_huge
+    size: 90
+    bpp: 4
+    extras:
+      # https://pictogrammers.github.io
+      - file: "fonts/materialdesignicons-webfont.ttf"
+        glyphs: [
+          "\U000F0150", # mdi:clock-outline
+          "\U000F1A44", # mdi:heat-pump-outline
+          "\U000F0769", # mdi:ceiling-light
+          "\U000F0336", # mdi:lightbulb-outline
+          "\U000F0335", # mdi:lightbulb
+          "\U000F006A", # mdi:autorenew
+          "\U000F032A", # mdi:leaf
+          "\U000F1A43", # mdi:heat-pump
+          "\U000F035C", # mdi:menu
+          "\U000F0E6E", # mdi:weather-cloudy-arrow-right
+          "\U000F0210", # mdi:fan
+          "\U000F171D", # mdi:fan-auto
+          "\U000F146D", # mdi:fan-chevron-down
+          "\U000F146E", # mdi:fan-chevron-up
+          "\U000F1472", # mdi:fan-speed-1
+          "\U000F0F86", # mdi:speedometer-slow
+          "\U000F1A79", # mdi:sun-snowflake-variant
+          "\U000F1473", # mdi:fan-speed-2
+          "\U000F04C5", # mdi:speedometer
+          "\U000F1474", # mdi:fan-speed-3
+          "\U000F146F", # mdi:fan-plus
+          "\U000F0717", # mdi:snowflake
+          "\U000F0594", # mdi:weather-night (clear)
+          "\U000F0590", # mdi:weather-cloudy (cloudy)
+          "\U000F0898", # mdi:weather-hurricane (cyclone, tropical_cyclone)
+          "\U000F0F30", # mdi:weather-hazy (dust, dusty, haze, hazy)
+          "\U000F0591", # mdi:weather-fog (fog)
+          "\U000F12CB", # mdi:snowflake-melt (frost)
+          "\U000F0596", # mdi:weather-pouring (heavy_shower, heavy_showers, rain)
+          "\U000F0F33", # mdi:weather-partly-rainy (light_rain)
+                        # mdi:weather-light-showers (light_shower, light_showers)
+          "\U000F0599", # mdi:weather-sunny (mostly_sunny, sunny)
+          "\U000F0595", # mdi:weather-partly-cloudy (partly_cloudy)
+          "\U000F0597", # mdi:weather-rainy (shower, showers)
+          "\U000F0598", # mdi:weather-snowy (snow)
+          "\U000F0593", # mdi:weather-lightning
+          "\U000F067E", # mdi:weather-lightning-rainy (storm, storms)
+          "\U000F059D", # mdi:weather-windy (wind, windy)
+          "\U000F0592", # mdi:weather-hail
+          "\U000F004D", # mdi:arrow-left
+          ]
+
+text_sensor:
+  - platform: template
+    id: device_last_restart
+    name: 'Last Restart'
+    icon: mdi:clock
+    entity_category: diagnostic
+
+  - platform: version
+    id: esphome_version
+    name: 'ESPHome Version'
+    hide_timestamp: true
+    icon: mdi:source-branch
+    entity_category: diagnostic
+    # on_value:
+    #   then:
+    #     - lvgl.label.update:
+    #         id: esphome_version_label
+    #         text:
+    #           format: "%s"
+    #           args: [ 'id(esphome_version).state.c_str()' ]
+
+  - platform: wifi_info
+    mac_address:
+      id: mac_address
+      name: "MAC Address"
+      icon: mdi:network-pos
+      entity_category: diagnostic
+      # on_value:
+      #     - lvgl.label.update:
+      #         id: connected_mac_label
+      #         text:
+      #           format: "%s"
+      #           args: [ 'id(mac_address).state.c_str()' ]
+
+    ip_address:
+      id: ip_address
+      name: "IP Address"
+      icon: mdi:ip-network
+      entity_category: diagnostic
+      # on_value:
+      #   then:
+      #     - lvgl.label.update:
+      #         id: ip_address_label
+      #         text:
+      #           format: "%s"
+      #           args: [ 'id(ip_address).state.c_str()' ]
+
+    ssid:
+      id: connected_ssid
+      name: "Connected SSID"
+      icon: mdi:wifi-check
+      entity_category: diagnostic
+      # on_value:
+      #   then:
+      #     - lvgl.label.update:
+      #         id: connected_ssid_label
+      #         text:
+      #           format: "%s"
+      #           args: [ 'id(connected_ssid).state.c_str()' ]
+
+  ### HASS - MET weather
+  - platform: homeassistant
+    entity_id: ${current_weather}
+    id: met_weather
+    internal: true
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: hvac_action
+    entity_category: diagnostic
+    internal: true
+    attribute: hvac_action
+
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: preset_mode
+    entity_category: diagnostic
+    internal: true
+    attribute: preset_mode # Import Home Assistant climate entity state
+
+
+  ### HASS - HVAC MODE
+  - platform: homeassistant
+    id: hvac_mode
+    entity_id: ${climate_entity}
+    # attribute: hvac_mode
+    internal: true
+    on_value:
+      - lambda: |-
+          if (x.compare("off") == 0) {
+            id(set_mode_off).execute();
+          } else if (x.compare("heat") == 0) {
+            id(set_mode_heat).execute();
+          } else if (x.compare("cool") == 0) {
+            id(set_mode_cool).execute();
+          } else if (x.compare("dry") == 0) {
+            id(set_mode_dry).execute();
+          } else if (x.compare("auto") == 0) {
+            id(set_mode_heat_cool).execute();
+          }
+
+  ### HASS - HVAC FAN SPEED
+  - platform: homeassistant
+    entity_id: ${climate_entity}
+    id: fan_mode
+    attribute: fan_mode
+    internal: true
+    on_value:
+      - lambda: |-
+          if (x.compare("auto") == 0) {
+            id(set_fan_auto).execute();
+          } else if (x.compare("quiet") == 0) {
+            id(set_fan_quiet).execute();
+          } else if (x.compare("low") == 0) {
+            id(set_fan_low).execute();
+          } else if (x.compare("medium") == 0) {
+            id(set_fan_medium).execute();
+          } else if (x.compare("high") == 0) {
+            id(set_fan_high).execute();
+          } else if (x.compare("super high") == 0) {
+            id(set_fan_super_high).execute();
+          }
+
+  # ### HASS - HVAC PRESET
+  # - platform: homeassistant
+  #   entity_id: ${climate_entity}
+  #   id: preset_mode
+  #   attribute: preset_mode
+  #   internal: true
+  #   on_value:
+  #     - lambda: |-
+  #         if (x.compare("none") == 0) {
+  #           id(set_preset_none).execute();
+  #         } else if (x.compare("eco") == 0) {
+  #           id(set_preset_eco).execute();
+  #         } else if (x.compare("comfort") == 0) {
+  #           id(set_preset_comfort).execute();
+  #         } else if (x.compare("boost") == 0) {
+  #           id(set_preset_boost).execute();
+  #         }
+  
+  ### HASS - MET Weather Image
+  - platform: homeassistant
+    entity_id: ${current_weather}
+    id: weather_condition
+    # attribute: condition
+    internal: true
+    on_value:
+        then:
+          # Update weather_condition
+          # !include { file: weather_icons_update.yaml, vars: { size: "${size}", id: weather_condition_icon, input_id: weather_condition  } }
+          - logger.log:
+              format: "Weather image value: %s"
+              args: ["x.c_str()"]
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "clear-night";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: night_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "cloudy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: cloudy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "exceptional";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: exceptional_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "fog";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: fog_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "hail";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: hail_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "lightning";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: lightning_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "lightning-rainy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: lightning_rainy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "partlycloudy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: partly_cloudy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "pouring";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: pouring_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "rainy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: rainy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "snowy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: snowy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "sunny";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: sunny_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "windy";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: windy_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "unknown";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: unknown_img
+
+          - if:
+              condition:
+                lambda: 'return id(weather_condition).state == "unavailable";'
+              then:
+                lvgl.image.update:
+                  id: weather_condition_icon
+                  src: unknown_img
+
+
+
+
+
+spi:
+  clk_pin:
+    number: 47
+    allow_other_uses: true
+  mosi_pin:
+    number: 41
+    allow_other_uses: true
+
+
+display:
+  - platform: st7701s
+    id: main_display
+    spi_mode: MODE0
+    # model: ${displaymodel} # use SPI mode instead of this
+    invert_colors: ${invertcolors}
+    data_rate: 10MHz #10MHz
+    color_order: RGB
+    auto_clear_enabled: false
+    update_interval: 0.1s
+    dimensions:
+      width: ${screenwidth}
+      height: ${screenheight}
+    cs_pin: 21
+    de_pin: 39
+    vsync_pin: 48
+    hsync_pin: 40
+    pclk_pin:
+      number: 45
+      ignore_strapping_warning: true
+    pclk_frequency: 15MHz
+    pclk_inverted: false
+    hsync_pulse_width: 10
+    hsync_back_porch:  10
+    hsync_front_porch: 10
+    vsync_pulse_width:  2
+    vsync_back_porch:  12
+    vsync_front_porch: 14
+    data_pins:
+      blue:
+        - number: 47                # LCD_D0  = b0
+          allow_other_uses: true
+        - number: 41                # LCD_D1  = b1
+          allow_other_uses: true
+        - 0                         # LCD_D2  = b2
+        - 42                        # LCD_D3  = b3
+        - 14                        # LCD_D4  = b4
+      green:
+        - 8                         # LCD_D5  = g0
+        - 13                        # LCD_D6  = g1
+        - 18                        # LCD_D7  = g2
+        - 12                        # LCD_D8  = g3
+        - 11                        # LCD_D9  = g4
+        - 17                        # LCD_D10 = g5
+      red:
+        - 10                        # LCD_D11 = r0
+        - 16                        # LCD_D12 = r1
+        - 9                         # LCD_D13 = r2
+        - 15                        # LCD_D14 = r3
+        - 46                        # LCD_D15 = r4
+    init_sequence:
+      # Reference: wireless-tag sample code: 
+      # https://github.com/wireless-tag-com/ZX2D10GE01R-V4848/blob/master/main/screen.c
+      - [0xFF, 0x77, 0x01, 0x00, 0x00, 0x13]    # CMD2_BKSEL (command bank select BK3, BK func enabled)
+      - [0xEF, 0x08]
+      - [0xFF, 0x77, 0x01, 0x00, 0x00, 0x10]    # CMD2_BKSEL (command bank select BK0, BK func disabled)
+      - [0xC0, 0x3B, 0x00]                      # Scan line
+      - [0xC1, 0x0B, 0x02]                      # VBP
+      - [0xC2, 0x07, 0x02]
+      - [0xCC, 0x10]
+      - [0xCD, 0x08]                            # RGB format | ?565??? 666??
+      - [0xB0, 0x00, 0x11, 0x16, 0x0e, 0x11, 0x06, 0x05, 0x09, 0x08, 0x21, 0x06, 0x13, 0x10, 0x29, 0x31, 0x18]   # IPS | 255 | 251 | 247 down | 239 | 231 | 203 | 175 | 147 | 108 | 80 | 52 | 24 | 16 | 8 down | 4 | 0
+      - [0xB1, 0x00, 0x11, 0x16, 0x0e, 0x11, 0x07, 0x05, 0x09, 0x09, 0x21, 0x05, 0x13, 0x11, 0x2a, 0x31, 0x18]   # IPS | 255 | 251 | 247 down | 239 | 231 | 203 | 175 | 147 | 108 | 80 | 52 | 24 | 16 | 8 down | 4 | 0
+      - [0xFF, 0x77, 0x01, 0x00, 0x00, 0x11]
+      - [0xB0, 0x6d]                            # VOP  3.5375+ *x 0.0125 | 5D
+      - [0xB1, 0x37]                            # VCOM amplitude setting
+      - [0xB2, 0x81]                            # VGH Voltage setting | 12V
+      - [0xB3, 0x80]
+      - [0xB5, 0x43]                            # VGL Voltage setting | -8.3V
+      - [0xB7, 0x85]
+      - [0xB8, 0x20]
+      - [0xC1, 0x78]
+      - [0xC2, 0x78]
+      - [0xD0, 0x88]
+      - [0xE0, 0x00, 0x00, 0x02]
+      - [0xE1, 0x03, 0xA0, 0x00, 0x00, 0x04, 0xA0, 0x00, 0x00, 0x00, 0x20, 0x20]
+      - [0xE2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+      - [0xE3, 0x00, 0x00, 0x11, 0x00]
+      - [0xE4, 0x22, 0x00]
+      - [0xE5, 0x05, 0xEC, 0xA0, 0xA0, 0x07, 0xEE, 0xA0, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+      - [0xE6, 0x00, 0x00, 0x11, 0x00]
+      - [0xE7, 0x22, 0x00]
+      - [0xE8, 0x06, 0xED, 0xA0, 0xA0, 0x08, 0xEF, 0xA0, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+      - [0xEB, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x00]
+      - [0xED, 0xFF, 0xFF, 0xFF, 0xBA, 0x0A, 0xBF, 0x45, 0xFF, 0xFF, 0x54, 0xFB, 0xA0, 0xAB, 0xFF, 0xFF, 0xFF]
+      - [0xEF, 0x10, 0x0D, 0x04, 0x08, 0x3F, 0x1F]
+      - [0xFF, 0x77, 0x01, 0x00, 0x00, 0x13]    # CMD2_BKSEL (command bank select BK3, BK func enabled)
+      - [0xEF, 0x08]
+      - [0xFF, 0x77, 0x01, 0x00, 0x00, 0x00]    # CMD2_BKSEL (command bank select BK0, BK func disabled)
+      - [0x36, 0x00]                            # MADCTL_CMD (already in esphome ST7701S::write_init_sequence_)
+      - [0x3A, 0x66]                            # COLMOD 55/50=16bit(RGB #RGB565); 66=18bit(RGB666); 77?????3AH?=24bit(RGB888)
+      # - [0x11]                                  # SLEEP_OUT (already in esphome)
+      # - delay 120ms
+      # - [0x29]                                  # DISPLAY_ON (already in esphome)
+      # - delay 20ms
+      #
+
+# LVGL component
+lvgl:
+  encoders:
+    enter_button: push_button
+    sensor: rotary
+  bg_color: black
+  scrollbar_mode: "OFF"
+  default_font: antonio_50
+  text_color: white
+  style_definitions:
+    - id: style_menu_button
+      align: CENTER
+      bg_opa: TRANSP
+      shadow_opa: TRANSP
+      height: 50
+      width: 50
+      radius: 50%
+    - id: style_menu_button_label
+      align: CENTER
+      y: 3
+      text_font: antonio_50 # roboto_med
+      text_color: white
+    - id: time_h_style
+      # Style properties for the date_style
+      text_font: font_clock_h # Assuming 'roboto10' is a defined font ID
+      align: center
+      text_color: 0xffffff #### 0x000000 # Black color = = = Changed to white + no background
+      bg_opa: 0 #### cover # Background opacity to cover
+      radius: 4 # Rounded corners
+      pad_all: 2 # Padding on all sides
+         
+    - id: time_colon_style
+      # Style properties for the date_style
+      text_font: font_clock_colon # Assuming 'roboto10' is a defined font ID
+      align: center
+      text_color: 0xffffff #### 0x000000 # Black color = = = Changed to white + no background
+      bg_opa: 0 #### cover # Background opacity to cover
+      radius: 4 # Rounded corners
+      pad_all: 2 # Padding on all sides
+         
+    - id: time_m_style
+      # Style properties for the date_style
+      text_font: font_clock_m # Assuming 'roboto10' is a defined font ID
+      align: center
+      text_color: 0xffffff #### 0x000000 # Black color = = = Changed to white + no background
+      bg_opa: 0 #### cover # Background opacity to cover
+      radius: 4 # Rounded corners
+      pad_all: 2 # Padding on all sides
+         
+    - id: date_time_style
+      # Style properties for the date_style
+      text_font: font_clock_date # Assuming 'roboto10' is a defined font ID
+      align: center
+      text_color: 0xffffff #### 0x000000 # Black color = = = Changed to white + no background
+      bg_opa: 0 #### cover # Background opacity to cover
+      radius: 4 # Rounded corners
+      pad_all: 2 # Padding on all sides
+
+  pages:
+#### GUI - CLOCK PAGE ####
+    - id: clock_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"clock_page"'
+        - lvgl.widget.enable:
+            - clock_power_button
+            - clock_weather_button
+            - clock_heatpump_button
+            - clock_lounge_light_button
+        - lvgl.widget.focus: clock_power_button
+        - delay: 2s  # Wait for LVGL to be ready
+        - if:
+            condition:
+              switch.is_on: ticks_switch
+            then:
+              - lvgl.widget.update:
+                  id: clock_face_with_ticks
+                  hidden: false
+              - lvgl.widget.update:
+                  id: clock_face_no_ticks
+                  hidden: true
+            else:
+              - lvgl.widget.update:
+                  id: clock_face_with_ticks
+                  hidden: true
+              - lvgl.widget.update:
+                  id: clock_face_no_ticks
+                  hidden: false
+      on_unload:
+        - lvgl.widget.disable:
+            - clock_power_button
+            - clock_weather_button
+            - clock_heatpump_button
+            - clock_lounge_light_button
+      widgets:
+        - obj: # clock container
+            height: ${screenheight}
+            width: ${screenwidth}
+            align: CENTER
+            border_width: 0
+            bg_color: 0x000000
+            bg_opa: TRANSP
+            border_opa: TRANSP
+            widgets:
+              - image:
+                  align: CENTER
+                  id: background_image
+                  src: clock_background
+                  # x: 0
+                  # y: 0
+                  width: 480
+                  height: 480
+              # Meter WITH Minute ticks - shown when switch is ON
+              - meter:
+                  id: clock_face_with_ticks
+                  height: 480
+                  width: 480
+                  align: CENTER
+                  bg_opa: TRANSP
+                  border_width: 0
+                  text_color: 0xffffff
+                  scales:
+                    - range_from: 0 # seconds & minutes scale WITH ticks
+                      range_to: 60
+                      angle_range: 360
+                      rotation: 270
+                      ticks:
+                        width: 6
+                        count: 61
+                        length: 6
+                        color: 0xffffff
+                    - range_from: 1 # hours scale for labels
+                      range_to: 12
+                      angle_range: 330
+                      rotation: 300
+                      ticks:
+                        width: 10
+                        count: 12
+                        length: 20
+                    - range_from: 0 # hi-res hours scale for hand
+                      range_to: 720
+                      angle_range: 360
+                      rotation: 270
+                      ticks:
+                        count: 0
+              
+              # Meter WITHOUT Minute ticks - shown when switch is OFF
+              - meter:
+                  id: clock_face_no_ticks
+                  height: 480
+                  width: 480
+                  align: CENTER
+                  bg_opa: TRANSP
+                  border_width: 0
+                  text_color: 0xffffff
+                  hidden: true  # Initially hidden
+                  scales:
+                    # NO seconds/minutes ticks scale here
+                    - range_from: 1 # hours scale for labels
+                      range_to: 12
+                      angle_range: 330
+                      rotation: 300
+                      ticks:    # Made Hour Ticks shorter, to make it cleaner
+                        width: 6
+                        count: 12
+                        length: 6
+                    - range_from: 0 # hi-res hours scale for hand
+                      range_to: 720
+                      angle_range: 360
+                      rotation: 270
+                      ticks:
+                        count: 0
+              # - meter: # clock face   #### TURNED OFF WHILE TRYING TICKS ON?OFF ####
+              #     height: 480
+              #     width: 480
+              #     align: CENTER
+              #     bg_opa: TRANSP
+              #     border_width: 0
+              #     text_color: 0xffffff
+              #     scales:
+              #       - range_from: 0 # seconds & minutes scale
+              #         range_to: 60
+              #         angle_range: 360
+              #         rotation: 270
+              #         ticks:
+              #           width: 6
+              #           count: 61
+              #           length: 6
+              #           color: 0xffffff
+                        #### add if you want Sec or Min Hands, Using Arcs instead ####
+                      # indicators:
+                      #   - line:
+                      #       id: second_hand
+                      #       width: 5
+                      #       color: red
+                      #       r_mod: 0
+                      #       value: 0
+                      #   - line:
+                      #       id: minute_hand
+                      #       width: 3
+                      #       color: 0xa6a6a6
+                      #       r_mod: -4
+                      #       value: 0
+                    # - range_from: 1 # hours scale for labels
+                    #   range_to: 12
+                    #   angle_range: 330
+                    #   rotation: 300
+                    #   ticks:
+                    #     width: 10
+                    #     count: 12
+                    #     length: 20
+                        #### add if you want Hour Labels ####
+                        # major:
+                        #   stride: 1
+                        #   width: 4
+                        #   length: 10
+                        #   color: 0xffffff
+                        #   label_gap: 12
+                    # - range_from: 0 # hi-res hours scale for hand
+                    #   range_to: 720
+                    #   angle_range: 360
+                    #   rotation: 270
+                    #   ticks:
+                    #     count: 0
+                        #### add if you want the Hour hand ####
+                      # indicators:
+                      #   - line:
+                      #       id: hour_hand
+                      #       width: 5
+                      #       color: 0xa6a6a6
+                      #       r_mod: -30
+                      #       value: 0
+              - arc:
+                  id: second_hand_arc
+                  align: CENTER
+                  arc_rounded: true
+                  arc_opa: TRANSP
+                  adjustable: true
+                  indicator:
+                    arc_color: red
+                    arc_width: 10
+                    arc_opa: 0.2
+                  knob:
+                    # border_color: red
+                    border_width: 1
+                    bg_color: red
+                    bg_opa: 0.4
+                  mode: NORMAL
+                  width: 457
+                  height: 457
+                  min_value: 0
+                  max_value: 60
+                  start_angle: 271
+                  end_angle: 270
+                  bg_opa: TRANSP
+                  rotation: 0
+                  value: 0
+              - arc:
+                  id: minute_hand_arc
+                  align: CENTER
+                  arc_width: 10
+                  width: 430
+                  height: 430
+                  # pad_all: 5
+                  min_value: 0
+                  max_value: 60
+                  arc_opa: TRANSP
+                  start_angle: 271
+                  end_angle: 270
+                  adjustable: true
+                  indicator:
+                    arc_color: blue
+                    arc_width: 15
+                    arc_opa: 0.2
+                  knob:
+                    # border_color: orange
+                    # border_width: 1
+                    bg_color: blue
+                    bg_opa: 0.4
+                    width: 15
+                  # align: CENTER
+                  # arc_rounded: true
+                  # arc_width: 10
+                  # pad_all: 10
+                  # indicator:
+                  #   arc_color: blue
+                  #   arc_width: 15
+                  #   arc_opa: 0.2
+                  # knob:
+                  #   border_color: darkgrey
+                  #   border_width: 3
+                  #   bg_color: amber
+                  # width: 445
+                  # height: 445
+                  # min_value: 0
+                  # max_value: 60
+                  # arc_opa: TRANSP
+                  # start_angle: 271
+                  # end_angle: 270
+                  # bg_opa: TRANSP
+                  # rotation: 0
+                  # value: 0
+              - arc:
+                  id: hour_hand_arc
+                  align: CENTER
+                  arc_rounded: true
+                  indicator:
+                    arc_color: green
+                    arc_width: 30
+                    arc_opa: 0.2
+                  adjustable: true
+                  knob:
+                    # border_color: orange
+                    # border_width: 1
+                    bg_color: green
+                    # width: 30
+                    bg_opa: 0.2
+                  # pad_all: 5
+                  width: 380
+                  height: 380
+                  min_value: 0 #### changed from 1
+                  max_value: 720
+                  arc_opa: TRANSP
+                  start_angle: 271
+                  end_angle: 270
+                  bg_opa: TRANSP
+                  rotation: 0
+                  value: 0
+              - label:
+                  styles: time_h_style
+                  id: lbl_time_h
+                  text: "00"
+                  align: CENTER
+                  text_align: CENTER
+                  # text_font: yfont
+                  text_color: 0xffffff
+                  # pad_left: 22
+                  outline_color: black
+                  y: -92
+                  x: -80
+              - label:
+                  styles: time_m_style
+                  id: lbl_time_m
+                  text: ":00"
+                  align: CENTER
+                  text_align: CENTER
+                  # text_font: yfont
+                  text_color: 0xffffff
+                  # pad_left: 22
+                  outline_color: black
+                  y: 75
+                  x: -90
+              - label:
+                  id: time_date_day_label
+                  styles: date_time_style
+                  text: "Mon"
+                  align: CENTER
+                  text_align: LEFT
+                  # text_font: yfont
+                  text_color: 0xffffff
+                  # pad_left: 22
+                  outline_color: black
+                  y: -150
+                  x: 45
+              - label:
+                  id: time_date_date_label
+                  styles: date_time_style
+                  text: "01"
+                  align: CENTER
+                  text_align: LEFT
+                  # text_font: yfont
+                  text_color: 0xffffff
+                  # pad_left: 22
+                  outline_color: black
+                  y: -75
+                  x: 45
+              - label:
+                  id: time_date_month_label
+                  styles: date_time_style
+                  text: "Jan"
+                  align: CENTER
+                  text_align: LEFT
+                  # text_font: yfont
+                  text_color: 0xffffff
+                  # pad_left: 22
+                  outline_color: black
+                  y: 0
+                  x: 45
+
+              - image:
+                  align: CENTER
+                  id: weather_condition_icon
+                  src: unknown_img #cloudy_img #clock_background # default fallback icon
+                  y: 75
+                  x: 45
+                  width: 100
+                  height: 100
+
+              - label:
+                  id: menu_weather_label
+                  styles: date_time_style
+                  text_color: 0xffffff
+                  align: CENTER
+                  y: 150
+                  x: 45
+                  text_align: RIGHT
+                  text: "00°C"
+              - button:
+                  id: clock_power_button
+                  
+                  state:
+                    disabled: true
+                  x: -180
+                  y: 0
+                  # styles: style_menu_button
+                  # widgets:
+                  #   - label:
+                  #       styles: style_menu_button_label
+                  #       text: "\U000F0425"  # mdi:Power
+              
+              - button:
+                  id: clock_weather_button
+                  
+                  state:
+                    disabled: true
+                  x: 156
+                  y: -90
+                  styles: style_menu_button
+                  widgets:
+                    - label:
+                        styles: style_menu_button_label
+                        text: "\U000F0E6E"  # mdi:weather-cloudy-arrow-right
+              - button:
+                  id: clock_heatpump_button
+                  
+                  state:
+                    disabled: true
+                  x: 180
+                  y: 0
+                  styles: style_menu_button
+                  widgets:
+                    - label:
+                        id: clock_heatpump_icon_label  # Add ID so we can update it
+                        styles: style_menu_button_label
+                        text: "\U000F1A44"  # mdi:heat-pump-outline
+                  on_release:
+                    - script.execute: goto_heatpump_page
+              - button:
+                  id: clock_lounge_light_button
+                  
+                  state:
+                    disabled: true
+                  x: 156
+                  y: 90
+                  styles: style_menu_button
+                  widgets:
+                    - label:
+                        id: clock_lounge_light_button_label
+                        styles: style_menu_button_label
+                        text: "\U000F0336"  #mdi:lightbulb-outline
+                  on_release:
+                    - script.execute: goto_lounge_light_page
+#### GUI - THERMOSTAT ####
+    - id: heatpump_page # main_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"heatpump_page"' # nesp_page or main_page
+        # - script.execute: update_menu_date_label
+        - lvgl.widget.enable:
+            - nesp_power_button
+            - nesp_mode_button
+            - nesp_fan_button
+            - nesp_back_button
+            # - nesp_preset_button  # menu_preset_button
+        - lvgl.widget.focus: nesp_back_button
+      on_unload:
+        - lvgl.widget.disable:
+            - nesp_power_button
+            - nesp_mode_button
+            - nesp_fan_button
+            - nesp_back_button
+            # - nesp_preset_button  # menu_preset_button
+      widgets:
+        - arc:
+            id: arc_bg
+            height: 468
+            width: 468
+            align: CENTER
+            arc_color: graylight
+            arc_opa: COVER
+            arc_width: 2
+            arc_rounded: false
+        - arc:
+            id: current_temp_arc
+            adjustable: true
+            state:
+              disabled: true
+            min_value: 120    # 12°C (* 10 because decimals not supported)
+            max_value: 340    # 34°C
+            height: 468
+            width: 468
+            align: CENTER
+            arc_color: graylight
+            arc_opa: COVER
+            arc_width: 2
+            arc_rounded: false
+            indicator:
+              arc_color: graylight
+              arc_opa: COVER
+              arc_width: 2
+              arc_rounded: false
+            knob:
+              bg_color: white
+            value: 230
+        - meter:
+            id: meter_ticks
+            height: 480
+            width: 480
+            align: CENTER
+            bg_opa: TRANSP
+            border_width: 0
+            scales:
+              range_from: 120   # 12°C (* 10 because decimals not supported)
+              range_to: 340     # 34°C
+              ticks:
+                count: 89
+                length: 37
+                width: 3
+                color: graylight
+              indicators:
+                - line:
+                    id: set_temp_needle
+                    color: white
+                    width: 8
+                    r_mod: 10
+                    value: 230
+                - arc:
+                    id: diff_temp_arc
+                    start_value: 120
+                    end_value: 230
+                    color: white
+                    width: 2
+                    r_mod: 10
+        - obj:
+            id: mode_bg
+            height: 350
+            width: 350
+            radius: 175
+            align: CENTER
+            border_width: 0
+            bg_color: black
+        - roller:
+            id: set_temp_roller
+            state:
+              disabled: true
+            align: CENTER
+            anim_time: 500ms
+            text_font: antonio_50 # roboto_med
+            text_opa: TRANSP
+            bg_opa: TRANSP
+            border_width: 0
+            text_line_space: 30
+            visible_row_count: 2
+            selected:
+              text_font: antonio_huge
+              text_opa: COVER
+              bg_opa: TRANSP
+              border_width: 0
+            options:
+              - 16.0
+              - 16.5
+              - 17.0
+              - 17.5
+              - 18.0
+              - 18.5
+              - 19.0 
+              - 19.5
+              - 20.0
+              - 20.5
+              - 21.0
+              - 21.5
+              - 22.0
+              - 22.5
+              - 23.0
+              - 23.5
+              - 24.0
+              - 24.5
+              - 25.0
+              - 25.5
+              - 26.0
+              - 26.5
+              - 27.0
+              - 27.5
+              - 28.0
+              - 28.5
+              - 29.0
+              - 29.5
+              - 30.0
+            selected_index: 14
+        - label:
+            id: celsius_label
+            align: CENTER
+            x: 100
+            y: -43
+            text: "°C"
+        - label:
+            id: mode_label
+            align: CENTER
+            y: -100
+            text: "Heatpump"
+        # - label:
+        #     id: weather_icon_label
+        #     hidden: true
+        #     align: CENTER
+        #     y: -100
+        #     text_font: antonio_huge
+        #     text: " "
+        - label:
+            id: weather_temp_label
+            hidden: true
+            align: CENTER
+            text_font: antonio_huge
+            text: " "
+        # - label:
+        #     id: weather_forecast_label
+        #     hidden: true
+        #     align: CENTER
+        #     y: 70 
+        #     text: " "
+        # - label:
+        #     id: weather_feels_like_label
+        #     hidden: true
+        #     align: CENTER
+        #     y: 130
+        #     text: " "
+        # - label:
+        #     id: big_fan_icon_label
+        #     hidden: true
+        #     align: CENTER
+        #     text_font: antonio_huge
+        #     text: " "
+        - label:
+            id: current_temp_label
+            align: CENTER
+            y: 120
+            text: " "
+        # - label:
+        #     id: fan_icon_label
+        #     align: CENTER
+        #     y: 150
+        #     text_font: antonio_med # roboto_med
+        #     text: " "
+        - label:
+            id: selected_menu_label
+            align: CENTER
+            y: 90
+            x: 0
+            text_font: antonio_50 # roboto_med
+            text_align: RIGHT
+        
+        - button:
+            id: nesp_power_button # menu_power_button
+            state:
+              disabled: true
+            x: 105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F0425" # mdi:power
+            on_focus:
+              - if:
+                  condition:
+                    lambda: 'return id(hvac_mode).state == "off";'  #  'return strcmp(id(hvac_mode).state.c_str(), "off") == 0;'
+                  then: 
+                    lvgl.label.update:
+                      id: selected_menu_label
+                      text: "Turn On"
+                  else:
+                    lvgl.label.update:
+                      id: selected_menu_label
+                      text: "Turn Off"
+            on_press:
+              - logger.log: 
+                  format: "HVAC mode state: %s"
+                  args: ['id(hvac_mode).state.c_str()']
+              - if:
+                  condition:
+                    lambda: 'return id(hvac_mode).state == "off";'  # 'return strcmp(id(hvac_mode).state.c_str(), "off") == 0;'
+                  then:
+                    - logger.log:
+                        format: "Sending action to entity: %s"
+                        args: ['"${climate_entity}"']
+                    - homeassistant.action:
+                        action: climate.turn_on
+                        data:
+                          entity_id: ${climate_entity}
+                  else:
+                    - logger.log:
+                        format: "Sending action to entity: %s"
+                        args: ['"${climate_entity}"']
+                    - homeassistant.action:
+                        action: climate.turn_off
+                        data:
+                          entity_id: ${climate_entity}
+        - button:
+            id: nesp_mode_button
+            state:
+              disabled: true
+            x: 36
+            y: 207
+            styles: style_menu_button
+            widgets:
+              - label:
+                  id: nesp_mode_icon_label  # Add ID so we can update it
+                  styles: style_menu_button_label
+                  text: "\U000F1A44"  # mdi:heat-pump-outline
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_menu_label
+                  text: "Mode"
+            on_release:
+              - script.execute: goto_mode_page
+        
+        - button:
+            id: nesp_fan_button
+            state:
+              disabled: true
+            x: -36
+            y: 207
+            styles: style_menu_button
+            widgets:
+              - label:
+                  id: nesp_fan_button_label
+                  styles: style_menu_button_label
+                  text: "\U000F0210" # mdi:fan
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_menu_label
+                  text: "Fan Speed \U000F0210"
+            on_press:
+              - script.execute: goto_fan_page
+        
+        - button:
+            id: nesp_back_button
+            state:
+              disabled: true
+            x: -105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F004D" #mdi:backarrow
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_menu_label
+                  text: "Back to Clock"
+            on_press:
+              - script.execute: goto_clock_page
+
+        # - button:
+        #     id: menu_mode_button
+        #     state:
+        #       disabled: true
+        #     x: 182
+        #     y: 105
+        #     styles: style_menu_button
+        #     widgets:
+        #       - label:
+        #           id: menu_mode_button_label
+        #           styles: style_menu_button_label
+        #           text: "\U000F0238"
+        #     on_focus:
+        #       - lvgl.label.update:
+        #           id: selected_menu_label
+        #           text: "Mode"
+        #     on_press:
+        #       - script.execute: goto_mode_page
+        # - button:
+        #     id: menu_preset_button
+        #     state:
+        #       disabled: true
+        #     x: 105
+        #     y: 182
+        #     styles: style_menu_button
+        #     widgets:
+        #       - label:
+        #           id: menu_preset_button_label
+        #           styles: style_menu_button_label
+        #           text: "\U000F032A"
+        #     on_focus:
+        #       - lvgl.label.update:
+        #           id: selected_menu_label
+        #           text: "Presets"
+        #     on_press:
+        #       - script.execute: goto_preset_page
+
+
+    #### GUI - FAN SPEED SELECT ####
+    - id: fan_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"fan_page"'
+        - lvgl.widget.enable:
+            - fan_back_button
+            - fan_auto_button
+            - fan_super_high_button
+            - fan_high_button
+            - fan_medium_button
+            - fan_low_button
+            - fan_quiet_button
+        - lvgl.widget.focus: fan_auto_button
+      on_unload:
+        - lvgl.widget.disable:
+            - fan_back_button
+            - fan_auto_button
+            - fan_super_high_button
+            - fan_high_button
+            - fan_medium_button
+            - fan_low_button
+            - fan_quiet_button
+      widgets:
+        - label:
+            id: selected_fan_label
+            align: CENTER
+            x: 55
+            text_font: antonio_med
+            text_align: RIGHT
+        - button:
+            id: fan_back_button
+            state:
+              disabled: true
+            x: 182
+            y: -105
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F004D"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Back"
+            on_press:
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_auto_button
+            state:
+              disabled: true
+            x: 210
+            y: 0
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F171D"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Auto"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "auto"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_super_high_button
+            state:
+              disabled: true
+            x: 182
+            y: 105
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F146E"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Super High"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "super high"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_high_button
+            state:
+              disabled: true
+            x: 105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F1474"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "High"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "high"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_medium_button
+            state:
+              disabled: true
+            x: 0
+            y: 210
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F1473"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Medium"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "med"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_low_button
+            state:
+              disabled: true
+            x: -105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F1472"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Low"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "low"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: fan_quiet_button
+            state:
+              disabled: true
+            x: -182
+            y: 105
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F146D"
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_fan_label
+                  text: "Quiet"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_fan_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    fan_mode: "quiet"
+              - script.execute: goto_heatpump_page
+
+#### GUI - SELECT MODE ####
+    - id: mode_page # main_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"mode_page"'
+        - lvgl.widget.enable:
+            - mode_back_button
+            - mode_auto_button
+            - mode_heat_button
+            - mode_cool_button
+            - mode_dry_button
+            - mode_off_button
+        - lvgl.widget.focus: mode_back_button
+      on_unload:
+        - lvgl.widget.disable:
+            - mode_back_button
+            - mode_auto_button
+            - mode_heat_button
+            - mode_cool_button
+            - mode_dry_button
+            - mode_off_button
+      widgets:
+        - label:
+            id: selected_mode_label
+            align: CENTER
+            x: 55
+            text_font: antonio_med
+            text_color: white
+            text_align: RIGHT
+        - button:
+            id: mode_back_button
+            state:
+              disabled: true
+            x: 182
+            y: -105
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F004D" #mdi:backarrow
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Back"
+            on_press:
+              - script.execute: goto_heatpump_page
+        - button:
+            id: mode_auto_button
+            state:
+              disabled: true
+            x: 210
+            y: 0
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F006A" # mdi:autorenew
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Auto"
+                  text_color: white
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_hvac_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    hvac_mode: "auto"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: mode_heat_button
+            state:
+              disabled: true
+            x: 182
+            y: 105
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F0238" # mdi:fire
+                  text_color: mode_heat
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Heat"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_hvac_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    hvac_mode: "heat"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: mode_cool_button
+            state:
+              disabled: true
+            x: 105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F0717" # mdi:snowflake
+                  text_color: mode_cool
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Cool"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_hvac_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    hvac_mode: "cool"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: mode_dry_button
+            state:
+              disabled: true
+            x: 0
+            y: 210
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F032A" # mdi:leaf
+                  text_color: mode_dry
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Dry"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_hvac_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    hvac_mode: "dry"
+              - script.execute: goto_heatpump_page
+        - button:
+            id: mode_off_button
+            state:
+              disabled: true
+            x: -105
+            y: 182
+            styles: style_menu_button
+            widgets:
+              - label:
+                  styles: style_menu_button_label
+                  text: "\U000F0425" # mdi:power
+            on_focus:
+              - lvgl.label.update:
+                  id: selected_mode_label
+                  text: "Off"
+            on_press:
+              - homeassistant.action:
+                  action: climate.set_hvac_mode
+                  data:
+                    entity_id: ${climate_entity}
+                    hvac_mode: "off"
+              - script.execute: goto_clock_page
+#### GUI - SELECT PRESET ####
+    - id: preset_page # main_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"preset_page"' 
+
+#### GUI - WEATHER PAGE ####
+    - id: weather_page # main_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"weather_page"'
+
+#### GUI - LOUNGE LIGHT PAGE ####
+    - id: lounge_light_page
+      on_load:
+        - globals.set:
+            id: active_lvgl_page
+            value: '"lounge_light_page"'
+      #   - lvgl.widget.enable:
+      #       - lounge_light_roller
+      #       - lounge_light_label
+      #       - light_button
+      #   - lvgl.widget.focus: light_button
+      # on_unload:
+      #   - lvgl.widget.disable:
+      #       - lounge_light_roller
+      #       - lounge_light_label
+      #       - light_button
+
+      bg_color: 0x000000
+      widgets:
+        - label:
+            id: lounge_light_label  #brightness_label
+            align: CENTER
+            y: 210
+            text: ""
+        - arc:
+            id: lounge_light_arc
+            width: 450
+            height: 450
+            align: CENTER
+            arc_width: 30 #16
+            arc_color: white
+            value: 0
+            min_value: 0
+            max_value: 100
+            adjustable: false #true
+            # on_release:
+            #   - homeassistant.service:
+            #       service: light.turn_on
+            #       data:
+            #         entity_id: $light_control
+            #         brightness: !lambda return int(x);
+        - roller:
+            id: lounge_light_roller
+            state:
+              disabled: true
+            align: CENTER
+            y: 0
+            anim_time: 500ms
+            text_font: antonio_med
+            text_opa: TRANSP
+            bg_opa: TRANSP
+            border_width: 0
+            text_line_space: 30
+            visible_row_count: 3
+            selected:
+              text_font: antonio_huge
+              text_opa: COVER
+              bg_opa: TRANSP
+              border_width: 0
+            options:
+              - 0
+              - 5
+              - 10
+              - 15
+              - 20
+              - 25
+              - 30
+              - 35
+              - 40
+              - 45
+              - 50
+              - 55
+              - 60
+              - 65
+              - 70
+              - 75
+              - 80
+              - 85
+              - 90
+              - 95
+              - 100
+            selected_index: 14
+        # - button:
+        #       id: light_button
+        #       align: CENTER
+        #       y: 70
+        #       width: 50
+        #       height: 50
+        #       radius: 3000
+        #       checkable: true
+        #       widgets:
+        #         - label:
+        #             align: CENTER
+        #             text: "\U000F0425"
+              # on_click:
+              #   - homeassistant.service:
+              #       service: light.toggle
+              #       data:
+              #         entity_id: $light_control

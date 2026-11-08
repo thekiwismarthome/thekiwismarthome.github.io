@@ -1,0 +1,115 @@
+# =============================================================================
+# NSPanel Pro 120 — View Assist companion-app watchdog
+# =============================================================================
+# Purpose:
+#   Periodically check whether the Home Assistant Companion app (used by
+#   View Assist) is the app currently running in the foreground on a
+#   Sonoff NSPanel Pro 120. If it is NOT running (e.g. it crashed, was
+#   swiped away, or the launcher is showing), relaunch it via ADB.
+#
+# Requires:
+#   The "Android Debug Bridge" (androidtv) integration set up against the
+#   NSPanel Pro. See README.md in this folder for setup + prerequisites.
+#
+# Before use, find-and-replace the two placeholders throughout this file:
+#   * media_player.office_nspanel_pro_media_player        -> your ADB media_player entity id
+#   * com.msp1974.vacompanion  -> the app package you want kept alive
+#                                            (this is the default HA Companion
+#                                             / View Assist package)
+# =============================================================================
+
+alias: "NSPanel Pro 120 - Keep View Assist app running"
+description: >-
+  Watchdog that makes sure the View Assist / Home Assistant Companion app stays
+  in the foreground on the NSPanel Pro 120. On a schedule (and whenever the
+  screen wakes), it checks the current foreground app and relaunches the
+  companion app if something else is showing.
+mode: single
+
+triggers:
+  # 1) Watchdog poll — check every 2 minutes. Change "/2" to "/5" etc.
+  - trigger: time_pattern
+    minutes: "/2"
+  # 2) Also react immediately when the panel screen wakes up.
+  - trigger: state
+    entity_id: media_player.office_nspanel_pro_media_player
+    to: "on"
+
+conditions:
+  # Only act while the panel is awake — don't keep relaunching (and waking the
+  # screen) while it is asleep/off. Remove this block if you WANT it to force
+  # the app on even from standby.
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: media_player.office_nspanel_pro_media_player
+        state:
+          - "off"
+          - "standby"
+          - "unavailable"
+          - "unknown"
+
+actions:
+  # 1) Ask Android which app is actually in the foreground. Rather than trust
+  #    the media_player "app_id" attribute (which only populates for apps you
+  #    have added to the integration's Applications list, and stays blank for
+  #    View Assist otherwise), we query the resumed activity directly over ADB.
+  #    The androidtv integration stores the command output in the media_player's
+  #    "adb_response" attribute, which we read back a moment later.
+  - action: androidtv.adb_command
+    target:
+      entity_id: media_player.office_nspanel_pro_media_player
+    data:
+      command: "dumpsys activity activities | grep mResumedActivity"
+
+  # Give the integration a moment to publish the response.
+  - delay: "00:00:01"
+
+  # 2) Parse the foreground package out of the response, e.g.
+  #    "...u0 com.eWeLinkControlPanel/com.coolkit...MainActivity t57}"
+  - variables:
+      adb_response: "{{ state_attr('media_player.office_nspanel_pro_media_player', 'adb_response') | string }}"
+      previous_app: "{{ (adb_response | regex_findall('u0 (\\S+)/') | first) | default('unknown', true) }}"
+      when: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+  # 3) If the companion app IS already in the foreground, there's nothing to do.
+  - if:
+      - condition: template
+        value_template: "{{ 'com.msp1974.vacompanion' in adb_response }}"
+    then:
+      - stop: "View Assist app already in the foreground."
+
+  # 4) Otherwise launch the app via the Android "monkey" launcher intent. This
+  #    brings the app to the foreground if it is backgrounded, or cold-starts it
+  #    if it was killed.
+  - action: androidtv.adb_command
+    target:
+      entity_id: media_player.office_nspanel_pro_media_player
+    data:
+      command: >-
+        monkey -p com.msp1974.vacompanion -c android.intent.category.LAUNCHER 1
+
+  # --- Log to the standard Home Assistant log --------------------------------
+  # Writes an entry to Home Assistant's own log (home-assistant.log, and the
+  # Settings -> System -> Logs UI) under the logger name shown below. No extra
+  # setup needed. Level "warning" makes it stand out; change to "info" to keep
+  # it quiet (info is hidden unless you lower the log level for this logger).
+  - action: system_log.write
+    data:
+      level: warning
+      logger: nspanel_view_assist_watchdog
+      message: >-
+        View Assist app was not running on NSPanel Pro 120 (foreground app was
+        '{{ previous_app }}') — relaunched com.msp1974.vacompanion
+
+  # --- Notify ----------------------------------------------------------------
+  # In-dashboard persistent notification (always available, no setup needed).
+  # To get a push notification instead/also, add a second action calling your
+  # mobile app service, e.g. notify.mobile_app_your_phone.
+  - action: persistent_notification.create
+    data:
+      title: "NSPanel Pro 120 — View Assist restarted"
+      notification_id: nspanel_view_assist_watchdog
+      message: >-
+        The View Assist app wasn't running (foreground app was
+        '{{ previous_app }}') and was relaunched at {{ when }}.

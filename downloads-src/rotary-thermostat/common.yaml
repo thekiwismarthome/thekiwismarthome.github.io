@@ -1,0 +1,27 @@
+# common.yaml: the settings nesp.yaml expects to find next to it (it has the line `<<: !include common.yaml`).
+# This is a starting point. It is not from the original repository, so check it against your own network.
+# Put the matching values in secrets.yaml.
+#
+# Do not add `button:` or `text_sensor:` here. nesp.yaml already defines its own.
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  # static_ip comes from the substitutions at the top of nesp.yaml
+  manual_ip:
+    static_ip: ${static_ip}
+    gateway: !secret wifi_gateway
+    subnet: 255.255.255.0
+  ap:
+    ssid: "${friendly_name} Fallback"
+    password: !secret ap_password

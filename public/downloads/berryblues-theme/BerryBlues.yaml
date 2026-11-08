@@ -1,0 +1,114 @@
+# BerryBlues: a dark blue Home Assistant theme from 2020.
+#
+# Rebuilt from my old notes, which had been mangled by a blog editor (curly quotes, lost dashes). Check it before relying on it.
+# The paper-* variables belong to the old Polymer frontend. Current Home Assistant ignores many of them, so expect some of this to do nothing.
+#
+# Colour palette
+#   1E1F26  Midnight Blue
+#   283655  Indigo Ink
+#   4D648D  Blueberry
+#   D0E1F9  Periwinkle
+#
+# Install: save as config/themes/berryblues.yaml and add this to configuration.yaml, then restart.
+#   frontend:
+#     themes: !include_dir_merge_named themes
+# Then pick BerryBlues in your profile.
+
+BerryBlues:
+  # Variables used further down
+  base-hue: "220"          # 0 red, 60 yellow, 120 green, 180 cyan, 240 blue, 300 magenta
+  base-sat: "5%"           # 0% grey to 100% full colour
+  huesat: "var(--base-hue), var(--base-sat),"
+
+  # Optional background picture. Put your own image in config/www/ and point at it.
+  # lovelace-background: "center / cover no-repeat url('/local/pictures/background/background_landscape.jpg') fixed"
+
+  # Main colours
+  primary-color: "#1E1F26"
+  dark-primary-color: "hsl(var(--huesat) 60%)"
+  light-primary-color: "hsl(var(--huesat) 30%)"
+  accent-color: "hsl(var(--huesat) 30%)"
+  medium-grey-color: "#1E1F26"
+
+  # Backgrounds. The cards are half see-through so a background picture shows.
+  primary-background-color: "hsl(var(--huesat) 16%)"
+  secondary-background-color: "hsl(var(--huesat) 16%)"
+  paper-listbox-background-color: "#1E1F26"
+  paper-card-background-color: "rgba(0, 0, 0, 0.5)"
+  paper-dialog-background-color: "var(--paper-card-background-color)"
+  card-background-color: "var(--paper-card-background-color)"
+  table-row-background-color: "hsl(var(--huesat) 12%)"
+  table-row-alternative-background-color: "hsl(var(--huesat) 10%)"
+
+  # Dividers
+  divider-color: "hsla(0, 0%, 0%, 0)"
+  dark-divider-opacity: "0"
+  light-divider-opacity: "0"
+  dark-secondary-opacity: "1"
+
+  # Text
+  mdc-theme-primary: "#4D648D"
+  mdc-button-text: "#D0E1F9"
+  text-color: "#D0E1F9"
+  primary-text-color: "#D0E1F9"
+  text-primary-color: "#D0E1F9"
+  secondary-text-color: "#D0E1F9"
+  disabled-text-color: "#D0E1F9"
+  paper-card-header-color: "#D0E1F9"
+  paper-button-ink-color: "#D0E1F9"
+  paper-tab-ink: "hsl(var(--huesat) 70%)"
+  paper-tabs-selection-bar-color: "hsla(0, 0%, 0%, 0.2)"
+  paper-input-container-color: "hsl(var(--huesat) 60%)"
+  paper-dialog-color: "hsl(var(--base-hue), 20%, 80%)"
+
+  # Side menu
+  sidebar-text-color: "#4D648D"
+  sidebar-icon-color: "#4D648D"
+  paper-listbox-color: "hsl(var(--huesat) 50%)"
+  paper-grey-50: "hsl(var(--huesat) 50%)"
+  paper-grey-200: "#D0E1F9"
+
+  # Badges
+  label-badge-red: "hsl(20, 50%, 25%)"
+  label-badge-border-color: "var(--label-badge-red)"
+  label-badge-background-color: "var(--paper-card-background-color)"
+  label-badge-text-color: "var(--primary-text-color)"
+
+  # Switches
+  paper-toggle-button-checked-button-color: "hsl(var(--base-hue), 90%, 50%)"
+  paper-toggle-button-checked-bar-color: "hsl(var(--huesat) 25%)"
+  paper-toggle-button-unchecked-button-color: "hsl(var(--huesat) 25%)"
+  paper-toggle-button-unchecked-bar-color: "hsl(var(--huesat) 5%)"
+
+  # Sliders
+  paper-slider-knob-color: "hsl(var(--base-hue), 90%, 50%)"
+  paper-slider-knob-start-color: "hsl(var(--base-hue), 80%, 25%)"
+  paper-slider-pin-color: "hsl(var(--base-hue), 90%, 50%)"
+  paper-slider-active-color: "hsl(var(--base-hue), 90%, 50%)"
+  paper-slider-container-color: "hsl(var(--huesat) 28%)"
+  paper-slider-secondary-color: "hsl(var(--huesat) 90%)"
+  paper-slider-disabled-active-color: "hsl(var(--base-hue), 80%, 25%)"
+  paper-slider-disabled-secondary-color: "hsl(var(--base-hue), 80%, 25%)"
+
+  # History and logbook date pickers (the Vaadin "lumo" variables)
+  lumo-primary-text-color: "var(--primary-color)"
+  lumo-secondary-text-color: "var(--primary-color)"
+  lumo-primary-color: "var(--primary-color)"
+  lumo-primary-color-50pct: "rgba(37, 129, 172, .5)"
+  lumo-primary-color-10pct: "rgba(37, 129, 172, .1)"
+  lumo-body-text-color: "var(--primary-text-color)"
+  lumo-base-color: "var(--medium-grey-color)"
+  lumo-header-text-color: "var(--lumo-body-text-color)"
+  lumo-tertiary-text-color: "var(--lumo-body-text-color)"
+  lumo-shade: "var(--medium-grey-color)"
+  lumo-shade-90pct: "rgba(208, 225, 249, .9)"
+  lumo-shade-80pct: "rgba(208, 225, 249, .8)"
+  lumo-shade-70pct: "rgba(208, 225, 249, .7)"
+  lumo-shade-60pct: "rgba(208, 225, 249, .6)"
+  lumo-shade-50pct: "rgba(208, 225, 249, .5)"
+  lumo-shade-40pct: "rgba(208, 225, 249, .4)"
+  lumo-shade-30pct: "rgba(208, 225, 249, .3)"
+  lumo-shade-20pct: "rgba(208, 225, 249, .2)"
+  lumo-shade-10pct: "rgba(208, 225, 249, .1)"
+  lumo-shade-5pct: "rgba(208, 225, 249, .05)"
+  lumo-tint-5pct: "var(--medium-grey-color)"
