@@ -114,5 +114,14 @@ export default defineConfig({
     outline: { level: [2, 3], label: 'On this page' },
     footer: { message: 'Open source under the MIT licence. Made in New Zealand.', copyright: 'The Kiwi Smart Home' },
   },
-  vite: { server: { fs: { allow: ['..'] } } },
+  vite: {
+    server: {
+      fs: { allow: ['..'] },
+      // The manuals and demo pages for the two project sites are built and published by their own repositories,
+      // so they do not exist in this build. In `npm run dev`, fetch them from the live site instead (the local sandbox copies still win).
+      proxy: {
+        '^/(Recipe-Manager|shopping-list-manager-card)/(?!sandbox/).*': { target: 'https://thekiwismarthome.github.io', changeOrigin: true },
+      },
+    },
+  },
 });

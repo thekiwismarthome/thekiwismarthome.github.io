@@ -17,7 +17,16 @@ export default {
       'home-hero-info-before': () => h('img', { class: 'kh-hero-logo', src: withBase('/kiwi-smart-home.png'), alt: 'The Kiwi Smart Home', width: 200, height: 200 }),
     });
   },
-  enhanceApp({ app }) {
+  enhanceApp({ app, router }) {
+    // Recipe Manager and Shopping List Manager are separate sites published at these paths by their own repositories.
+    // This site's router does not know their pages, so it would show "Page not found". Do a normal page load instead.
+    if (typeof window !== 'undefined') {
+      const other = /^\/(Recipe-Manager|shopping-list-manager-card)(\/|$)/;
+      router.onBeforeRouteChange = (to) => {
+        const path = new URL(to, window.location.origin).pathname;
+        if (other.test(path)) { window.location.assign(to); return false; }
+      };
+    }
     app.component('ProjectCards', ProjectCards);
     app.component('Downloads', Downloads);
     app.component('DemoFrame', DemoFrame);
