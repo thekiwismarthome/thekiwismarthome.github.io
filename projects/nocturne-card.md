@@ -7,7 +7,7 @@ title: Nocturne Card
 One Home Assistant card for every glass tile on a dashboard. You pick a **kind** (light, climate, media player, weather, person ...), pick an **entity of that kind**, and set the options. The entity picker only offers entities of the right type, so a Light card only lists lights.
 
 ::: warning Beta
-This is `0.1.0-beta.1`. It works, but options may be renamed before 1.0. Please report anything odd on [GitHub](https://github.com/thekiwismarthome/nocturne-card/issues).
+This is `0.1.0-beta.2`. It works, but options may be renamed before 1.0. Please report anything odd on [GitHub](https://github.com/thekiwismarthome/nocturne-card/issues).
 :::
 
 <div class="kh-meta">
@@ -60,7 +60,7 @@ Needs Home Assistant 2024.8 or newer. To install by hand, copy `nocturne-card.js
 
 | Kind | Entities | What you get |
 | --- | --- | --- |
-| `light` | `light.*` | Toggle and brightness slider. Hold for a colour wheel popup. |
+| `light` | `light.*` | Toggle and brightness slider. Hold for a colour wheel popup, or use the full colour wheel card (`variant: wheel`). |
 | `switch` | `switch`, `input_boolean`, `valve` | Toggle tile with an accent colour. |
 | `fan` | `fan.*` | Spinning icon and a speed slider. |
 | `cover` | `cover.*` | Open, stop, close and a position slider. |
