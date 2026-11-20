@@ -72,8 +72,8 @@ h1, h2, h3, .VPHero .name, .VPHero .text, .VPFeature .title { font-family: var(-
 .kh-badge { font: 600 11.5px var(--vp-font-family-base); padding: 2px 9px; border-radius: 999px; white-space: nowrap; background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1); }
 .kh-badge[data-status="live"], .kh-badge[data-status="stable"] { background: var(--kh-kiwi-soft); color: #3F6B10; }
 .dark .kh-badge[data-status="live"], .dark .kh-badge[data-status="stable"] { color: var(--kh-kiwi); }
-.kh-badge[data-status="wip"] { background: #FFF1D6; color: #8A5A00; }
-.dark .kh-badge[data-status="wip"] { background: #3A2D12; color: #F2C057; }
+.kh-badge[data-status="wip"], .kh-badge[data-status="beta"] { background: #FFF1D6; color: #8A5A00; }
+.dark .kh-badge[data-status="wip"], .dark .kh-badge[data-status="beta"] { background: #3A2D12; color: #F2C057; }
 .kh-badge[data-status="unmaintained"] { background: var(--vp-c-default-soft); color: var(--vp-c-text-2); }
 .kh-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .kh-tags span { font: 500 11.5px var(--vp-font-family-mono); padding: 1px 8px; border-radius: 6px; background: var(--vp-c-default-soft); color: var(--vp-c-text-2); }

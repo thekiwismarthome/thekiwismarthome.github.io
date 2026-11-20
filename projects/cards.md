@@ -6,6 +6,21 @@ title: Dashboard cards
 
 Custom Lovelace cards. For button tiles and dashboard views, see the [KSH Style Buttons](/extras/ksh-style-buttons) in HA Extras.
 
+## Nocturne Card (beta)
+
+One glass card for every kind of tile: lights, climate, media players, weather, people, locks, vacuums and more. You pick the kind, the entity picker only offers entities of that kind, and every card has a background-image option. Full page: [Nocturne Card](/projects/nocturne-card).
+
+```yaml
+type: custom:nocturne-card
+kind: light
+entity: light.lounge
+```
+
+<div class="kh-meta">
+  <a class="primary" href="/projects/nocturne-card">Nocturne Card</a>
+  <a href="https://github.com/thekiwismarthome/nocturne-card">nocturne-card on GitHub</a>
+</div>
+
 ## Time Date Weather Card
 
 A clock, the date, an animated weather icon, the condition and the temperature in one card.
