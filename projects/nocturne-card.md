@@ -31,6 +31,10 @@ Light, switch, fan and compact climate tiles can swap the corner toggle for a bi
 
 Set **Square tile** on a small tile and it keeps a 1:1 shape at any width, so a row of them lines up like a grid.
 
+## Clock
+
+A clock card with a digital and an analogue face, for any time zone. It tints warm by day and cool at night, shows the date, and can show a next-alarm chip and a timer countdown.
+
 ## Install
 
 <div class="kh-steps">
