@@ -35,7 +35,7 @@ features:
       width: 24
       height: 24
     title: Dashboard cards
-    details: A clock and weather card, ChoreOps tiles for the kitchen screen and a gallery card.
+    details: Nocturne Card, a glass card for every tile with a live demo, plus a clock and weather card, ChoreOps tiles for the kitchen screen and a gallery card.
     link: /projects/cards
     linkText: Dashboard cards
   - icon:

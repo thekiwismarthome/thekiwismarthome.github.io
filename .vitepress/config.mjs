@@ -36,7 +36,7 @@ export default defineConfig({
         { text: 'Cards and gadgets', items: [
           { text: 'Timers & alarms', link: '/projects/timers' },
           { text: 'Dashboard cards', link: '/projects/cards' },
-          { text: 'Nocturne Card (beta)', link: '/projects/nocturne-card' },
+          { text: 'Nocturne Card (live demo)', link: '/projects/nocturne-card' },
           { text: 'Voice & displays', link: '/projects/voice-displays' },
           { text: 'Rotary thermostat (demo)', link: '/projects/rotary-thermostat' },
           { text: 'Homelab', link: '/projects/homelab' },
@@ -75,7 +75,7 @@ export default defineConfig({
         { text: 'Cards and gadgets', items: [
           { text: 'Timers & alarms', link: '/projects/timers' },
           { text: 'Dashboard cards', link: '/projects/cards' },
-          { text: 'Nocturne Card (beta)', link: '/projects/nocturne-card' },
+          { text: 'Nocturne Card (live demo)', link: '/projects/nocturne-card' },
           { text: 'Voice & displays', link: '/projects/voice-displays' },
           { text: 'Rotary thermostat (demo)', link: '/projects/rotary-thermostat' },
           { text: 'Homelab', link: '/projects/homelab' },

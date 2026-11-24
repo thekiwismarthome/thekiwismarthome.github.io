@@ -7,7 +7,8 @@
     "sync": "node scripts/sync-downloads.mjs",
     "dev": "npm run local-demos && vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "sync-nocturne": "node -e \"require('fs').copyFileSync('../nocturne-card/nocturne-card.js','public/demos/nocturne-card/nocturne-card.js')\""
   },
   "devDependencies": {
     "fflate": "^0.8.3",

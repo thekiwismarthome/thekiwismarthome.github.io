@@ -6,9 +6,9 @@ title: Dashboard cards
 
 Custom Lovelace cards. For button tiles and dashboard views, see the [KSH Style Buttons](/extras/ksh-style-buttons) in HA Extras.
 
-## Nocturne Card (beta)
+## Nocturne Card
 
-One glass card for every kind of tile: lights, climate, media players, weather, people, locks, vacuums and more. You pick the kind, the entity picker only offers entities of that kind, and every card has a background-image option. Full page: [Nocturne Card](/projects/nocturne-card).
+One glass card for every kind of tile: lights, climate, media players, weather, people, locks, vacuums, a clock and more. You pick the kind, the entity picker only offers entities of that kind, and every card has a background-image option. There is a [live demo](/projects/nocturne-card) you can try in the browser. Full page: [Nocturne Card](/projects/nocturne-card).
 
 ```yaml
 type: custom:nocturne-card

@@ -29,9 +29,9 @@ export const PROJECTS = [
     blurb: 'Start and stop timers by voice and ask how long is left on all of them or one in particular. Based on ha_intent_timers.',
     repo: 'ha-intent-timers', tags: ['Assist', 'YAML'] },
 
-  { id: 'nocturne-card', group: 'cards', name: 'Nocturne Card', status: 'beta', kicker: 'Lovelace card',
-    blurb: 'One glass card for lights, climate, media, weather, people and more. Pick a kind, pick an entity of that kind, set the options.',
-    page: '/projects/nocturne-card', repo: 'nocturne-card', tags: ['HACS', 'Lovelace', 'Beta'] },
+  { id: 'nocturne-card', group: 'cards', name: 'Nocturne Card', status: 'stable', kicker: 'Lovelace card + live demo',
+    blurb: 'One glass card for lights, climate, media, weather, people, a clock and more, 20 kinds in all. Pick a kind, pick an entity of that kind, set the options. Try every card in your browser.',
+    page: '/projects/nocturne-card', repo: 'nocturne-card', tags: ['HACS', 'Lovelace', 'Demo'] },
   { id: 'time-date-weather-card', group: 'cards', name: 'Time Date Weather Card', status: 'stable', kicker: 'Lovelace card',
     blurb: 'Clock, date and an animated weather icon in one card, with weather-aware or animated canvas backgrounds.',
     repo: 'time-date-weather-card', tags: ['HACS', 'Lovelace'] },

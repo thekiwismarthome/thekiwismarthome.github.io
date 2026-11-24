@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nocturne Card demo</title>
+<meta name="description" content="Every Nocturne Card kind running in your browser against a pretend Home Assistant. Tap, drag, hold. Nothing to install.">
+<link rel="icon" href="../../favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #F6F9FC; --panel: #FFFFFF; --alt: #EAF1F8; --line: #D7E2EE; --text: #14202C; --text2: #475A6E; --brand: #0B6BC0; --brand-ink: #FFFFFF; --brand-soft: #DCEBF8;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0E141B; --panel: #18222E; --alt: #121B25; --line: #26364A; --text: #E8EEF5; --text2: #A7B6C8; --brand: #5AAEF0; --brand-ink: #07131F; --brand-soft: #14293D; }
+}
+:root[data-theme="light"] { --bg: #F6F9FC; --panel: #FFFFFF; --alt: #EAF1F8; --line: #D7E2EE; --text: #14202C; --text2: #475A6E; --brand: #0B6BC0; --brand-ink: #FFFFFF; --brand-soft: #DCEBF8; }
+:root[data-theme="dark"] { --bg: #0E141B; --panel: #18222E; --alt: #121B25; --line: #26364A; --text: #E8EEF5; --text2: #A7B6C8; --brand: #5AAEF0; --brand-ink: #07131F; --brand-soft: #14293D; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.5 "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+button, select, input { font: inherit; color: inherit; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 16px 16px 28px; }
+
+/* the control bar */
+.bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; margin-bottom: 18px; }
+.bar .grp { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bar label, .bar .lbl { font-size: 12.5px; color: var(--text2); white-space: nowrap; }
+.seg { display: inline-flex; background: var(--alt); border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+.seg button { border: 0; background: none; padding: 4px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; color: var(--text2); }
+.seg button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
+.bar input[type=range] { width: 110px; accent-color: var(--brand); }
+.bar output { font-size: 12.5px; min-width: 2.6em; font-variant-numeric: tabular-nums; }
+.bar .on-sw[hidden] { display: none; }
+.bar .note { flex-basis: 100%; font-size: 12.5px; color: var(--text2); margin: 0; }
+
+/* the dark glass stage (the cards are made for dark glass themes, so the stage is dark in both site themes) */
+h2 { font: 600 13px/1.2 "DM Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--text2); margin: 22px 2px 10px; }
+.stage {
+  --primary-text-color: #f0f2ff; --secondary-text-color: rgba(240,242,255,.66); --primary-color: #7c6cff; --accent-color: #4de3ff;
+  --card-background-color: #12162b; --divider-color: rgba(255,255,255,.12); --ha-font-family-body: Manrope, system-ui, sans-serif;
+  color: var(--primary-text-color); font-family: Manrope, system-ui, sans-serif;
+  border-radius: 22px; padding: 18px; position: relative; overflow: hidden; isolation: isolate;
+  background: radial-gradient(60% 55% at 8% 0%, rgba(22,194,176,.55), transparent 70%), radial-gradient(55% 60% at 100% 35%, rgba(110,70,255,.5), transparent 70%), radial-gradient(50% 50% at 40% 100%, rgba(255,140,60,.28), transparent 70%), #080b16;
+}
+.tiles { display: flex; flex-wrap: wrap; gap: 14px; }
+.tiles > div { width: var(--tw, 165px); flex: none; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 14px; align-items: start; }
+.cards.two { grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); }
+.cards > .w2 { grid-column: span 2; }
+@media (max-width: 720px) { .cards > .w2 { grid-column: auto; } }
+nocturne-card { display: block; }
+
+/* toast for more-info and scenes */
+.toast { position: fixed; left: 50%; bottom: 16px; transform: translate(-50%, 20px); opacity: 0; transition: .25s; background: #151a2c; color: #eef; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 8px 18px; font-size: 13.5px; pointer-events: none; z-index: 30; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.foot { font-size: 12.5px; color: var(--text2); margin: 16px 2px 0; }
+.foot a { color: var(--brand); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar" id="bar">
+    <div class="grp"><span class="lbl">Switch style</span>
+      <div class="seg" id="style" role="group" aria-label="Switch style">
+        <button data-v="standard" aria-pressed="false">Standard</button><button data-v="slot" aria-pressed="true">Slot</button><button data-v="tab" aria-pressed="false">Tab</button><button data-v="overlap" aria-pressed="false">Overlap</button>
+      </div></div>
+    <div class="grp on-sw"><label for="pos">Position</label><input id="pos" type="range" min="0" max="100" value="50"><output id="posv">50</output></div>
+    <div class="grp on-sw gapctl"><label for="gap">Gap</label><input id="gap" type="range" min="0" max="20" value="6"><output id="gapv">6</output></div>
+    <div class="grp on-sw gapctl"><label for="soft">Softness</label><input id="soft" type="range" min="0" max="24" value="12"><output id="softv">12</output></div>
+    <div class="grp"><label for="tw">Tile width</label><input id="tw" type="range" min="120" max="260" value="165"><output id="twv">165</output></div>
+    <p class="note">The style, position, gap and softness apply to the lights, switch, fan and compact climate tiles. Tile width shows how everything shrinks on a phone. Tap things, drag the sliders, press and hold a light for the colour wheel.</p>
+  </div>
+
+  <h2>Tiles</h2>
+  <div class="stage"><div class="tiles" id="tiles"></div></div>
+
+  <h2>Cards</h2>
+  <div class="stage"><div class="cards" id="cards"></div></div>
+
+  <h2>Weather</h2>
+  <div class="stage"><div class="cards two" id="weather"></div></div>
+
+  <h2>Clock</h2>
+  <div class="stage"><div class="tiles" id="clocks"></div></div>
+
+  <p class="foot">A pretend Home Assistant: the real card file, fake entities that answer taps. Icons are <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">Material Design Icons</a>. In your own Home Assistant the card opens the more-info dialog where this page shows a message.</p>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="mdi-icons.js"></script>
+<script>
+/* ha-icon: the card draws every icon with <ha-icon icon="mdi:name">, which Home Assistant provides. This stands in for it. */
+customElements.define('ha-icon', class extends HTMLElement {
+  static get observedAttributes() { return ['icon']; }
+  constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = '<style>:host{display:inline-flex;vertical-align:middle;width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px);color:inherit;flex:none}svg{width:100%;height:100%;fill:currentColor;display:block}</style><svg viewBox="0 0 24 24" aria-hidden="true"><path></path></svg>'; }
+  attributeChangedCallback() { this.shadowRoot.querySelector('path').setAttribute('d', window.NC_ICONS[(this.getAttribute('icon') || '').replace(/^mdi:/, '')] || ''); }
+  set icon(v) { this.setAttribute('icon', v); }
+});
+</script>
+<script src="nocturne-card.js"></script>
+<script>
+const q = new URLSearchParams(location.search); document.documentElement.dataset.theme = q.get('theme') || '';
+
+/* ---------------- pretend Home Assistant ---------------- */
+const NOW = Date.now(), iso = ms => new Date(ms).toISOString();
+let states = {};
+const put = (id, state, attributes = {}, ago = 3600e3) => { states[id] = { entity_id: id, state, attributes: Object.assign({ friendly_name: id.split('.')[1].replace(/_/g, ' ').replace(/^./, c => c.toUpperCase()) }, attributes), last_changed: iso(NOW - ago), last_updated: iso(NOW - ago) }; };
+const svg = s => 'data:image/svg+xml,' + encodeURIComponent(s);
+const face = (h1, h2) => svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h1} 75% 62%)"/><stop offset="1" stop-color="hsl(${h2} 70% 40%)"/></linearGradient></defs><rect width="100" height="100" fill="url(#g)"/><circle cx="50" cy="38" r="17" fill="rgba(255,255,255,.85)"/><path d="M16 100c2-26 17-38 34-38s32 12 34 38z" fill="rgba(255,255,255,.85)"/></svg>`);
+const art = svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a59"/><stop offset=".55" stop-color="#c13584"/><stop offset="1" stop-color="#3b2a8f"/></linearGradient></defs><rect width="100" height="100" fill="url(#a)"/><circle cx="50" cy="56" r="22" fill="#ffd27a" opacity=".9"/><rect y="66" width="100" height="34" fill="#2a1b63" opacity=".8"/></svg>`);
+const camPic = svg(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27406e"/><stop offset=".6" stop-color="#e48c5b"/><stop offset="1" stop-color="#f6c778"/></linearGradient></defs><rect width="160" height="90" fill="url(#s)"/><path d="M0 62l30-14 22 9 28-18 30 20 26-9 24 8v32H0z" fill="#1d2a3d"/><rect x="100" y="52" width="34" height="24" fill="#0e1622"/><path d="M96 54l21-14 21 14z" fill="#0b121c"/><rect x="109" y="62" width="8" height="14" fill="#f2c36b"/></svg>`);
+
+put('sun.sun', (new Date().getHours() >= 6 && new Date().getHours() < 19) ? 'above_horizon' : 'below_horizon', { friendly_name: 'Sun' });
+put('zone.home', 'zoning', { friendly_name: 'Home', latitude: -36.8485, longitude: 174.7633 });
+// lights
+put('light.lounge', 'on', { friendly_name: 'Lounge', brightness: 180, supported_color_modes: ['hs'], color_mode: 'hs', hs_color: [32, 72], rgb_color: [255, 187, 71], icon: 'mdi:sofa' });
+put('light.kitchen', 'on', { friendly_name: 'Kitchen', brightness: 255, supported_color_modes: ['color_temp'], color_mode: 'color_temp', icon: 'mdi:ceiling-light' });
+put('light.bedside', 'on', { friendly_name: 'Bedside', brightness: 28, supported_color_modes: ['hs'], color_mode: 'hs', hs_color: [312, 100], rgb_color: [255, 0, 204], icon: 'mdi:lamp' });
+put('light.hall', 'off', { friendly_name: 'Hallway', supported_color_modes: ['onoff'], icon: 'mdi:floor-lamp' });
+put('valve.garden', 'closed', { friendly_name: 'Garden', icon: 'mdi:sprinkler' });
+put('switch.coffee', 'off', { friendly_name: 'Coffee', icon: 'mdi:coffee-maker' });
+put('fan.bedroom', 'on', { friendly_name: 'Bedroom fan', percentage: 60, supported_features: 1 });
+put('cover.garage', 'closed', { friendly_name: 'Garage', current_position: 0, supported_features: 15, icon: 'mdi:garage' });
+put('cover.blinds', 'open', { friendly_name: 'Blinds', current_position: 60, supported_features: 15, icon: 'mdi:blinds' });
+put('sensor.kitchen_temperature', '21.4', { friendly_name: 'Kitchen', device_class: 'temperature', unit_of_measurement: '°C' });
+put('sensor.kitchen_humidity', '52', { friendly_name: 'Kitchen humidity', device_class: 'humidity', unit_of_measurement: '%' });
+put('sensor.solar', '3.4', { friendly_name: 'Solar', unit_of_measurement: 'kW', icon: 'mdi:solar-power' });
+put('lock.front_door', 'locked', { friendly_name: 'Front door', battery_level: 82 });
+put('vacuum.robot', 'docked', { friendly_name: 'Robot', battery_level: 91 });
+put('binary_sensor.robot_bin', 'off', { friendly_name: 'Robot bin' });
+put('camera.driveway', 'idle', { friendly_name: 'Driveway', entity_picture: camPic });
+put('scene.movie', 'scening', { friendly_name: 'Movie night', icon: 'mdi:movie-open' });
+put('scene.dinner', 'scening', { friendly_name: 'Dinner', icon: 'mdi:silverware-fork-knife' });
+put('script.goodnight', 'off', { friendly_name: 'Goodnight', icon: 'mdi:weather-night' });
+put('script.all_off', 'off', { friendly_name: 'All off', icon: 'mdi:power' });
+// people
+[['alex', 'Alex', 205, 250, 'home', 0, 0, 78], ['sam', 'Sam', 330, 20, 'not_home', 0.034, 0.052, 36], ['jordan', 'Jordan', 140, 190, 'home', 0, 0, 14], ['casey', 'Casey', 40, 80, 'not_home', 0.11, -0.04, 91]].forEach(([k, n, h1, h2, s, dla, dlo, bat], i) => {
+  put('person.' + k, s, { friendly_name: n, entity_picture: i === 0 ? face(h1, h2) : undefined, latitude: -36.8485 + dla, longitude: 174.7633 + dlo, source: `device_tracker.${k}_phone`, device_trackers: [`device_tracker.${k}_phone`] }, (i + 1) * 5400e3);
+  put(`sensor.${k}_phone_battery_level`, String(bat), { friendly_name: n + ' phone battery', unit_of_measurement: '%' });
+});
+// climate
+const hvac = ['off', 'auto', 'cool', 'heat', 'dry', 'fan_only'];
+put('climate.living', 'cool', { friendly_name: 'Living room', temperature: 22, current_temperature: 24, min_temp: 16, max_temp: 31, hvac_modes: hvac, fan_mode: 'auto', fan_modes: ['auto', 'low', 'medium', 'high'], current_humidity: 58 });
+put('climate.bedroom', 'heat', { friendly_name: 'Bedroom', temperature: 21, current_temperature: 18, min_temp: 16, max_temp: 31, hvac_modes: ['off', 'auto', 'cool', 'heat'], fan_mode: 'auto', fan_modes: ['auto', 'low', 'high'] });
+// alarm, media, vehicle, plants, appliances, smoke
+put('alarm_control_panel.home', 'armed_home', { friendly_name: 'Home alarm' });
+put('binary_sensor.front_door_contact', 'off', { friendly_name: 'Front door contact', device_class: 'door' });
+put('binary_sensor.hall_motion', 'on', { friendly_name: 'Hall presence' });
+put('media_player.kitchen', 'playing', { friendly_name: 'Kitchen speaker', media_title: 'Golden Hour', media_artist: 'Kiwi Beats', entity_picture: art, volume_level: 0.35, shuffle: false, repeat: 'off', supported_features: 32768 | 262144 | 4 | 16384 | 32 | 128 | 1 });
+put('sensor.car_battery', '68', { friendly_name: 'Car', device_class: 'battery', unit_of_measurement: '%' });
+put('sensor.car_range', '312', { friendly_name: 'Car range', unit_of_measurement: 'km' });
+put('lock.car', 'locked', { friendly_name: 'Car lock' });
+put('binary_sensor.car_charging', 'on', { friendly_name: 'Car charging' });
+put('sensor.car_charge_time', '1:25', { friendly_name: 'Car charge time' });
+put('plant.fern', 'ok', { friendly_name: 'Fern' }); put('plant.monstera', 'ok', { friendly_name: 'Monstera' }); put('plant.basil', 'problem', { friendly_name: 'Basil' });
+put('sensor.washer_time', '0:42:00', { friendly_name: 'Washer time remaining' }); put('sensor.dryer_time', '00:00', { friendly_name: 'Dryer time remaining' }); put('sensor.dishwasher_time', '1:10:00', { friendly_name: 'Dishwasher time remaining' });
+['Hallway', 'Kitchen', 'Lounge', 'Upstairs'].forEach(n => put('binary_sensor.smoke_' + n.toLowerCase(), 'off', { friendly_name: 'Smoke Alarm ' + n }));
+// clock extras
+const tomorrow630 = new Date(); tomorrow630.setDate(tomorrow630.getDate() + 1); tomorrow630.setHours(6, 30, 0, 0);
+put('sensor.next_alarm', tomorrow630.toISOString(), { friendly_name: 'Next alarm', device_class: 'timestamp' });
+put('timer.pasta', 'active', { friendly_name: 'Pasta', remaining: '0:07:30', finishes_at: iso(NOW + 450e3), duration: '0:10:00' });
+// weather
+put('weather.home', 'partlycloudy', { friendly_name: 'Home', temperature: 18, humidity: 64, pressure: 1016, wind_speed: 14, wind_bearing: 220, wind_gust_speed: 26, visibility: 24, uv_index: 5, dew_point: 11, cloud_coverage: 45, apparent_temperature: 17, temperature_unit: '°C', wind_speed_unit: 'km/h', pressure_unit: 'hPa', visibility_unit: 'km', precipitation_unit: 'mm' });
+put('sensor.home_feels_like', '17', { friendly_name: 'Feels like', unit_of_measurement: '°C' });
+put('sensor.home_warnings', '1', { friendly_name: 'Weather warnings' });
+
+const hourly = [], daily = [], HC = ['partlycloudy', 'partlycloudy', 'cloudy', 'cloudy', 'rainy', 'rainy', 'cloudy', 'partlycloudy', 'sunny', 'sunny', 'partlycloudy', 'cloudy'];
+const h0 = new Date(); h0.setMinutes(0, 0, 0);
+for (let i = 0; i < 25; i++) { const d = new Date(h0.getTime() + i * 3600e3); hourly.push({ datetime: d.toISOString(), condition: HC[(Math.floor(i / 2) + d.getDate()) % HC.length], temperature: Math.round(15 + 5 * Math.sin((d.getHours() - 9) / 24 * 2 * Math.PI)), precipitation_probability: ((Math.floor(i / 2) % HC.length) === 4 || (Math.floor(i / 2) % HC.length) === 5) ? 60 : 10 }); }
+const DC = ['partlycloudy', 'rainy', 'cloudy', 'sunny', 'sunny', 'lightning-rainy', 'partlycloudy', 'cloudy'];
+for (let i = 0; i < 8; i++) { const d = new Date(NOW + i * 86400e3); d.setHours(12, 0, 0, 0); daily.push({ datetime: d.toISOString(), condition: DC[i], temperature: 19 + (i * 7) % 5, templow: 10 + (i * 3) % 4, precipitation: DC[i].includes('rain') ? 6 : 0 }); }
+const connection = { subscribeMessage(cb, msg) { setTimeout(() => cb({ forecast: msg.forecast_type === 'hourly' ? hourly : daily }), 30); return Promise.resolve(() => {}); } };
+
+/* turning a colour wheel pick into the rgb the card shows */
+const hs2rgb = (h, s) => { s /= 100; const f = n => { const k = (n + h / 60) % 6; return 1 - s * Math.max(0, Math.min(k, 4 - k, 1)); }; return [f(5), f(3), f(1)].map(v => Math.round(v * 255)); };
+
+const cards = [], listeners = new Set();
+let hass;
+const build = () => { hass = { states, themes: {}, selectedTheme: null, language: 'en', locale: { language: 'en-NZ' }, config: { unit_system: { length: 'km' } }, user: { name: 'Demo' }, hassUrl: p => p, connection, callWS: () => Promise.resolve({}), callService }; cards.forEach(c => { c.hass = hass; }); };
+let pending = false; const commit = () => { if (pending) return; pending = true; Promise.resolve().then(() => { pending = false; build(); }); };
+const upd = (id, state, attrs) => { const o = states[id]; if (!o) return; states = Object.assign({}, states); states[id] = Object.assign({}, o, { state: state ?? o.state, attributes: Object.assign({}, o.attributes, attrs || {}), last_changed: state != null && state !== o.state ? iso(Date.now()) : o.last_changed }); commit(); };
+const A = id => (states[id] || {}).attributes || {}, ST = id => (states[id] || {}).state;
+const dom = id => id.split('.')[0];
+const toast = (t) => { const el = document.getElementById('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2400); };
+
+function callService(d, s, data = {}) {
+  const ids = [].concat(data.entity_id || []);
+  ids.forEach(id => {
+    const on = ['on', 'open', 'opening', 'playing', 'cleaning'].includes(ST(id));
+    if (d === 'homeassistant' && s === 'toggle') {
+      const dd = dom(id);
+      if (dd === 'light') return upd(id, on ? 'off' : 'on', on ? {} : { brightness: A(id).brightness || 255 });
+      if (dd === 'cover') return callService('cover', on ? 'close_cover' : 'open_cover', { entity_id: id });
+      if (dd === 'valve') return upd(id, on ? 'closed' : 'open');
+      return upd(id, on ? 'off' : 'on', dd === 'fan' && !on ? { percentage: A(id).percentage || 60 } : {});
+    }
+    if (d === 'light') { if (s === 'turn_off') return upd(id, 'off'); const a = {}; if (data.brightness_pct != null) a.brightness = Math.max(1, Math.round(data.brightness_pct * 2.55)); else if (ST(id) === 'off') a.brightness = A(id).brightness || 255; if (data.hs_color) { a.hs_color = data.hs_color; a.rgb_color = hs2rgb(data.hs_color[0], data.hs_color[1]); a.color_mode = 'hs'; } return upd(id, 'on', a); }
+    if (d === 'fan') { if (s === 'set_percentage') return upd(id, data.percentage > 0 ? 'on' : 'off', { percentage: data.percentage }); return upd(id, s === 'turn_on' ? 'on' : 'off'); }
+    if (d === 'cover') { const a = A(id); if (s === 'open_cover') return upd(id, 'open', { current_position: 100 }); if (s === 'close_cover') return upd(id, 'closed', { current_position: 0 }); if (s === 'set_cover_position') return upd(id, data.position > 0 ? 'open' : 'closed', { current_position: data.position }); if (s === 'toggle') return callService('cover', ST(id) === 'closed' ? 'open_cover' : 'close_cover', { entity_id: id }); return; }
+    if (d === 'lock') return upd(id, s === 'lock' ? 'locked' : 'unlocked');
+    if (d === 'climate') { if (s === 'turn_off') return upd(id, 'off'); if (s === 'turn_on') return upd(id, A(id)._last || 'cool'); if (s === 'set_hvac_mode') return upd(id, data.hvac_mode, { _last: data.hvac_mode }); if (s === 'set_temperature') return upd(id, null, { temperature: data.temperature }); if (s === 'set_fan_mode') return upd(id, null, { fan_mode: data.fan_mode }); return; }
+    if (d === 'media_player') {
+      if (s === 'media_play_pause') return upd(id, ST(id) === 'playing' ? 'paused' : 'playing');
+      if (s === 'turn_off') return upd(id, 'off'); if (s === 'turn_on') return upd(id, 'playing');
+      if (s === 'volume_set') return upd(id, null, { volume_level: data.volume_level });
+      if (s === 'shuffle_set') return upd(id, null, { shuffle: data.shuffle });
+      if (s === 'repeat_set') return upd(id, null, { repeat: data.repeat });
+      if (s === 'media_next_track' || s === 'media_previous_track') { const T = [['Golden Hour', 'Kiwi Beats'], ['Southern Lights', 'The Tuis'], ['Harbour Night', 'Kōwhai']]; const i = (T.findIndex(t => t[0] === A(id).media_title) + (s === 'media_next_track' ? 1 : 2)) % 3; return upd(id, 'playing', { media_title: T[i][0], media_artist: T[i][1] }); }
+      return;
+    }
+    if (d === 'alarm_control_panel') return upd(id, { alarm_disarm: 'disarmed', alarm_arm_home: 'armed_home', alarm_arm_away: 'armed_away', alarm_arm_night: 'armed_night' }[s] || ST(id));
+    if (d === 'vacuum') return upd(id, { start: 'cleaning', pause: 'paused', return_to_base: 'docked' }[s] || ST(id));
+    if (d === 'scene' || d === 'script' || d === 'button') return toast(`Ran ${A(id).friendly_name}`);
+  });
+}
+addEventListener('hass-more-info', e => toast(`More info for ${(states[e.detail.entityId] || {}).attributes ? states[e.detail.entityId].attributes.friendly_name : e.detail.entityId} opens here in Home Assistant`));
+
+/* climate dial buttons read the page's <home-assistant> element */
+const ha = document.createElement('home-assistant'); Object.defineProperty(ha, 'hass', { get: () => hass }); ha.hidden = true; document.body.appendChild(ha);
+
+/* ---------------- the cards on the page ---------------- */
+const sw = { switch_style: 'slot', switch_position: 50, switch_gap: 6, switch_softness: 12, square: true };
+const T = (cfg, swOn = true) => ({ cfg, sw: swOn });
+const TILES = [
+  T({ kind: 'light', entity: 'light.lounge' }), T({ kind: 'light', entity: 'light.kitchen' }), T({ kind: 'light', entity: 'light.bedside' }), T({ kind: 'light', entity: 'light.hall' }),
+  T({ kind: 'switch', entity: 'valve.garden', accent: 'water' }), T({ kind: 'switch', entity: 'switch.coffee', accent: 'warm' }), T({ kind: 'fan', entity: 'fan.bedroom' }), T({ kind: 'climate', entity: 'climate.bedroom', variant: 'compact' }),
+  T({ kind: 'cover', entity: 'cover.garage' }, false), T({ kind: 'cover', entity: 'cover.blinds' }, false), T({ kind: 'sensor', entity: 'sensor.kitchen_temperature', secondary_entity: 'sensor.kitchen_humidity' }, false), T({ kind: 'sensor', entity: 'sensor.solar', variant: 'value' }, false),
+  T({ kind: 'lock', entity: 'lock.front_door' }, false), T({ kind: 'vacuum', entity: 'vacuum.robot', bin_entity: 'binary_sensor.robot_bin' }, false), T({ kind: 'person', entity: 'person.alex' }, false), T({ kind: 'person', entity: 'person.sam', avatar: 'initials', ring: 'battery' }, false),
+  T({ kind: 'vehicle', entity: 'sensor.car_battery', range_entity: 'sensor.car_range', lock_entity: 'lock.car', charging_entity: 'binary_sensor.car_charging', time_entity: 'sensor.car_charge_time' }, false),
+];
+const CARDS = [
+  { cfg: { kind: 'climate', entity: 'climate.living' }, cls: 'w2' },
+  { cfg: { kind: 'media', entity: 'media_player.kitchen', artwork: 'blurred' } },
+  { cfg: { kind: 'alarm', entity: 'alarm_control_panel.home', lock_entity: 'lock.front_door', door_entity: 'binary_sensor.front_door_contact', presence_entity: 'binary_sensor.hall_motion', presence_label: 'Hall', camera_entity: 'camera.driveway', camera_label: 'Drive', arm: true } },
+  { cfg: { kind: 'camera', entity: 'camera.driveway' } },
+  { cfg: { kind: 'actions', name: 'Scenes', entities: ['scene.movie', 'scene.dinner', 'script.goodnight', 'script.all_off'] } },
+  { cfg: { kind: 'family', entities: ['person.alex', 'person.sam', 'person.jordan', 'person.casey'] } },
+  { cfg: { kind: 'appliance', name: 'Laundry', entities: ['sensor.washer_time', 'sensor.dryer_time', 'sensor.dishwasher_time'] } },
+  { cfg: { kind: 'plants', entities: ['plant.fern', 'plant.monstera', 'plant.basil'] } },
+  { cfg: { kind: 'safety', entities: ['binary_sensor.smoke_hallway', 'binary_sensor.smoke_kitchen', 'binary_sensor.smoke_lounge', 'binary_sensor.smoke_upstairs'] } },
+  { cfg: { kind: 'person', entity: 'person.jordan', layout: 'wide', ring: 'battery' } },
+];
+const WX = ['hero', 'hourly', 'daily', 'details'].map(p => ({ cfg: { kind: 'weather', entity: 'weather.home', panel: p, location: 'Home', feels_entity: 'sensor.home_feels_like', warnings_entity: 'sensor.home_warnings' } }));
+const CLOCKS = [{ cfg: { kind: 'clock', variant: 'digital', name: 'Auckland', timezone: 'Pacific/Auckland', alarm_entity: 'sensor.next_alarm', timer_entity: 'timer.pasta' } }, { cfg: { kind: 'clock', variant: 'analog', timezone: 'Europe/London', name: 'London' } }, { cfg: { kind: 'clock', variant: 'digital', size: 'wide', timezone: 'America/New_York', name: 'New York' }, wide: true }];
+
+const ctl = { style: ['standard', 'slot', 'tab', 'overlap'].includes(q.get('style')) ? q.get('style') : 'slot', pos: +(q.get('pos') ?? 50), gap: 6, soft: 12 };
+const swCfg = () => ctl.style === 'standard' ? { switch_style: 'standard', square: true } : { switch_style: ctl.style, switch_position: ctl.pos, switch_gap: ctl.gap, switch_softness: ctl.soft, square: true };
+function mount(host, list, wrapTile) {
+  list.forEach(item => {
+    const el = document.createElement('nocturne-card'); item.el = el;
+    el.setConfig(Object.assign({}, item.cfg, item.sw ? swCfg() : { square: true }));
+    cards.push(el);
+    if (wrapTile) { const w = document.createElement('div'); if (item.wide) w.style.width = 'calc(var(--tw, 165px) * 2 + 14px)'; w.appendChild(el); host.appendChild(w); } else { if (item.cls) el.className = item.cls; host.appendChild(el); }
+  });
+}
+function mountGrid(host, list) { list.forEach(item => { const el = document.createElement('nocturne-card'); el.setConfig(item.cfg); cards.push(el); const d = document.createElement('div'); if (item.cls) d.className = item.cls; d.appendChild(el); host.appendChild(d); }); }
+mount(document.getElementById('tiles'), TILES, true);
+mountGrid(document.getElementById('cards'), CARDS);
+mountGrid(document.getElementById('weather'), WX);
+mount(document.getElementById('clocks'), CLOCKS, true);
+build();
+
+/* ---------------- controls ---------------- */
+const $ = id => document.getElementById(id);
+function applySwitch() { TILES.forEach(t => t.sw && t.el.setConfig(Object.assign({}, t.cfg, swCfg()))); document.querySelectorAll('.on-sw').forEach(n => n.hidden = ctl.style === 'standard'); document.querySelectorAll('.gapctl').forEach(n => n.hidden = ctl.style === 'standard' || ctl.style === 'overlap'); }
+$('style').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; ctl.style = b.dataset.v; [...$('style').children].forEach(x => x.setAttribute('aria-pressed', x === b)); applySwitch(); });
+[['pos', 'pos'], ['gap', 'gap'], ['soft', 'soft']].forEach(([id, k]) => $(id).addEventListener('input', () => { ctl[k] = +$(id).value; $(id + 'v').textContent = $(id).value; applySwitch(); }));
+$('tw').addEventListener('input', () => { $('twv').textContent = $('tw').value; document.documentElement.style.setProperty('--tw', $('tw').value + 'px'); document.querySelectorAll('.stage').forEach(s => s.style.setProperty('--tw', $('tw').value + 'px')); });
+[...$('style').children].forEach(x => x.setAttribute('aria-pressed', x.dataset.v === ctl.style)); $('pos').value = ctl.pos; $('posv').textContent = ctl.pos;
+if (q.get('tw')) { $('tw').value = q.get('tw'); $('tw').dispatchEvent(new Event('input')); }
+applySwitch();
+
+/* tell the page around this one how tall the demo is, so it can size the frame */
+const tell = () => { try { parent.postMessage({ type: 'kh-demo-height', src: location.pathname, height: document.body.offsetHeight }, '*'); } catch (_) {} };
+if (window.ResizeObserver) new ResizeObserver(tell).observe(document.body); addEventListener('load', tell); setTimeout(tell, 600);
+</script>
+</body>
+</html>
