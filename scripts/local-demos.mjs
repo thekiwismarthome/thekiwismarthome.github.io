@@ -1,14 +1,13 @@
-// The home page shows the live Recipe Manager and Shopping List Manager demos, which are published by their own repositories
-// at /Recipe-Manager/ and /shopping-list-manager-card/ on this same address. For `npm run dev` this copies their built
-// demo folders from the sibling checkouts so the phones work offline. Nothing here is committed or deployed.
+// The home page shows the live KSH Family Hub demo, which is published by its own repository at /ksh-family-hub/ on this
+// same address. For `npm run dev` this copies its built demo folder from the sibling checkout (run `npm run prepare-demo`
+// in ../ksh-family-hub/site first) so the phones work offline. Nothing here is committed or deployed.
 import { cpSync, existsSync, rmSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const siblings = [
-  ['../Recipe-Manager/site/public/sandbox', 'public/Recipe-Manager/sandbox'],
-  ['../shopping-list-manager-card/site/public/sandbox', 'public/shopping-list-manager-card/sandbox'],
+  ['../ksh-family-hub/site/public/sandbox', 'public/ksh-family-hub/sandbox'],
 ];
 for (const [from, to] of siblings) {
   const src = resolve(root, from);

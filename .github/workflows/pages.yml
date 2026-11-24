@@ -1,8 +1,8 @@
 name: Publish website
 
 # Builds the website and publishes it to GitHub Pages.
-# Recipe Manager (/Recipe-Manager/) and Shopping List Manager (/shopping-list-manager-card/) are published by their own
-# repositories to the same address, so this site only needs to build itself.
+# KSH Family Hub (/ksh-family-hub/) is published by its own repository to the same address, so this site only needs to
+# build itself.
 on:
   push:
     branches: [main]

@@ -7,12 +7,12 @@ title: Projects
 Everything I build for Home Assistant, in five groups. Cards with a green badge have a full website of their own.
 
 ::: tip Not sure where to start?
-Try the [Recipe Manager live demo](/Recipe-Manager/demo) or the [Shopping List Manager live demo](/shopping-list-manager-card/demo). They run the real cards in your browser, no Home Assistant needed.
+Try the [KSH Family Hub live demo](/ksh-family-hub/demo). It runs the real app in your browser, no Home Assistant needed.
 :::
 
 ## Home Assistant integrations
 
-An integration plus a card, with a user manual and a live demo.
+An integration plus cards, with a website, a live demo and guides.
 
 <ProjectCards group="featured" />
 

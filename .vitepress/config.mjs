@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 const ORG = 'https://github.com/thekiwismarthome';
 
 // This is the user site, served from the root of thekiwismarthome.github.io.
-// Recipe Manager and Shopping List Manager have their own sites under /Recipe-Manager/ and /shopping-list-manager-card/.
+// KSH Family Hub has its own site under /ksh-family-hub/ (guides and a live demo), published by its own repository.
 const BASE = process.env.SITE_BASE || '/';
 
 export default defineConfig({
@@ -13,8 +13,8 @@ export default defineConfig({
   base: BASE,
   cleanUrls: true,
   lastUpdated: true,
-  // The two project sites below are built and published from their own repositories
-  ignoreDeadLinks: [/^\/Recipe-Manager\//, /^\/shopping-list-manager-card\//],
+  // The Family Hub site is built and published from its own repository
+  ignoreDeadLinks: [/^\/ksh-family-hub\//],
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: `${BASE}favicon-64.png` }],
     ['link', { rel: 'apple-touch-icon', href: `${BASE}logo.png` }],
@@ -29,9 +29,9 @@ export default defineConfig({
     // Three places to go, and each opens a short, grouped list.
     nav: [
       { text: 'Projects', activeMatch: '^/projects/', items: [
-        { text: 'Integrations', items: [
-          { text: 'Recipe Manager', link: '/projects/recipe-manager' },
-          { text: 'Shopping List Manager', link: '/projects/shopping-list-manager' },
+        { text: 'Integration', items: [
+          { text: 'KSH Family Hub', link: '/projects/ksh-family-hub' },
+          { text: 'Family Hub guides and demo', link: '/ksh-family-hub/' },
         ] },
         { text: 'Cards and gadgets', items: [
           { text: 'Timers & alarms', link: '/projects/timers' },
@@ -69,9 +69,8 @@ export default defineConfig({
     sidebar: {
       '/projects/': [
         { text: 'Projects', items: [{ text: 'All projects', link: '/projects/' }] },
-        { text: 'Integrations', items: [
-          { text: 'Recipe Manager', link: '/projects/recipe-manager' },
-          { text: 'Shopping List Manager', link: '/projects/shopping-list-manager' },
+        { text: 'Integration', items: [
+          { text: 'KSH Family Hub', link: '/projects/ksh-family-hub' },
         ] },
         { text: 'Cards and gadgets', items: [
           { text: 'Timers & alarms', link: '/projects/timers' },
@@ -119,10 +118,10 @@ export default defineConfig({
   vite: {
     server: {
       fs: { allow: ['..'] },
-      // The manuals and demo pages for the two project sites are built and published by their own repositories,
+      // The guides and demo pages of the Family Hub site are built and published by its own repository,
       // so they do not exist in this build. In `npm run dev`, fetch them from the live site instead (the local sandbox copies still win).
       proxy: {
-        '^/(Recipe-Manager|shopping-list-manager-card)/(?!sandbox/).*': { target: 'https://thekiwismarthome.github.io', changeOrigin: true },
+        '^/ksh-family-hub/(?!sandbox/).*': { target: 'https://thekiwismarthome.github.io', changeOrigin: true },
       },
     },
   },

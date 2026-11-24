@@ -5,7 +5,7 @@ titleTemplate: Home Assistant projects from New Zealand
 hero:
   name: Home Assistant, the Kiwi way
   text: Cards, integrations and dashboards for a smarter home.
-  tagline: Recipe and shopping list managers, timers, voice assistants, wall panels and a drawer of dashboard extras. Free, open source and built to be used every day in a real house.
+  tagline: A family hub for shopping, meals, chores and pocket money, plus timers, voice assistants, wall panels and a drawer of dashboard extras. Free, open source and built to be used every day in a real house.
   actions:
     - theme: brand
       text: Browse the projects
@@ -15,21 +15,13 @@ hero:
       link: /extras/
 features:
   - icon:
-      src: /icons/recipe.svg
-      width: 24
-      height: 24
-    title: Recipe Manager
-    details: Your recipes, a weekly meal planner and kitchen timers inside Home Assistant.
-    link: /projects/recipe-manager
-    linkText: Recipe Manager
-  - icon:
       src: /icons/cart.svg
       width: 24
       height: 24
-    title: Shopping List Manager
-    details: Shared real-time lists, a product catalogue and a loyalty card wallet.
-    link: /projects/shopping-list-manager
-    linkText: Shopping List Manager
+    title: KSH Family Hub
+    details: Shopping, meals, chores, a family calendar and pocket money for the kids, in one Home Assistant app. Try the live demo.
+    link: /projects/ksh-family-hub
+    linkText: KSH Family Hub
   - icon:
       src: /icons/timer.svg
       width: 24
@@ -64,26 +56,26 @@ features:
     linkText: HA Extras
 ---
 
-## Two integrations with their own websites {#featured}
+## KSH Family Hub {#featured}
 
-Each one is a Home Assistant integration plus a card, with a user manual and a live demo that runs the real card on sample data. The phones above are those demos.
+One Home Assistant integration for the whole household, with its own website, a live demo that runs the real app on sample data (the phones above), and a set of tutorials and how-tos.
 
 <div class="kh-two">
-  <a class="kh-feature sunset" href="/Recipe-Manager/">
-    <span class="kh-kicker">Integration + card</span>
-    <b>Recipe Manager</b>
-    <span class="kh-body">Keep every recipe you cook. Paste a link and the card reads the title, ingredients and steps for you. Scale servings, tap a time to start a timer, plan the week's dinners and send the ingredients to the shopping list in one tap.</span>
+  <a class="kh-feature meadow" href="/ksh-family-hub/">
+    <span class="kh-kicker">Integration + cards</span>
+    <b>KSH Family Hub</b>
+    <span class="kh-body">Shared shopping lists, a recipe book and weekly meal planner, chores and routines the children tick off, a family calendar and pocket money with a Cash and a Bank account for each child. Ten colour themes, and quick on a phone away from home.</span>
     <span class="kh-go">Open the website and live demo →</span>
   </a>
-  <a class="kh-feature meadow" href="/shopping-list-manager-card/">
-    <span class="kh-kicker">Integration + card</span>
-    <b>Shopping List Manager</b>
-    <span class="kh-body">One shopping list for the whole house. Shared or private lists that update on every device straight away, a product catalogue with fuzzy search, loyalty cards at the till, and two designs in three themes.</span>
-    <span class="kh-go">Open the website and live demo →</span>
+  <a class="kh-feature sunset" href="/ksh-family-hub/guide/">
+    <span class="kh-kicker">Tutorials and how-tos</span>
+    <b>Learn it in an evening</b>
+    <span class="kh-body">Install it, add your family, set up chores and pocket money, put the kids screen on a bedside tablet, use it away from home, move over from Recipe Manager and Shopping List Manager, back it up.</span>
+    <span class="kh-go">Open the guides →</span>
   </a>
 </div>
 
-They work on their own and work even better together: Recipe Manager sends a recipe's ingredients to Shopping List Manager.
+KSH Family Hub replaces Recipe Manager and Shopping List Manager, and imports their data.
 
 ## HA Extras {#extras}
 

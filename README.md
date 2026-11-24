@@ -2,17 +2,17 @@
 
 The Kiwi Smart Home website: https://thekiwismarthome.github.io/
 
-Built with [VitePress](https://vitepress.dev/), in the same style as the Recipe Manager and Shopping List Manager sites.
+Built with [VitePress](https://vitepress.dev/), in the same style as the KSH Family Hub site.
 
 ```bash
 npm install
-npm run dev      # copies the two project demos from sibling checkouts so the home page phones work
+npm run dev      # copies the Family Hub demo from the sibling checkout so the home page phones work
 npm run build
 ```
 
 - `projects/`, `extras/` and `notes/` are the three sections of the menu.
 - `.vitepress/theme/projects.js` is the one list of projects used by the home page, the project index and each group page.
-- Recipe Manager (`/Recipe-Manager/`) and Shopping List Manager (`/shopping-list-manager-card/`) are published by their own repositories to the same address.
+- KSH Family Hub (`/ksh-family-hub/`, with its guides and live demo) is published by its own repository to the same address.
 
 ## Downloads
 

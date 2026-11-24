@@ -58,7 +58,7 @@ A fork of [TarheelGrad1998/gallery-card](https://github.com/TarheelGrad1998/gall
 
 ## More cards in other places
 
-- [Recipe Manager](/projects/recipe-manager) and [Shopping List Manager](/projects/shopping-list-manager) are full cards with their own sites.
+- [KSH Family Hub](/projects/ksh-family-hub) is a full app and dashboard cards (including a kids screen) with its own site.
 - [Timers and alarms](/projects/timers) has two timer cards.
 - [News Reader](/extras/news-reader) in HA Extras is a custom card too.
 

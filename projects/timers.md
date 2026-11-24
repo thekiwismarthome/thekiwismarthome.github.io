@@ -66,4 +66,4 @@ Timer functionality for Home Assistant's Assist. Start and stop timers by voice 
 
 ## Recipe timers
 
-[Recipe Manager](/projects/recipe-manager) has its own timers. Tap a time in a method step to start one, share them around the house and see the ones you started by voice on a Voice PE.
+[KSH Family Hub](/projects/ksh-family-hub) (its Meals part) has its own timers. Tap a time in a method step to start one, share them around the house and see the ones you started by voice on a Voice PE.

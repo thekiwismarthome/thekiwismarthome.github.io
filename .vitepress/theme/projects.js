@@ -3,7 +3,7 @@
 const GH = 'https://github.com/thekiwismarthome/';
 
 export const GROUPS = {
-  featured: { title: 'Home Assistant integrations', link: '/projects/', blurb: 'The big ones: an integration plus a card, with their own websites and live demos.' },
+  featured: { title: 'Home Assistant integrations', link: '/projects/', blurb: 'The big one: an integration plus cards, with its own website, live demo and guides.' },
   timers: { title: 'Timers & alarms', link: '/projects/timers', blurb: 'Cards and scripts for timers, alarms and reminders.' },
   cards: { title: 'Dashboard cards', link: '/projects/cards', blurb: 'Custom Lovelace cards for the dashboard.' },
   voice: { title: 'Voice & displays', link: '/projects/voice-displays', blurb: 'Voice assistants, ESPHome gadgets and wall panels.' },
@@ -12,12 +12,9 @@ export const GROUPS = {
 
 // status: live | wip | stable | unmaintained
 export const PROJECTS = [
-  { id: 'recipe-manager', group: 'featured', name: 'Recipe Manager', status: 'live', kicker: 'Integration + card',
-    blurb: 'Recipes, a weekly meal planner, cooking timers and a one-tap trip to the shopping list, all inside Home Assistant.',
-    site: '/Recipe-Manager/', page: '/projects/recipe-manager', repo: 'Recipe-Manager', tags: ['HACS', 'Python', 'Lovelace'] },
-  { id: 'shopping-list-manager', group: 'featured', name: 'Shopping List Manager', status: 'live', kicker: 'Integration + card',
-    blurb: 'Shared real-time shopping lists, a product catalogue and a loyalty card wallet, with two designs and three themes.',
-    site: '/shopping-list-manager-card/', page: '/projects/shopping-list-manager', repo: 'shopping-list-manager', tags: ['HACS', 'Python', 'Lovelace'] },
+  { id: 'ksh-family-hub', group: 'featured', name: 'KSH Family Hub', status: 'live', kicker: 'Integration + card',
+    blurb: 'Shopping lists, recipes and a meal planner, chores and routines, a family calendar and pocket money for the kids, in one Home Assistant app. Fast away from home, with a live demo and guides.',
+    site: '/ksh-family-hub/', page: '/projects/ksh-family-hub', repo: 'ksh-family-hub', tags: ['HACS', 'Python', 'Lovelace'] },
 
   { id: 'ha-timer-card', group: 'timers', name: 'Timer Card for View Assist', status: 'stable', kicker: 'Based on eyalgal/simple-timer-card',
     blurb: 'Simple Timer Card with View Assist timer support added: alarm switches, snooze states, a satellite entity override and drum-style time pickers. Finds your timers on its own.',
